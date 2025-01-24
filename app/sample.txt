@@ -1,0 +1,1 @@
+take out index_path, implement preprocessing generate vectorstore in separate script and load it

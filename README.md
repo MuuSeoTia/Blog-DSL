@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Personal Blog Generator
 
 A static blog generator built in Haskell using EDSLs (Embedded Domain-Specific Languages) for both content and styling.
@@ -45,3 +46,6 @@ Edit `app/Main.hs` and modify the `samplePosts` function to add your blog posts.
 ## Customizing Style
 
 Edit `src/CSS.hs` to modify the styling using the Clay EDSL.
+=======
+# Haskell_Site
+>>>>>>> origin/main
