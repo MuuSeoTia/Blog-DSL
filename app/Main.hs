@@ -87,4 +87,4 @@ generateSite = do
   putStrLn "Site generated successfully in dist/ directory!"
 
 main :: IO ()
-main = generateSite 
+main = generateSite

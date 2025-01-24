@@ -23,3 +23,7 @@ cabal.project.local~
 .ghc.environment.*
 .env
 blog-frontend/
+node_modules/
+*.exe
+*~
+*.swp
