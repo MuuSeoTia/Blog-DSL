@@ -6,7 +6,7 @@ cabal-version: 1.12
 
 name:           personal-blog
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/MuuSeoTia/personal-blog#readme>
+description:    Please see the README on GitHub at <https://github.com/yourusername/personal-blog#readme>
 homepage:       https://github.com/MuuSeoTia/personal-blog#readme
 bug-reports:    https://github.com/MuuSeoTia/personal-blog/issues
 author:         Mouad Tiahi
@@ -56,8 +56,21 @@ executable personal-blog-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson >=2.1
+    , base >=4.7 && <5
+    , blaze-html
+    , blaze-markup
+    , bytestring
+    , clay >=0.15
+    , containers
+    , directory
+    , filepath
+    , lucid >=2.11
+    , mtl
+    , pandoc
     , personal-blog
+    , text
+    , time >=1.12
   default-language: Haskell2010
 
 test-suite personal-blog-test
@@ -69,6 +82,19 @@ test-suite personal-blog-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson >=2.1
+    , base >=4.7 && <5
+    , blaze-html
+    , blaze-markup
+    , bytestring
+    , clay >=0.15
+    , containers
+    , directory
+    , filepath
+    , lucid >=2.11
+    , mtl
+    , pandoc
     , personal-blog
+    , text
+    , time >=1.12
   default-language: Haskell2010
