@@ -25,15 +25,27 @@ writeFileUtf8 path content = do
 -- blog posts
 samplePosts :: [BlogPost]
 samplePosts =
-    [ BlogPost 1 "Building a Static Site Generator in Haskell" (UTCTime (fromGregorian 2024 1 15) 0)
-        [ HeaderContent "My Journey with Haskell"
-        , TextContent "I embarked on this project to deepen my understanding of functional programming and Haskell. Building a static site generator from scratch using EDSLs has been an enlightening experience."
+    [ BlogPost 1 "Why Did You Code Your Personal Website in Haskell?" (UTCTime (fromGregorian 2025 1 27) 0)
+        [ HeaderContent "How it started"
+        , TextContent "One day I was in the basement of Hayden Hall on campus and I was approached by a suspicious hooded figure who smelled like matcha powder. \
+        \ He came up to me ominously offering me a book of divine power: \"Learn Haskell by building a blog generator\" it was intriguing to say the least but I took it in stride \
+        \ and challenged myself to learn Haskell over winter break."
+        , HeaderContent "The Process"
+        , TextContent "At first the extremely functional nature of Haskell took me aback, as somebody entrenched in low level and often times very verbose \
+        \ programming languages such as C++, it changed my perception of programming languages entirely."
+        , TextContent "A massive difference I found right away was how types worked in Haskell and how useful Type Classes are specifically with multiple input polymorphism. \
+        \ Another notable difference was the explicit nature of said inputs compared to a language like C++ where type conversions are largely implicit.\
+        \ I'm currently still getting used to implementing more Functors into my code and utilizing abstractions rather than mutation for not just Haskell but other languages I code in."
         , HeaderContent "What I Learned"
         , TextContent "Through this project, I gained hands-on experience with:"
-        , TextContent "• Type-safe DSLs in Haskell\n• Functional programming patterns\n• Static site generation\n• CSS generation using Clay"
-        , CodeBlock "haskell" "-- Example of our Blog DSL\ndata BlogElement = \n    TextContent Text\n  | HeaderContent Text\n  | Image { path :: Text, alt :: Text }"
+        , TextContent "• How to build DSLs in Haskell\n• Functional programming patterns\n• Static site generation\n• CSS generation\n• Haskell syntax and logic"
+        , CodeBlock "haskell" "-- Example of my Blog DSL\ndata BlogElement = \n    TextContent Text\n  | HeaderContent Text\n  | Image { path :: Text, alt :: Text }"
+        , HeaderContent "What's next + Reveal of the Mysterious Figure"
+        , TextContent "My next steps as of this date is to add a Markdown parser for better formatting, adding a few more styling tools to my CSS EDSL \
+        \ and generating a Projects page, maybe even add a Tetris block game to keep people's attention. Also the mysterious figure was my good friend Lucas, \
+        \ the link to his website will be somewhere on your screen. Please make sure to endorse him in \"Rizz\" when you have the opportunity."
         ]
-    , BlogPost 2 "Functional Programming Principles" (UTCTime (fromGregorian 2024 1 20) 0)
+    , BlogPost 2 "Functional Programming Principles" (UTCTime (fromGregorian 2024 1 20) 19)
         [ HeaderContent "Why Functional Programming Matters"
         , TextContent "Functional programming offers a different way of thinking about code. Instead of telling the computer how to do something, we focus on what we want to compute."
         , HeaderContent "Key Concepts"
@@ -61,15 +73,15 @@ generateAbout = doctypehtml_ $ do
           p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering intern" 
           p_ "I specialize in:"
           ul_ $ do
-            li_ "Functional Programming (Haskell, OCaml)"
-            li_ "Web Development"
-            li_ "System Design"
+            li_ "Machine Learning & Deep Learning (Regression, Classification, Computer Vision, NLP, Reinforcement Learning)"
+            li_ "High Performance Computing (CUDA, Metal, Clustering, Slurm, Dynamic Binary Instrumentation)"
+            li_ "Cloud Computing (Google Cloud Platform, AWS, Microsoft Azure, Terraform, Hashicorp Lang)"
           div_ [class_ "social-links"] $ do
             a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank"] "GitHub |"
             a_ [href_ "https://linkedin.com/in/your-profile", target_ "_blank"] " LinkedIn |"
             a_ [href_ "mailto:tiahimouad22@gmail.com"] " Email |"
       footer_ [class_ "footer"] $ do
-        p_ [] "© 2024 Generated in Haskell"
+        p_ [] "Generated in Haskell"
 
 -- index page
 generateIndex :: [BlogPost] -> Html ()
@@ -120,7 +132,7 @@ copyImages = do
     forM_ imageFiles $ \file -> do
       copyFile (sourceDir </> file) (targetDir </> file)
 
--- | Generate static files
+-- generate static files
 generateSite :: IO ()
 generateSite = do
   -- Create directories
