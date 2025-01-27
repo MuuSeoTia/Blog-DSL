@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Personal Blog Generator
 
 A static blog generator built with Haskell, using EDSLs for content and styling.
@@ -37,7 +37,6 @@ This will generate the static site in the `dist` directory.
 
 BSD3
 =======
-<<<<<<< HEAD
 # Personal Blog Generator
 
 A static blog generator built in Haskell using EDSLs (Embedded Domain-Specific Languages) for both content and styling.
@@ -77,15 +76,13 @@ A static blog generator built in Haskell using EDSLs (Embedded Domain-Specific L
 
 Edit `app/Main.hs` and modify the `samplePosts` function to add your blog posts. Each post can contain:
 
-- Text content: `TextContent "Your text here"`
-- Headers: `HeaderContent "Your header"`
-- Images: `Image "/path/to/image.jpg" "Alt text" (Just "Caption")`
-- Code blocks: `CodeBlock "language" "your code here"`
+- Text content
+- Headers
+- Images
+- Code blocks
 
 ## Customizing Style
 
-Edit `src/CSS.hs` to modify the styling using the Clay EDSL.
-=======
+Edit `src/CSS.hs` to modify the styling.
 # Haskell_Site
->>>>>>> origin/main
->>>>>>> origin/master
+

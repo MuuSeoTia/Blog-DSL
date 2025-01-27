@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE InstanceSigs #-}
 
 module BlogDSL where
 
@@ -25,7 +26,7 @@ data BlogElement =
     , codeContent :: Text
     } deriving (Generic, Show)
 
--- | A complete blog post
+-- blogpost type
 data BlogPost = BlogPost
   { postId :: Int
   , title :: Text
@@ -33,7 +34,7 @@ data BlogPost = BlogPost
   , content :: [BlogElement]
   } deriving (Generic, Show)
 
--- | JSON instances
+-- define json instances
 instance ToJSON BlogElement where
   toJSON (TextContent txt) = object 
     [ "type" .= ("text" :: Text)
@@ -59,7 +60,7 @@ instance FromJSON BlogElement
 instance ToJSON BlogPost
 instance FromJSON BlogPost
 
--- | Basic HTML instances
+-- define basic HTML instances
 instance ToHtml BlogElement where
   toHtml element = case element of
     TextContent text -> toHtml text
@@ -70,16 +71,18 @@ instance ToHtml BlogElement where
         Just cap -> p_ [class_ "caption"] $ toHtml cap
         Nothing -> pure ()
     CodeBlock lang code -> pre_ [class_ $ "language-" <> lang] $ code_ $ toHtml code
+  toHtmlRaw :: Monad m => BlogElement -> HtmlT m ()
   toHtmlRaw = toHtml
 
 instance ToHtml BlogPost where
+  toHtml :: Monad m => BlogPost -> HtmlT m ()
   toHtml post = article_ [class_ "blog-post"] $ do
     h1_ [class_ "post-title"] $ toHtml (title post)
     p_ [class_ "post-date"] $ toHtml (show $ date post)
     mapM_ toHtml (content post)
   toHtmlRaw = toHtml
 
--- | Blog HTML generation
+-- HTML generation
 class ToHtml a => ToBlogHtml a where
   toBlogHtml :: a -> Html ()
 
@@ -88,7 +91,7 @@ instance ToBlogHtml BlogElement where
   toBlogHtml (HeaderContent txt) = h2_ [] (toHtml txt)
   toBlogHtml (Image path' alt' mcaption) = figure_ [] $ do
     img_ [src_ path', alt_ alt']
-    maybe (pure ()) (\cap -> figcaption_ [] (toHtml cap)) mcaption
+    maybe (pure ()) (figcaption_[] . toHtml) mcaption
   toBlogHtml (CodeBlock lang code) = 
     pre_ [class_ $ "language-" <> lang] $ 
       code_ [class_ $ "language-" <> lang] (toHtml code)
@@ -99,7 +102,7 @@ instance ToBlogHtml BlogPost where
     div_ [class_ "post-date"] (toHtml $ show $ date post)
     mapM_ toBlogHtml (content post)
 
--- | Generate a complete HTML page
+-- page generator
 renderBlogPost :: BlogPost -> Html ()
 renderBlogPost post = doctypehtml_ $ do
   head_ $ do
