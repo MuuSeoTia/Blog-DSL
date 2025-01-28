@@ -187,17 +187,25 @@ blogStyle = do
       color "#333"
       marginBottom (px 20)
       fontWeight bold
+      lineHeight (unitless 1.2)
     h2 ? do
       fontSize (px 28)
       color "#444"
       marginTop (px 40)
       marginBottom (px 20)
+      lineHeight (unitless 1.3)
     p ? do
       fontSize (px 18)
       lineHeight (unitless 1.8)
       color "#555"
       marginBottom (px 25)
       marginTop (px 0)
+    ".post-date" ? do
+      color "#666"
+      fontSize (px 16)
+      fontStyle italic
+      marginBottom (px 30)
+      display block
 
   -- headers
   h2 ? do
@@ -219,17 +227,18 @@ blogStyle = do
 
   -- code blocks
   pre ? do
-    backgroundColor "#f8f8f8"
+    backgroundColor "#2d2d2d"
     padding (px 25) (px 25) (px 25) (px 25)
     borderRadius (px 4) (px 4) (px 4) (px 4)
     overflow auto
     marginTop (px 20)
     marginBottom (px 30)
-    boxShadow $ pure $ bsColor (rgba 0 0 0 0.05) $ shadowWithBlur (px 0) (px 2) (px 4)
+    boxShadow $ pure $ bsColor (rgba 0 0 0 0.1) $ shadowWithBlur (px 0) (px 2) (px 4)
     code ? do
-      fontFamily ["Consolas", "Monaco", "Andale Mono"] [monospace]
+      fontFamily ["Fira Code", "Consolas", "Monaco", "Andale Mono"] [monospace]
       fontSize (px 14)
       lineHeight (unitless 1.6)
+      color "#ccc"
 
   -- footer
   ".footer" ? do

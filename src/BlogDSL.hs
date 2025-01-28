@@ -11,6 +11,7 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Time (UTCTime)
 import Lucid
+import Data.Time.Format (formatTime, defaultTimeLocale)
 
 -- | Blog element types
 data BlogElement = 
@@ -89,9 +90,9 @@ class ToHtml a => ToBlogHtml a where
 instance ToBlogHtml BlogElement where
   toBlogHtml (TextContent txt) = p_ [] (toHtml txt)
   toBlogHtml (HeaderContent txt) = h2_ [] (toHtml txt)
-  toBlogHtml (Image path' alt' mcaption) = figure_ [] $ do
-    img_ [src_ path', alt_ alt']
-    maybe (pure ()) (figcaption_[] . toHtml) mcaption
+  toBlogHtml (Image path alt caption) = figure_ [] $ do
+    img_ [src_ path, alt_ alt]
+    maybe (pure ()) (figcaption_[] . toHtml) caption
   toBlogHtml (CodeBlock lang code) = 
     pre_ [class_ $ "language-" <> lang] $ 
       code_ [class_ $ "language-" <> lang] (toHtml code)
@@ -99,7 +100,7 @@ instance ToBlogHtml BlogElement where
 instance ToBlogHtml BlogPost where
   toBlogHtml post = article_ [class_ "blog-post"] $ do
     h1_ [] (toHtml $ title post)
-    div_ [class_ "post-date"] (toHtml $ show $ date post)
+    div_ [class_ "post-date"] (toHtml $ formatDate $ date post)
     mapM_ toBlogHtml (content post)
 
 -- page generator
@@ -109,13 +110,24 @@ renderBlogPost post = doctypehtml_ $ do
     meta_ [charset_ "utf-8"]
     meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
     title_ (toHtml $ title post)
-    link_ [rel_ "stylesheet", type_ "text/css", href_ "/static/css/style.css"]
-    script_ [src_ "/static/js/prism.js"] ("" :: Text)
+    link_ [rel_ "stylesheet", type_ "text/css", href_ "../css/style.css"]
+    link_ [rel_ "stylesheet", href_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"]
+    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"] ("" :: Text)
+    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-haskell.min.js"] ("" :: Text)
+    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"] ("" :: Text)
   body_ $ do
     div_ [class_ "container"] $ do
       nav_ [class_ "nav"] $ do
-        a_ [href_ "/"] "Home"
-        a_ [href_ "/about"] "About"
-      main_ [] $ toBlogHtml post
+        a_ [href_ "../index.html"] "Home"
+        a_ [href_ "../about.html"] "About"
+      main_ [] $ do
+        article_ [class_ "blog-post"] $ do
+          h1_ [] (toHtml $ title post)
+          div_ [class_ "post-date"] (toHtml $ formatDate $ date post)
+          mapM_ toBlogHtml (content post)
       footer_ [class_ "footer"] $ do
-        p_ [] "Generated with Haskell" 
+        p_ [] "Generated in Haskell"
+
+-- | Format date nicely
+formatDate :: UTCTime -> String
+formatDate = formatTime defaultTimeLocale "%B %e, %Y" 

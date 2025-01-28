@@ -14,7 +14,7 @@ import System.IO (IOMode(..), openFile, hSetEncoding, utf8, hClose)
 import qualified Data.Text.Lazy as TL
 import Control.Monad (forM_, when)
 
--- | Write file with UTF-8 encoding
+-- write file with UTF-8 encoding
 writeFileUtf8 :: FilePath -> TL.Text -> IO ()
 writeFileUtf8 path content = do
   handle <- openFile path WriteMode
@@ -25,17 +25,17 @@ writeFileUtf8 path content = do
 -- blog posts
 samplePosts :: [BlogPost]
 samplePosts =
-    [ BlogPost 1 "Why Did You Code Your Personal Website in Haskell?" (UTCTime (fromGregorian 2025 1 27) 0)
+    [ BlogPost 1 "Why Did You Code Your Personal Website in Haskell?" (UTCTime (fromGregorian 2025 1 27) 19)
         [ HeaderContent "How it started"
         , TextContent "One day I was in the basement of Hayden Hall on campus and I was approached by a suspicious hooded figure who smelled like matcha powder. \
-        \ He came up to me ominously offering me a book of divine power: \"Learn Haskell by building a blog generator\" it was intriguing to say the least but I took it in stride \
-        \ and challenged myself to learn Haskell over winter break."
+        \He came up to me ominously offering me a book of divine power: \"Learn Haskell by building a blog generator\" it was intriguing to say the least but I took it in stride \
+        \and challenged myself to learn Haskell over winter break."
         , HeaderContent "The Process"
         , TextContent "At first the extremely functional nature of Haskell took me aback, as somebody entrenched in low level and often times very verbose \
-        \ programming languages such as C++, it changed my perception of programming languages entirely."
+        \programming languages such as C++, it changed my perception of programming languages entirely."
         , TextContent "A massive difference I found right away was how types worked in Haskell and how useful Type Classes are specifically with multiple input polymorphism. \
-        \ Another notable difference was the explicit nature of said inputs compared to a language like C++ where type conversions are largely implicit.\
-        \ I'm currently still getting used to implementing more Functors into my code and utilizing abstractions rather than mutation for not just Haskell but other languages I code in."
+        \Another notable difference was the explicit nature of said inputs compared to a language like C++ where type conversions are largely implicit.\
+        \I'm currently still getting used to implementing more Functors into my code and utilizing abstractions rather than mutation for not just Haskell but other languages I code in."
         , HeaderContent "What I Learned"
         , TextContent "Through this project, I gained hands-on experience with:"
         , TextContent "• How to build DSLs in Haskell\n• Functional programming patterns\n• Static site generation\n• CSS generation\n• Haskell syntax and logic"
@@ -45,11 +45,16 @@ samplePosts =
         \ and generating a Projects page, maybe even add a Tetris block game to keep people's attention. Also the mysterious figure was my good friend Lucas, \
         \ the link to his website will be somewhere on your screen. Please make sure to endorse him in \"Rizz\" when you have the opportunity."
         ]
-    , BlogPost 2 "Functional Programming Principles" (UTCTime (fromGregorian 2024 1 20) 19)
-        [ HeaderContent "Why Functional Programming Matters"
-        , TextContent "Functional programming offers a different way of thinking about code. Instead of telling the computer how to do something, we focus on what we want to compute."
-        , HeaderContent "Key Concepts"
-        , TextContent "• Pure functions\n• Immutability\n• Higher-order functions\n• Type safety"
+    , BlogPost 2 "Q&A 1" (UTCTime (fromGregorian 2025 1 27) 21)
+        [ HeaderContent "Q: Is AI taking CS jobs?"
+        , TextContent "A: For individuals who have poor code structure, lack of diversity of applicable skills and DS majors yes, otherwise you're fine."
+        , HeaderContent "Q: Is Quantum Computing Even Real?"
+        , TextContent "A: Ask yourself: What does it mean for something to be real do you need to see it? Or simply believe in it? Is it something that is proven? \
+        \ If you're looking for an opinion from me then the answer is yes. (I know nothing about philosophy)"
+        , HeaderContent "Q: How to get \"cracked\"?"
+        , TextContent "A: Don't. "
+        , HeaderContent "Q: TypeScript?"
+        , TextContent "A: A bad day writing code in C++ is better than a good day writing code in TypeScript -David Stigant (Surely)"
         ]
     ]
 
