@@ -368,11 +368,12 @@ projectStyles = do
       mconcat $ P.map techColor
         [ (".gcp", "#4285F4")
         , (".react", "#61DAFB")
+        , (".cnn","#FFA500")
         , (".typescript", "#3178C6")
-        , (".python", "#3776AB")
+        , (".python", "#39FF14")
         , (".flask", "#000000")
         , (".expo", "#000020")
-        , (".ml", "#FF6F00")
+        , (".ml", "#8A00C4")
         ]
       where
         techColor (cls, clr) = cls & do

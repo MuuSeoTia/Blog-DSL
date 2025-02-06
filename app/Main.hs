@@ -133,7 +133,10 @@ generateProjects = doctypehtml_ $ do
                   span_ "TypeScript"
                 div_ [class_ "tech-item"] $ do
                   span_ [class_ "tech-dot python"] "●"
-                  span_ "Python/ML"
+                  span_ "Python"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot ml"] "●"
+                  span_ "ML"
           
           -- project 2
           div_ [class_ "project-card"] $ do
@@ -162,8 +165,8 @@ generateProjects = doctypehtml_ $ do
                   span_ [class_ "tech-dot typescript"] "●"
                   span_ "TypeScript"
                 div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot ml"] "●"
-                  span_ "ML/CNN"
+                  span_ [class_ "tech-dot cnn"] "●"
+                  span_ "CNN"
           
           -- current projects section
           div_ [class_ "current-projects"] $ do
