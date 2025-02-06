@@ -5,7 +5,7 @@ import Clay
 import Data.Text.Lazy (Text)
 import qualified Clay.Render as R
 
--- | Main blog style
+-- main blog style
 blogStyle :: Css
 blogStyle = do
   -- global styles
@@ -250,6 +250,131 @@ blogStyle = do
     backgroundColor white
     borderRadius (px 8) (px 8) (px 8) (px 8)
     boxShadow $ pure $ bsColor (rgba 0 0 0 0.1) $ shadowWithBlur (px 0) (px 2) (px 4)
+
+  -- Project Section Styles
+  ".projects-main" ? do
+    maxWidth (px 1000)
+    margin (px 0) auto (px 0) auto
+
+  ".section-title" ? do
+    fontSize (px 36)
+    color "#333"
+    marginBottom (px 40)
+    textAlign center
+    fontWeight bold
+
+  ".project-card" ? do
+    backgroundColor white
+    padding (px 40) (px 40) (px 40) (px 40)
+    marginBottom (px 40)
+    borderRadius (px 12) (px 12) (px 12) (px 12)
+    boxShadow $ pure $ bsColor (rgba 0 0 0 0.1) $ shadowWithBlur (px 0) (px 4) (px 8)
+    transition "transform" 0.3 ease (sec 0)
+    hover & do
+      transform $ scale 1.02 1.02
+
+  ".project-title" ? do
+    fontSize (px 28)
+    color "#333"
+    marginBottom (px 20)
+    fontWeight bold
+
+  ".project-description" ? do
+    fontSize (px 18)
+    color "#555"
+    lineHeight (unitless 1.6)
+    marginBottom (px 30)
+
+  ".project-links" ? do
+    display flex
+    gap (px 20)
+    marginBottom (px 30)
+    a ? do
+      display inlineFlex
+      alignItems center
+      padding (px 12) (px 20) (px 12) (px 20)
+      borderRadius (px 6) (px 6) (px 6) (px 6)
+      textDecoration none
+      fontWeight bold
+      transition "all" 0.3 ease (sec 0)
+    ".demo-link" ? do
+      backgroundColor "#007acc"
+      color white
+      hover & do
+        backgroundColor "#005c99"
+    ".github-link" ? do
+      backgroundColor "#333"
+      color white
+      hover & do
+        backgroundColor "#222"
+    ".icon" ? do
+      marginRight (px 8)
+      fontSize (px 16)
+
+  ".tech-title" ? do
+    fontSize (px 18)
+    color "#666"
+    marginBottom (px 15)
+    fontWeight bold
+
+  ".tech-list" ? do
+    display flex
+    flexWrap wrap
+    gap (px 15)
+
+  ".tech-item" ? do
+    display inlineFlex
+    alignItems center
+    gap (px 8)
+    fontSize (px 16)
+    color "#555"
+
+  ".tech-dot" ? do
+    fontSize (px 20)
+    lineHeight (unitless 1)
+    ".gcp" & do
+      color "#4285F4"
+    ".react" & do
+      color "#61DAFB"
+    ".typescript" & do
+      color "#3178C6"
+    ".python" & do
+      color "#3776AB"
+    ".flask" & do
+      color "#000000"
+    ".expo" & do
+      color "#000020"
+    ".ml" & do
+      color "#FF6F00"
+
+  ".current-projects" ? do
+    backgroundColor white
+    padding (px 40) (px 40) (px 40) (px 40)
+    borderRadius (px 12) (px 12) (px 12) (px 12)
+    boxShadow $ pure $ bsColor (rgba 0 0 0 0.1) $ shadowWithBlur (px 0) (px 4) (px 8)
+    marginTop (px 60)
+
+  ".research-list" ? do
+    display flex
+    flexDirection column
+    gap (px 20)
+
+  ".research-item" ? do
+    display flex
+    alignItems center
+    gap (px 15)
+    fontSize (px 18)
+    color "#555"
+    padding (px 15) (px 20) (px 15) (px 20)
+    backgroundColor "#f8f9fa"
+    borderRadius (px 8) (px 8) (px 8) (px 8)
+    transition "transform" 0.2 ease (sec 0)
+    hover & do
+      transform $ scale 1.02 1.02
+
+  ".research-dot" ? do
+    color "#007acc"
+    fontSize (px 16)
 
 -- CSS renderer
 renderCSS :: Text

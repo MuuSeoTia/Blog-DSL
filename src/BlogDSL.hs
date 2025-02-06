@@ -120,6 +120,7 @@ renderBlogPost post = doctypehtml_ $ do
       nav_ [class_ "nav"] $ do
         a_ [href_ "../index.html"] "Home"
         a_ [href_ "../about.html"] "About"
+        a_ [href_ "../projects.html"] "Projects"
       main_ [] $ do
         article_ [class_ "blog-post"] $ do
           h1_ [] (toHtml $ title post)
@@ -128,6 +129,6 @@ renderBlogPost post = doctypehtml_ $ do
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
 
--- | Format date nicely
+-- date formatter
 formatDate :: UTCTime -> String
 formatDate = formatTime defaultTimeLocale "%B %e, %Y" 

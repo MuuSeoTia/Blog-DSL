@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE BlockArguments #-}
 
 module Main where
 
@@ -71,11 +72,12 @@ generateAbout = doctypehtml_ $ do
       nav_ [class_ "nav"] $ do
         a_ [href_ "index.html"] "Home"
         a_ [href_ "about.html"] "About"
+        a_ [href_ "projects.html"] "Projects"
       main_ [] $ do
         div_ [class_ "about-section"] $ do
           h1_ "About Me"
           img_ [class_ "profile-img", src_ "../images/headshot.png", alt_ "Mouad Tiahi"]
-          p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering intern" 
+          p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering Intern @ Dell Technologies" 
           p_ "I specialize in:"
           ul_ $ do
             li_ "Machine Learning & Deep Learning (Regression, Classification, Computer Vision, NLP, Reinforcement Learning)"
@@ -88,7 +90,98 @@ generateAbout = doctypehtml_ $ do
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
 
--- index page
+-- generate projects page
+generateProjects :: Html()
+generateProjects = doctypehtml_ $ do
+  head_ $ do 
+    meta_ [charset_ "utf-8"]
+    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
+    title_ "Projects"
+    link_ [rel_ "stylesheet", type_ "text/css", href_ "css/style.css"]
+  body_ $ do
+    div_ [class_ "container"] $ do
+      nav_ [class_ "nav"] $ do
+        a_ [href_ "index.html"] "Home"
+        a_ [href_ "about.html"] "About"
+        a_ [href_ "projects.html"] "Projects"
+      main_ [class_ "projects-main"] $ do
+        div_ [class_ "project-section"] $ do
+          h1_ [class_ "section-title"] "My Projects"
+          
+          -- project 1
+          div_ [class_ "project-card"] $ do
+            h2_ [class_ "project-title"] "Sustainable AF"
+            p_ [class_ "project-description"] "A web application that allows users to find sustainable products and services in their area with a solar heat map and a carbon footprint calculator."
+            div_ [class_ "project-links"] $ do
+              a_ [href_ "https://www.youtube.com/watch?v=-a0d_5INf8Q&t=1s&ab_channel=FahadFaruqi", class_ "demo-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "▶ "
+                "Watch Demo"
+              a_ [href_ "https://github.com/MuuSeoTia/carbon-advisor", class_ "github-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "⌘ "
+                "GitHub Repo"
+            div_ [class_ "project-tech"] $ do
+              p_ [class_ "tech-title"] "Technologies:"
+              div_ [class_ "tech-list"] $ do
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot gcp"] "●"
+                  span_ "Google Cloud Platform"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot react"] "●"
+                  span_ "React.js"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot typescript"] "●"
+                  span_ "TypeScript"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot python"] "●"
+                  span_ "Python/ML"
+          
+          -- project 2
+          div_ [class_ "project-card"] $ do
+            h2_ [class_ "project-title"] "Maritime"
+            p_ [class_ "project-description"] "Mobile application which allows users to track live microplastic concentrations in the ocean and allows for waste identification."
+            div_ [class_ "project-links"] $ do
+              a_ [href_ "https://youtu.be/Dj94vM3d93Q?si=ZK42k89Ask6-Or8u", class_ "demo-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "▶ "
+                "Watch Demo"
+              a_ [href_ "https://github.com/Zapaway/maritime", class_ "github-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "⌘ "
+                "GitHub Repo"
+            div_ [class_ "project-tech"] $ do
+              p_ [class_ "tech-title"] "Technologies:"
+              div_ [class_ "tech-list"] $ do
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot python"] "●"
+                  span_ "Python"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot flask"] "●"
+                  span_ "Flask"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot expo"] "●"
+                  span_ "Expo"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot typescript"] "●"
+                  span_ "TypeScript"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot ml"] "●"
+                  span_ "ML/CNN"
+          
+          -- current projects section
+          div_ [class_ "current-projects"] $ do
+            h2_ [class_ "section-title"] "Current Research Projects"
+            div_ [class_ "research-list"] $ do
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "Writing a Compiler to 3D Objects"
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "NvBit Compiler for NVIDIA CUDA"
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "Enhanced Workload Handling via Integrating LLM into Slurm"
+      
+      footer_ [class_ "footer"] $ do
+        p_ [] "Generated in Haskell"
+
 generateIndex :: [BlogPost] -> Html ()
 generateIndex posts = doctypehtml_ $ do
   head_ $ do
@@ -101,6 +194,7 @@ generateIndex posts = doctypehtml_ $ do
       nav_ [class_ "nav"] $ do
         a_ [href_ "index.html"] "Home"
         a_ [href_ "about.html"] "About"
+        a_ [href_ "projects.html"] "Projects"
       main_ [] $ do
         div_ [class_ "hero-section"] $ do
           img_ [class_ "profile-img", src_ "../images/headshot.png", alt_ "Mouad Tiahi"]
@@ -164,6 +258,9 @@ generateSite = do
 
   -- Generate CSS
   writeFileUtf8 "dist/css/style.css" renderCSS
+
+  -- Generate projects page
+  writeFileUtf8 "dist/projects.html" $ renderText generateProjects
 
   putStrLn "Site generated successfully in dist/ directory!"
 
