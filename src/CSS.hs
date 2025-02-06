@@ -1,7 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module CSS where
 
-import Clay
+import Clay hiding (span)
+import qualified Clay.Elements as E
 import Data.Text.Lazy (Text)
 import qualified Clay.Render as R
 
@@ -287,16 +288,17 @@ blogStyle = do
 
   ".project-links" ? do
     display flex
-    gap (px 20)
     marginBottom (px 30)
     a ? do
-      display inlineFlex
-      alignItems center
+      display inlineBlock
       padding (px 12) (px 20) (px 12) (px 20)
+      marginRight (px 20)
       borderRadius (px 6) (px 6) (px 6) (px 6)
       textDecoration none
       fontWeight bold
       transition "all" 0.3 ease (sec 0)
+      lastChild & do
+        marginRight (px 0)
     ".demo-link" ? do
       backgroundColor "#007acc"
       color white
@@ -318,16 +320,19 @@ blogStyle = do
     fontWeight bold
 
   ".tech-list" ? do
-    display flex
-    flexWrap wrap
-    gap (px 15)
+    display block
+    overflow hidden
+    marginLeft (px (-15))
 
   ".tech-item" ? do
-    display inlineFlex
-    alignItems center
-    gap (px 8)
+    display inlineBlock
+    padding (px 8) (px 15) (px 8) (px 15)
     fontSize (px 16)
     color "#555"
+    E.span ? do
+      marginRight (px 8)
+      lastChild & do
+        marginRight (px 0)
 
   ".tech-dot" ? do
     fontSize (px 20)
@@ -355,26 +360,28 @@ blogStyle = do
     marginTop (px 60)
 
   ".research-list" ? do
-    display flex
-    flexDirection column
-    gap (px 20)
+    display block
 
   ".research-item" ? do
-    display flex
-    alignItems center
-    gap (px 15)
+    display block
     fontSize (px 18)
     color "#555"
     padding (px 15) (px 20) (px 15) (px 20)
     backgroundColor "#f8f9fa"
     borderRadius (px 8) (px 8) (px 8) (px 8)
     transition "transform" 0.2 ease (sec 0)
+    marginBottom (px 20)
+    lastChild & do
+      marginBottom (px 0)
     hover & do
       transform $ scale 1.02 1.02
 
   ".research-dot" ? do
+    display inlineBlock
     color "#007acc"
     fontSize (px 16)
+    marginRight (px 15)
+    verticalAlign middle
 
 -- CSS renderer
 renderCSS :: Text
