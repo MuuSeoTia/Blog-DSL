@@ -76,7 +76,7 @@ generateAbout = doctypehtml_ $ do
       main_ [] $ do
         div_ [class_ "about-section"] $ do
           h1_ "About Me"
-          img_ [class_ "profile-img", src_ "../images/headshot.png", alt_ "Mouad Tiahi"]
+          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
           p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering Intern @ Dell Technologies" 
           p_ "I specialize in:"
           ul_ $ do
@@ -107,6 +107,7 @@ generateProjects = doctypehtml_ $ do
       main_ [class_ "projects-main"] $ do
         div_ [class_ "project-section"] $ do
           h1_ [class_ "section-title"] "My Projects"
+          img_ [class_ "profile-img", src_ "images/conference.png", alt_ "MIT URTC Conference 2024"]
           
           -- project 1
           div_ [class_ "project-card"] $ do
@@ -200,7 +201,7 @@ generateIndex posts = doctypehtml_ $ do
         a_ [href_ "projects.html"] "Projects"
       main_ [] $ do
         div_ [class_ "hero-section"] $ do
-          img_ [class_ "profile-img", src_ "../images/headshot.png", alt_ "Mouad Tiahi"]
+          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
           h1_ "Mouad Tiahi"
           p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 3x Hackathon Winner | Aspiring Quantum Computing Researcher"
           div_ [class_ "social-links"] $ do

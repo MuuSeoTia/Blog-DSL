@@ -1,9 +1,8 @@
-dist
-dist-*
-cabal-dev
-*.o
+dist/
+dist-newstyle/
+.stack-work/
 *.hi
-*.hie
+*.o
 *.chi
 *.chs.h
 *.dyn_o
@@ -21,9 +20,7 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
-.env
-blog-frontend/
-node_modules/
+cabal-dev
 *.exe
 *~
 *.swp

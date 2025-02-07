@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or master, depending on your default branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Haskell
+        uses: haskell/actions/setup@v2
+        with:
+          ghc-version: '9.4.7'
+          cabal-version: '3.6'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cabal/packages
+            ~/.cabal/store
+            dist-newstyle
+          key: ${{ runner.os }}-cabal-${{ hashFiles('**/*.cabal') }}
+          restore-keys: |
+            ${{ runner.os }}-cabal-
+
+      - name: Install dependencies
+        run: |
+          cabal update
+          cabal build --only-dependencies
+
+      - name: Build site
+        run: |
+          cabal run personal-blog
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: ${{ secrets.CUSTOM_DOMAIN }}  # Optional: if you have a custom domain 
