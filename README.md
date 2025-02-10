@@ -44,7 +44,7 @@ A static blog generator built in Haskell using EDSLs (Embedded Domain-Specific L
 ## Features
 
 - Blog content defined using a custom EDSL
-- CSS styling using Clay EDSL
+- CSS styling using additional EDSL
 - Support for:
   - Text content
   - Headers
