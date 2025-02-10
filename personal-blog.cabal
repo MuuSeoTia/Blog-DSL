@@ -34,7 +34,8 @@ common common-all
                      directory,
                      filepath,
                      clay,
-                     lucid
+                     lucid,
+                     aeson >= 2.1
 
 library
     import:           common-all
