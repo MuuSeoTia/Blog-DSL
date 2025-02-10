@@ -31,10 +31,12 @@ jobs:
       - name: Install dependencies
         run: |
           cabal update
+          cabal configure
           cabal build --only-dependencies
 
       - name: Build site
         run: |
+          cabal install --overwrite-policy=always
           cabal run personal-blog
 
       - name: Deploy to GitHub Pages
