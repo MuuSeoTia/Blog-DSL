@@ -16,7 +16,7 @@ jobs:
       - name: Setup Haskell
         uses: haskell/actions/setup@v2
         with:
-          ghc-version: '9.4.7'
+          ghc-version: '8.10.3'
           cabal-version: '3.6'
 
       - name: Cache dependencies
@@ -33,17 +33,28 @@ jobs:
       - name: Install dependencies
         run: |
           cabal update
-          cabal configure
-          cabal build --only-dependencies
+          cabal install --only-dependencies
+          cabal install --enable-executable-dynamic
 
       - name: Build site
         run: |
-          cabal install --overwrite-policy=always
+          mkdir -p dist
+          cabal build
           cabal run personal-blog
+          cp -r images dist/ || true
+          
+      - name: List generated files
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true 
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy to GitHub Pages' 
