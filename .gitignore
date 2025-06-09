@@ -22,3 +22,4 @@ cabal.config
 *.exe
 *~
 *.swp
+src/Main.exe

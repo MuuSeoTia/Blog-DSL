@@ -374,6 +374,9 @@ projectStyles = do
         , (".flask", "#000000")
         , (".expo", "#000020")
         , (".ml", "#8A00C4")
+        , (".metal", "#C0C0C0")
+        , (".c++", "#0000FF")
+        , (".supabase", "#1E1E1E")
         ]
       where
         techColor (cls, clr) = cls & do
