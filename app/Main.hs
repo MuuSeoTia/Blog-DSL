@@ -85,7 +85,7 @@ generateAbout = doctypehtml_ $ do
             li_ "Cloud Computing (Google Cloud Platform, AWS, Microsoft Azure, Terraform, Hashicorp Lang)"
           div_ [class_ "social-links"] $ do
             a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank"] "GitHub |"
-            a_ [href_ "https://linkedin.com/in/your-profile", target_ "_blank"] " LinkedIn |"
+            a_ [href_ "www.linkedin.com/in/mouad-tiahi", target_ "_blank"] " LinkedIn |"
             a_ [href_ "mailto:tiahimouad22@gmail.com"] " Email |"
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
@@ -137,7 +137,7 @@ generateProjects = doctypehtml_ $ do
                   span_ "Python"
                 div_ [class_ "tech-item"] $ do
                   span_ [class_ "tech-dot ml"] "●"
-                  span_ "ML"
+                  span_ "Machine Learning"
           
           -- project 2
           div_ [class_ "project-card"] $ do
@@ -168,6 +168,10 @@ generateProjects = doctypehtml_ $ do
                 div_ [class_ "tech-item"] $ do
                   span_ [class_ "tech-dot cnn"] "●"
                   span_ "CNN"
+
+              -- project 3
+              div_ [class_ "project-card"] $ do
+                h2_[class_ "project-title"] "Compiler"
           
           -- current projects section
           div_ [class_ "current-projects"] $ do
