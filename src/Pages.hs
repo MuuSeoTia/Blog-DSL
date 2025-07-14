@@ -9,8 +9,8 @@ import Lucid
 import qualified Data.Text.Lazy as TL
 
 -- Generate experiences page using the DSL
-generateExperiences :: [Experience] -> [Education] -> [Skill] -> [Certificate] -> Html ()
-generateExperiences experiences education skills certificates = doctypehtml_ $ do
+generateExperiences :: [Experience] -> [Education] -> [Skill]  -> Html ()
+generateExperiences experiences education skills = doctypehtml_ $ do
   head_ $ do
     meta_ [charset_ "utf-8"]
     meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
@@ -51,12 +51,12 @@ generateExperiences experiences education skills certificates = doctypehtml_ $ d
               mapM_ (toBlogHtml) skills
           
           -- Certifications Section
-          div_ [class_ "section-header"] $ do
-            h2_ [class_ "section-title"] "Certifications"
-            p_ [class_ "section-subtitle"] "Professional certifications and credentials"
+          --div_ [class_ "section-header"] $ do
+          -- h2_ [class_ "section-title"] "Certifications"
+          --  p_ [class_ "section-subtitle"] "Professional certifications and credentials"
           
-          div_ [class_ "certificates-container"] $
-            mapM_ (toBlogHtml) certificates
+          -- div_ [class_ "certificates-container"] $
+           -- mapM_ (toBlogHtml) certificates
             
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
@@ -79,7 +79,7 @@ generateAbout = doctypehtml_ $ do
       main_ [] $ do
         div_ [class_ "about-section"] $ do
           h1_ "About Me"
-          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
+          img_ [class_ "profile-img", src_ "images/beanpot.jpg", alt_ "Mouad Tiahi"]
           p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering Intern @ Dell Technologies" 
           p_ "I specialize in:"
           ul_ $ do
@@ -208,7 +208,7 @@ generateIndex posts = doctypehtml_ $ do
         a_ [href_ "experience.html"] "Experience"
       main_ [] $ do
         div_ [class_ "hero-section"] $ do
-          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
+          img_ [class_ "profile-img", src_ "images/photoshootneut.jpg", alt_ "Mouad Tiahi"]
           h1_ "Mouad Tiahi"
           p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 3x Hackathon Winner | Aspiring Quantum Computing Researcher"
           div_ [class_ "social-links"] $ do

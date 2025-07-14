@@ -27,40 +27,43 @@ writeFileUtf8 path content = do
 -- Sample experience data
 sampleExperiences :: [Experience]
 sampleExperiences = 
-  [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Seattle, WA" 
-      (fromGregorian 2024 6 1) (Just $ fromGregorian 2024 8 30)
-      [ "Developed scalable cloud infrastructure solutions using AWS services"
-      , "Optimized EC2 instance performance, resulting in 25% cost reduction"
-      , "Collaborated with senior engineers on distributed systems architecture"
+  [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Boston, MA" 
+      (fromGregorian 2023 9 1) (Just $ fromGregorian 2023 12 20)
+      [ "Spearheaded AWS operations and connectivity for a system managing thousands of database points, optimizing data flow\n\ 
+      \and improving latency by 15% within connections across distributed environments."
+      , "Collaborated on the design and optimization of database architecture, enabling faster query execution and supporting the\n\ 
+        \development of secure, scalable API endpoints to facilitate seamless data access"
+      , "Integrated vector databases, AWS Amplify, and AWS Direct Connect to enable real-time data synchronization, reduce data\n\
+        \retrieval times by 10%, and enhance cross-platform connectivity for cloud-native applications."
       ]
-      ["AWS", "Python", "Terraform", "Docker", "Kubernetes"]
-      [ "Improved deployment pipeline efficiency by 40%"
-      , "Led implementation of automated monitoring system"
-      , "Received intern excellence award for outstanding performance"
+      ["AWS", "Python", "Docker", "Kubernetes"]
+      [ "Improved implementation of automated monitoring system"
+      , "Developed hands-on expertise in Kubernetes by assisting with container orchestration tasks,\n\
+       \ streamlining deployment pipelines, and automating infrastructure provisioning"
       ]
       Nothing
-  , Experience 2 "Dell Technologies" "Software Engineering Intern" "Austin, TX"
+  , Experience 2 "Dell Technologies" "Software Engineering Mentee" "Hopkinton, MA"
       (fromGregorian 2023 6 1) (Just $ fromGregorian 2023 8 30)
-      [ "Built full-stack web applications using modern frameworks"
-      , "Implemented RESTful APIs with comprehensive documentation"
-      , "Participated in agile development processes and code reviews"
+      [ "Optimized cloud infrastructure by leveraging Dell Technologies APEX Private Cloud, enabling 15% faster deployment \n\
+      \times for virtualized environments and improving system scalability"
+      , "Built custom API integrations and Python scripts to streamline cloud resource provisioning, resulting in a 10% increase in \n\
+        \ operational efficiency"
       ]
-      ["React", "Node.js", "TypeScript", "MongoDB", "Express"]
-      [ "Delivered 3 production-ready features ahead of schedule"
-      , "Reduced API response time by 35% through optimization"
-      , "Mentored 2 junior interns on best practices"
+      ["Python", "Dell APEX Private Cloud", "Terraform"]
+      [ "Contributed to the automation Dell Cloud Platform data pipleline"
       ]
       Nothing
-  , Experience 3 "NUCAR Lab" "Machine Learning Researcher" "Boston, MA"
+  , Experience 3 "NUCAR Lab w/ David Kaeli" "Machine Learning & High Performance Computing Researcher" "Boston, MA"
       (fromGregorian 2024 9 1) Nothing
       [ "Conducting research on high-performance computing and ML optimization"
       , "Developing CUDA kernels for accelerated deep learning workloads"
-      , "Publishing research papers on distributed training algorithms"
+      , "Publishing research papers on distributed RAG retrieval"
+      , "Currently researching Sparsity & optimizing sparse matrix operations."
       ]
-      ["CUDA", "PyTorch", "C++", "Python", "Slurm", "MPI"]
-      [ "Achieved 3x speedup in neural network training"
-      , "Published 2 papers in top-tier conferences"
-      , "Leading team of 4 graduate research assistants"
+      ["CUDA", "PyTorch", "C++", "Python", "Slurm"]
+      [ "Built multiple RAG full-stack applications for multiple organizations inclduing PROTECT, NIH, NIEHS..."
+      , "Published findings to MIT IEEE"
+      , "Currently working on NvBit Compiler"
       ]
       Nothing
   ]
@@ -70,10 +73,11 @@ sampleEducation :: [Education]
 sampleEducation =
   [ Education 1 "Northeastern University" "Bachelor of Science" "Computer Science & Physics"
       (fromGregorian 2026 5 15)
-      (Just 3.8)
-      ["Dean's List", "Magna Cum Laude", "Outstanding Student in CS"]
-      [ "Algorithms & Data Structures", "Machine Learning", "Computer Systems"
-      , "Quantum Computing", "Distributed Systems", "Computer Graphics"
+      (Just 3.74)
+      ["Dean's List","Putnam Club"]
+      [ "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
+      , "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
+      , "Discrete Structures"
       ]
       Nothing
   ]
@@ -82,30 +86,20 @@ sampleEducation =
 sampleSkills :: [Skill]  
 sampleSkills =
   [ Skill "Python" Expert Programming (Just 5)
-  , Skill "Haskell" Advanced Programming (Just 2)
-  , Skill "C++" Advanced Programming (Just 4)
+  , Skill "C++" Advanced Programming (Just 5)
+  , Skill "C" Advanced Programming (Just 5)
+  , Skill "PyTorch" Expert MachineLearning (Just 5)
+  , Skill "CUDA" Advanced Programming (Just 4)
+  , Skill "TensorFlow" Advanced MachineLearning (Just 5)
   , Skill "JavaScript/TypeScript" Advanced Programming (Just 3)
-  , Skill "CUDA" Intermediate Programming (Just 2)
+  , Skill "Haskell" Intermediate Programming (Just 2)
+  , Skill "Rust" Intermediate Programming (Just 2)
   , Skill "React" Advanced Framework (Just 3)
-  , Skill "PyTorch" Expert MachineLearning (Just 3)
-  , Skill "TensorFlow" Advanced MachineLearning (Just 2)
-  , Skill "AWS" Advanced Cloud (Just 2)
-  , Skill "Docker" Advanced Tool (Just 2)
-  , Skill "Kubernetes" Intermediate Tool (Just 1)
+  , Skill "AWS" Advanced Cloud (Just 4)
+  , Skill "Docker" Advanced Tool (Just 4)
+  , Skill "Kubernetes" Intermediate Tool (Just 2)
   ]
 
--- Sample certificates
-sampleCertificates :: [Certificate]
-sampleCertificates =
-  [ Certificate "AWS Certified Cloud Practitioner" "Amazon Web Services"
-      (fromGregorian 2024 3 15) (Just $ fromGregorian 2027 3 15)
-      (Just "AWS-CCP-123456") 
-      (Just "https://aws.amazon.com/verification")
-  , Certificate "NVIDIA Deep Learning Institute Certificate" "NVIDIA"
-      (fromGregorian 2024 7 20) Nothing
-      Nothing
-      (Just "https://nvidia.com/dli/certificate")
-  ]
 
 -- blog posts
 samplePosts :: [BlogPost]
@@ -185,7 +179,7 @@ generateSite = do
 
   -- Generate experiences page using the DSL
   writeFileUtf8 "dist/experience.html" $ renderText $ 
-    generateExperiences sampleExperiences sampleEducation sampleSkills sampleCertificates
+    generateExperiences sampleExperiences sampleEducation sampleSkills 
 
   -- Generate CSS with all enhanced styles
   writeFileUtf8 "dist/css/style.css" renderCSS

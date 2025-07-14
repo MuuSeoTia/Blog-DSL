@@ -15,15 +15,15 @@ import Data.Time.Format (formatTime, defaultTimeLocale)
 import Control.Monad (unless)
 
 -- | Blog element types
-data BlogElement = 
+data BlogElement =
     TextContent Text
   | HeaderContent Text
-  | Image 
+  | Image
     { path :: Text
     , alt :: Text
     , caption :: Maybe Text
     }
-  | CodeBlock 
+  | CodeBlock
     { language :: Text
     , codeContent :: Text
     } deriving (Generic, Show)
@@ -35,7 +35,7 @@ data Experience = Experience
   , position :: Text
   , location :: Text
   , startDate :: Day
-  , endDate :: Maybe Day  -- Nothing for current roles
+  , endDate :: Maybe Day
   , description :: [Text]
   , technologies :: [Text]
   , achievements :: [Text]
@@ -64,7 +64,7 @@ data Skill = Skill
 data SkillLevel = Beginner | Intermediate | Advanced | Expert
   deriving (Generic, Show, Eq)
 
-data SkillCategory = 
+data SkillCategory =
     Programming
   | Framework
   | Database
@@ -93,15 +93,15 @@ data BlogPost = BlogPost
 
 -- define json instances
 instance ToJSON BlogElement where
-  toJSON (TextContent txt) = object 
+  toJSON (TextContent txt) = object
     [ "type" .= ("text" :: Text)
     , "content" .= txt
     ]
-  toJSON (HeaderContent txt) = object 
+  toJSON (HeaderContent txt) = object
     [ "type" .= ("header" :: Text)
     , "content" .= txt
     ]
-  toJSON (Image path' alt' cap) = object 
+  toJSON (Image path' alt' cap) = object
     [ "type" .= ("image" :: Text)
     , "path" .= path'
     , "alt" .= alt'
@@ -120,7 +120,7 @@ instance FromJSON BlogPost
 -- JSON instances for new types
 instance ToJSON Experience
 instance FromJSON Experience
-instance ToJSON Education  
+instance ToJSON Education
 instance FromJSON Education
 instance ToJSON Skill
 instance FromJSON Skill
@@ -175,7 +175,7 @@ instance ToHtml Education where
 instance ToHtml Skill where
   toHtml skill = div_ [class_ "skill-item"] $ do
     span_ [class_ "skill-name"] $ toHtml $ skillName skill
-    span_ [class_ $ "skill-level " <> skillLevelClass (proficiency skill)] $ 
+    span_ [class_ $ "skill-level " <> skillLevelClass (proficiency skill)] $
       toHtml $ skillLevelText (proficiency skill)
   toHtmlRaw = toHtml
 
@@ -195,9 +195,9 @@ instance ToBlogHtml BlogElement where
   toBlogHtml (HeaderContent txt) = h2_ [] (toHtml txt)
   toBlogHtml (Image path alt caption) = figure_ [] $ do
     img_ [src_ path, alt_ alt]
-    maybe (pure ()) (figcaption_[] . toHtml) caption
-  toBlogHtml (CodeBlock lang code) = 
-    pre_ [class_ $ "language-" <> lang] $ 
+    maybe (pure ()) (figcaption_ [] . toHtml) caption
+  toBlogHtml (CodeBlock lang code) =
+    pre_ [class_ $ "language-" <> lang] $
       code_ [class_ $ "language-" <> lang] (toHtml code)
 
 instance ToBlogHtml BlogPost where
@@ -216,22 +216,22 @@ instance ToBlogHtml Experience where
         h4_ [class_ "company"] $ toHtml $ company exp
         p_ [class_ "location"] $ toHtml $ location exp
         p_ [class_ "duration"] $ toHtml $ formatDateRange (startDate exp) (endDate exp)
-    
+
     div_ [class_ "experience-content"] $ do
       unless (null $ description exp) $ do
-        div_ [class_ "description"] $ 
-          mapM_ (\desc -> p_ [] $ toHtml desc) (description exp)
-      
+        div_ [class_ "description"] $
+          mapM_ (p_ [] . toHtml) (description exp)
+
       unless (null $ achievements exp) $ do
         div_ [class_ "achievements"] $ do
           h5_ "Key Achievements"
-          ul_ $ mapM_ (\achievement -> li_ $ toHtml achievement) (achievements exp)
-      
+          ul_ $ mapM_ (li_ . toHtml) (achievements exp)
+
       unless (null $ technologies exp) $ do
         div_ [class_ "technologies"] $ do
           h5_ "Technologies Used"
-          div_ [class_ "tech-tags"] $ 
-            mapM_ (\tech -> span_ [class_ "tech-tag"] $ toHtml tech) (technologies exp)
+          div_ [class_ "tech-tags"] $
+            mapM_ (span_ [class_ "tech-tag"] . toHtml) (technologies exp)
 
 instance ToBlogHtml Education where
   toBlogHtml edu = div_ [class_ "education-card"] $ do
@@ -242,38 +242,38 @@ instance ToBlogHtml Education where
         h4_ [class_ "institution"] $ toHtml $ institution edu
         p_ [class_ "graduation-date"] $ toHtml $ formatDay $ graduationDate edu
         maybe (pure ()) (\g -> p_ [class_ "gpa"] $ toHtml $ "GPA: " <> T.pack (show g)) (gpa edu)
-    
+
     div_ [class_ "education-content"] $ do
       unless (null $ honors edu) $ do
         div_ [class_ "honors"] $ do
           h5_ "Honors & Awards"
-          ul_ $ mapM_ (\honor -> li_ $ toHtml honor) (honors edu)
-      
+          ul_ $ mapM_ (li_ . toHtml) (honors edu)
+
       unless (null $ relevantCourses edu) $ do
         div_ [class_ "courses"] $ do
           h5_ "Relevant Coursework"
-          div_ [class_ "course-tags"] $ 
+          div_ [class_ "course-tags"] $
             mapM_ (\course -> span_ [class_ "course-tag"] $ toHtml course) (relevantCourses edu)
 
 instance ToBlogHtml Skill where
   toBlogHtml skill = div_ [class_ "skill-item"] $ do
     div_ [class_ "skill-header"] $ do
       span_ [class_ "skill-name"] $ toHtml $ skillName skill
-      span_ [class_ $ "skill-level " <> skillLevelClass (proficiency skill)] $ 
+      span_ [class_ $ "skill-level " <> skillLevelClass (proficiency skill)] $
         toHtml $ skillLevelText (proficiency skill)
     div_ [class_ "skill-meta"] $ do
       span_ [class_ "skill-category"] $ toHtml $ skillCategoryText (category skill)
-      maybe (pure ()) (\years -> span_ [class_ "skill-years"] $ 
+      maybe (pure ()) (\years -> span_ [class_ "skill-years"] $
         toHtml $ T.pack (show years) <> " years") (yearsExperience skill)
 
-instance ToBlogHtml Certificate where
-  toBlogHtml cert = div_ [class_ "certificate-card"] $ do
-    h4_ [class_ "cert-name"] $ toHtml $ certName cert
-    p_ [class_ "cert-issuer"] $ toHtml $ "Issued by " <> issuer cert
-    p_ [class_ "cert-date"] $ toHtml $ formatDay $ issueDate cert
-    maybe (pure ()) (\expiry -> p_ [class_ "cert-expiry"] $ 
-      toHtml $ "Expires: " <> formatDay expiry) (expiryDate cert)
-    maybe (pure ()) (\url -> a_ [href_ url, target_ "_blank", class_ "cert-verify"] "Verify Certificate") (verificationUrl cert)
+--instance ToBlogHtml Certificate where
+  --toBlogHtml cert = div_ [class_ "certificate-card"] $ do
+   -- h4_ [class_ "cert-name"] $ toHtml $ certName cert
+   -- p_ [class_ "cert-issuer"] $ toHtml $ "Issued by " <> issuer cert
+    --p_ [class_ "cert-date"] $ toHtml $ formatDay $ issueDate cert
+    --maybe (pure ()) (\expiry -> p_ [class_ "cert-expiry"] $
+    --  toHtml $ "Expires: " <> formatDay expiry) (expiryDate cert)
+    -- maybe (pure ()) (\url -> a_ [href_ url, target_ "_blank", class_ "cert-verify"] "Verify Certificate") (verificationUrl cert)
 
 -- Helper functions
 formatDateRange :: Day -> Maybe Day -> Text
@@ -285,14 +285,14 @@ formatDay = T.pack . formatTime defaultTimeLocale "%B %Y"
 
 skillLevelText :: SkillLevel -> Text
 skillLevelText Beginner = "Beginner"
-skillLevelText Intermediate = "Intermediate" 
+skillLevelText Intermediate = "Intermediate"
 skillLevelText Advanced = "Advanced"
 skillLevelText Expert = "Expert"
 
 skillLevelClass :: SkillLevel -> Text
 skillLevelClass Beginner = "beginner"
 skillLevelClass Intermediate = "intermediate"
-skillLevelClass Advanced = "advanced" 
+skillLevelClass Advanced = "advanced"
 skillLevelClass Expert = "expert"
 
 skillCategoryText :: SkillCategory -> Text
@@ -333,4 +333,4 @@ renderBlogPost post = doctypehtml_ $ do
 
 -- date formatter
 formatDate :: UTCTime -> String
-formatDate = formatTime defaultTimeLocale "%B %e, %Y" 
+formatDate = formatTime defaultTimeLocale "%B %e, %Y"
