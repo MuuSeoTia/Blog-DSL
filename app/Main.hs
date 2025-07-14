@@ -4,7 +4,8 @@
 module Main where
 
 import BlogDSL
-import Data.Time (UTCTime(..), fromGregorian)
+import Pages
+import Data.Time (UTCTime(..), fromGregorian, Day)
 import qualified Data.Text.Lazy.IO as TL
 import Data.Text (Text, pack)
 import System.Directory (createDirectoryIfMissing, copyFile, doesDirectoryExist, listDirectory)
@@ -22,6 +23,89 @@ writeFileUtf8 path content = do
   hSetEncoding handle utf8
   TL.hPutStr handle content
   hClose handle
+
+-- Sample experience data
+sampleExperiences :: [Experience]
+sampleExperiences = 
+  [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Seattle, WA" 
+      (fromGregorian 2024 6 1) (Just $ fromGregorian 2024 8 30)
+      [ "Developed scalable cloud infrastructure solutions using AWS services"
+      , "Optimized EC2 instance performance, resulting in 25% cost reduction"
+      , "Collaborated with senior engineers on distributed systems architecture"
+      ]
+      ["AWS", "Python", "Terraform", "Docker", "Kubernetes"]
+      [ "Improved deployment pipeline efficiency by 40%"
+      , "Led implementation of automated monitoring system"
+      , "Received intern excellence award for outstanding performance"
+      ]
+      Nothing
+  , Experience 2 "Dell Technologies" "Software Engineering Intern" "Austin, TX"
+      (fromGregorian 2023 6 1) (Just $ fromGregorian 2023 8 30)
+      [ "Built full-stack web applications using modern frameworks"
+      , "Implemented RESTful APIs with comprehensive documentation"
+      , "Participated in agile development processes and code reviews"
+      ]
+      ["React", "Node.js", "TypeScript", "MongoDB", "Express"]
+      [ "Delivered 3 production-ready features ahead of schedule"
+      , "Reduced API response time by 35% through optimization"
+      , "Mentored 2 junior interns on best practices"
+      ]
+      Nothing
+  , Experience 3 "NUCAR Lab" "Machine Learning Researcher" "Boston, MA"
+      (fromGregorian 2024 9 1) Nothing
+      [ "Conducting research on high-performance computing and ML optimization"
+      , "Developing CUDA kernels for accelerated deep learning workloads"
+      , "Publishing research papers on distributed training algorithms"
+      ]
+      ["CUDA", "PyTorch", "C++", "Python", "Slurm", "MPI"]
+      [ "Achieved 3x speedup in neural network training"
+      , "Published 2 papers in top-tier conferences"
+      , "Leading team of 4 graduate research assistants"
+      ]
+      Nothing
+  ]
+
+-- Sample education data  
+sampleEducation :: [Education]
+sampleEducation =
+  [ Education 1 "Northeastern University" "Bachelor of Science" "Computer Science & Physics"
+      (fromGregorian 2026 5 15)
+      (Just 3.8)
+      ["Dean's List", "Magna Cum Laude", "Outstanding Student in CS"]
+      [ "Algorithms & Data Structures", "Machine Learning", "Computer Systems"
+      , "Quantum Computing", "Distributed Systems", "Computer Graphics"
+      ]
+      Nothing
+  ]
+
+-- Sample skills data
+sampleSkills :: [Skill]  
+sampleSkills =
+  [ Skill "Python" Expert Programming (Just 5)
+  , Skill "Haskell" Advanced Programming (Just 2)
+  , Skill "C++" Advanced Programming (Just 4)
+  , Skill "JavaScript/TypeScript" Advanced Programming (Just 3)
+  , Skill "CUDA" Intermediate Programming (Just 2)
+  , Skill "React" Advanced Framework (Just 3)
+  , Skill "PyTorch" Expert MachineLearning (Just 3)
+  , Skill "TensorFlow" Advanced MachineLearning (Just 2)
+  , Skill "AWS" Advanced Cloud (Just 2)
+  , Skill "Docker" Advanced Tool (Just 2)
+  , Skill "Kubernetes" Intermediate Tool (Just 1)
+  ]
+
+-- Sample certificates
+sampleCertificates :: [Certificate]
+sampleCertificates =
+  [ Certificate "AWS Certified Cloud Practitioner" "Amazon Web Services"
+      (fromGregorian 2024 3 15) (Just $ fromGregorian 2027 3 15)
+      (Just "AWS-CCP-123456") 
+      (Just "https://aws.amazon.com/verification")
+  , Certificate "NVIDIA Deep Learning Institute Certificate" "NVIDIA"
+      (fromGregorian 2024 7 20) Nothing
+      Nothing
+      (Just "https://nvidia.com/dli/certificate")
+  ]
 
 -- blog posts
 samplePosts :: [BlogPost]
@@ -59,174 +143,6 @@ samplePosts =
         ]
     ]
 
--- generate about page
-generateAbout :: Html ()
-generateAbout = doctypehtml_ $ do
-  head_ $ do
-    meta_ [charset_ "utf-8"]
-    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
-    title_ "About Me - Mouad Tiahi"
-    link_ [rel_ "stylesheet", type_ "text/css", href_ "css/style.css"]
-  body_ $ do
-    div_ [class_ "container"] $ do
-      nav_ [class_ "nav"] $ do
-        a_ [href_ "index.html"] "Home"
-        a_ [href_ "about.html"] "About"
-        a_ [href_ "projects.html"] "Projects"
-      main_ [] $ do
-        div_ [class_ "about-section"] $ do
-          h1_ "About Me"
-          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
-          p_ "Computer Science & Physics Major with a Minor in Mathematics, Prev Cloud Intern @ Amazon and Software Engineering Intern @ Dell Technologies" 
-          p_ "I specialize in:"
-          ul_ $ do
-            li_ "Machine Learning & Deep Learning (Regression, Classification, Computer Vision, NLP, Reinforcement Learning)"
-            li_ "High Performance Computing (CUDA, Metal, Clustering, Slurm, Dynamic Binary Instrumentation)"
-            li_ "Cloud Computing (Google Cloud Platform, AWS, Microsoft Azure, Terraform, Hashicorp Lang)"
-          div_ [class_ "social-links"] $ do
-            a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank"] "GitHub |"
-            a_ [href_ "www.linkedin.com/in/mouad-tiahi", target_ "_blank"] " LinkedIn |"
-            a_ [href_ "mailto:tiahimouad22@gmail.com"] " Email |"
-      footer_ [class_ "footer"] $ do
-        p_ [] "Generated in Haskell"
-
--- generate projects page
-generateProjects :: Html()
-generateProjects = doctypehtml_ $ do
-  head_ $ do 
-    meta_ [charset_ "utf-8"]
-    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
-    title_ "Projects"
-    link_ [rel_ "stylesheet", type_ "text/css", href_ "css/style.css"]
-  body_ $ do
-    div_ [class_ "container"] $ do
-      nav_ [class_ "nav"] $ do
-        a_ [href_ "index.html"] "Home"
-        a_ [href_ "about.html"] "About"
-        a_ [href_ "projects.html"] "Projects"
-      main_ [class_ "projects-main"] $ do
-        div_ [class_ "project-section"] $ do
-          h1_ [class_ "section-title"] "My Projects"
-          img_ [class_ "profile-img", src_ "images/conference.png", alt_ "MIT URTC Conference 2024"]
-          
-          -- project 1
-          div_ [class_ "project-card"] $ do
-            h2_ [class_ "project-title"] "Sustainable AF"
-            p_ [class_ "project-description"] "A web application that allows users to find sustainable products and services in their area with a solar heat map and a carbon footprint calculator."
-            div_ [class_ "project-links"] $ do
-              a_ [href_ "https://www.youtube.com/watch?v=-a0d_5INf8Q&t=1s&ab_channel=FahadFaruqi", class_ "demo-link", target_ "_blank"] $ do
-                span_ [class_ "icon"] "▶ "
-                "Watch Demo"
-              a_ [href_ "https://github.com/MuuSeoTia/carbon-advisor", class_ "github-link", target_ "_blank"] $ do
-                span_ [class_ "icon"] "⌘ "
-                "GitHub Repo"
-            div_ [class_ "project-tech"] $ do
-              p_ [class_ "tech-title"] "Technologies:"
-              div_ [class_ "tech-list"] $ do
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot gcp"] "●"
-                  span_ "Google Cloud Platform"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot react"] "●"
-                  span_ "React.js"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot typescript"] "●"
-                  span_ "TypeScript"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot python"] "●"
-                  span_ "Python"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot ml"] "●"
-                  span_ "Machine Learning"
-          
-          -- project 2
-          div_ [class_ "project-card"] $ do
-            h2_ [class_ "project-title"] "Maritime"
-            p_ [class_ "project-description"] "Mobile application which allows users to track live microplastic concentrations in the ocean and allows for waste identification."
-            div_ [class_ "project-links"] $ do
-              a_ [href_ "https://youtu.be/Dj94vM3d93Q?si=ZK42k89Ask6-Or8u", class_ "demo-link", target_ "_blank"] $ do
-                span_ [class_ "icon"] "▶ "
-                "Watch Demo"
-              a_ [href_ "https://github.com/Zapaway/maritime", class_ "github-link", target_ "_blank"] $ do
-                span_ [class_ "icon"] "⌘ "
-                "GitHub Repo"
-            div_ [class_ "project-tech"] $ do
-              p_ [class_ "tech-title"] "Technologies:"
-              div_ [class_ "tech-list"] $ do
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot python"] "●"
-                  span_ "Python"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot flask"] "●"
-                  span_ "Flask"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot expo"] "●"
-                  span_ "Expo"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot typescript"] "●"
-                  span_ "TypeScript"
-                div_ [class_ "tech-item"] $ do
-                  span_ [class_ "tech-dot cnn"] "●"
-                  span_ "CNN"
-
-              -- project 3
-              div_ [class_ "project-card"] $ do
-                h2_[class_ "project-title"] "Compiler"
-          
-          -- current projects section
-          div_ [class_ "current-projects"] $ do
-            h2_ [class_ "section-title"] "Current Research Projects"
-            div_ [class_ "research-list"] $ do
-              div_ [class_ "research-item"] $ do
-                span_ [class_ "research-dot"] "◆"
-                span_ "Writing a Compiler to 3D Objects"
-              div_ [class_ "research-item"] $ do
-                span_ [class_ "research-dot"] "◆"
-                span_ "NvBit Compiler for NVIDIA CUDA"
-              div_ [class_ "research-item"] $ do
-                span_ [class_ "research-dot"] "◆"
-                span_ "Enhanced Workload Handling via Integrating LLM into Slurm"
-      
-      footer_ [class_ "footer"] $ do
-        p_ [] "Generated in Haskell"
-
-generateIndex :: [BlogPost] -> Html ()
-generateIndex posts = doctypehtml_ $ do
-  head_ $ do
-    meta_ [charset_ "utf-8"]
-    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
-    title_ "Mouad Tiahi - Software Engineer"
-    link_ [rel_ "stylesheet", type_ "text/css", href_ "css/style.css"]
-  body_ $ do
-    div_ [class_ "container"] $ do
-      nav_ [class_ "nav"] $ do
-        a_ [href_ "index.html"] "Home"
-        a_ [href_ "about.html"] "About"
-        a_ [href_ "projects.html"] "Projects"
-      main_ [] $ do
-        div_ [class_ "hero-section"] $ do
-          img_ [class_ "profile-img", src_ "images/headshot.png", alt_ "Mouad Tiahi"]
-          h1_ "Mouad Tiahi"
-          p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 3x Hackathon Winner | Aspiring Quantum Computing Researcher"
-          div_ [class_ "social-links"] $ do
-            a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank", class_ "social-link"] "GitHub"
-            a_ [href_ "https://www.linkedin.com/in/mouad-tiahi-0b361524b/", target_ "_blank", class_ "social-link"] " LinkedIn"
-            a_ [href_ "mailto:tiahimouad22@gmail.com", class_ "social-link"] " Email"
-        
-        div_ [class_ "intro-section"] $ do
-          h2_ "Welcome to My Website"
-          p_ "This is where I share my thoughts and ideas about machine learning, programming, hackathons, quantum computing, and more."
-        
-        h2_ "Latest Posts"
-        div_ [class_ "post-list"] $ do
-          mapM_ (\post -> do
-            article_ [class_ "post-preview"] $ do
-              h3_ $ a_ [href_ $ "posts/" <> pack (show $ postId post) <> ".html"] $ toHtml $ title post
-              p_ [class_ "post-date"] $ toHtml $ show $ date post
-            ) posts
-      footer_ [class_ "footer"] $ do
-        p_ [] "Generated in Haskell"
-
 -- | Copy all images from source to dist
 copyImages :: IO ()
 copyImages = do
@@ -261,16 +177,21 @@ generateSite = do
   -- Generate index page
   writeFileUtf8 "dist/index.html" $ renderText $ generateIndex samplePosts
   
-  -- Generate about page
+  -- Generate about page (without social links)
   writeFileUtf8 "dist/about.html" $ renderText generateAbout
-
-  -- Generate CSS
-  writeFileUtf8 "dist/css/style.css" renderCSS
 
   -- Generate projects page
   writeFileUtf8 "dist/projects.html" $ renderText generateProjects
 
-  putStrLn "Site generated successfully in dist/ directory!"
+  -- Generate experiences page using the DSL
+  writeFileUtf8 "dist/experience.html" $ renderText $ 
+    generateExperiences sampleExperiences sampleEducation sampleSkills sampleCertificates
+
+  -- Generate CSS with all enhanced styles
+  writeFileUtf8 "dist/css/style.css" renderCSS
+
+  putStrLn "Enhanced website generated successfully in dist/ directory!"
+
 
 main :: IO ()
 main = generateSite

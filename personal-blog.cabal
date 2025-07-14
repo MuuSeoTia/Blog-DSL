@@ -1,4 +1,4 @@
-cabal-version: 3.0
+cabal-version: 1.12
 
 -- This file has been generated from package.yaml by hpack version 0.37.0.
 --
@@ -6,13 +6,13 @@ cabal-version: 3.0
 
 name:               personal-blog
 version:            0.1.0.0
-synopsis:           A personal blog generator written in Haskell
-description:        Please see the README on GitHub at <https://github.com/MuuSeoTia/personal-blog#readme>
+description:        Please see the README on GitHub at <https://github.com/yourusername/personal-blog#readme>
 homepage:           https://github.com/MuuSeoTia/personal-blog#readme
 bug-reports:        https://github.com/MuuSeoTia/personal-blog/issues
-license:            MIT
+license:            BSD3
+license-file:       LICENSE
 author:             Mouad Tiahi
-maintainer:         tiahimouad22@gmail.com
+maintainer:         tiahimouad22@example.com
 copyright:          2024 Mouad Tiahi
 build-type:         Simple
 extra-source-files:
@@ -23,38 +23,58 @@ source-repository head
     type: git
     location: https://github.com/MuuSeoTia/personal-blog
 
-common shared-properties
-    default-language: Haskell2010
-    ghc-options: -Wall
-    build-depends:
-        base >=4.7 && <5,
-        text,
-        time >=1.12,
-        lucid >=2.11,
-        clay >=0.15,
-        directory,
-        filepath,
-        aeson >=2.1,
-        bytestring,
-        containers,
-        mtl,
-        blaze-html,
-        blaze-markup
-
-executable personal-blog
-    import: shared-properties
-    main-is: Main.hs
-    other-modules:
+library
+    exposed-modules:
         BlogDSL
         CSS
+        Pages
+    other-modules:
+        Paths_personal_blog
+    hs-source-dirs:
+        src
+    build-depends:
+        aeson >=2.1,
+        base >=4.7 && <5,
+        blaze-html,
+        blaze-markup,
+        bytestring,
+        clay >=0.15,
+        containers,
+        directory,
+        filepath,
+        lucid >=2.11,
+        mtl,
+        pandoc,
+        text,
+        time >=1.12
+    default-language: Haskell2010
+
+executable personal-blog-exe
+    main-is: Main.hs
+    other-modules:
         Paths_personal_blog
     hs-source-dirs:
         app
-        app/src
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N -dynamic
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    build-depends:
+        aeson >=2.1,
+        base >=4.7 && <5,
+        blaze-html,
+        blaze-markup,
+        bytestring,
+        clay >=0.15,
+        containers,
+        directory,
+        filepath,
+        lucid >=2.11,
+        mtl,
+        pandoc,
+        personal-blog,
+        text,
+        time >=1.12
+    default-language: Haskell2010
 
 test-suite personal-blog-test
-    import: shared-properties
     type: exitcode-stdio-1.0
     main-is: Spec.hs
     other-modules:
@@ -62,7 +82,21 @@ test-suite personal-blog-test
         Paths_personal_blog
     hs-source-dirs:
         test
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
     build-depends:
+        aeson >=2.1,
+        base >=4.7 && <5,
+        blaze-html,
+        blaze-markup,
+        bytestring,
+        clay >=0.15,
+        containers,
+        directory,
+        filepath,
+        lucid >=2.11,
+        mtl,
+        pandoc,
         personal-blog,
-        hspec,
-        hspec-discover
+        text,
+        time >=1.12
+    default-language: Haskell2010
