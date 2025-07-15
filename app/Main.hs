@@ -86,19 +86,20 @@ sampleEducation =
 -- Sample skills data
 sampleSkills :: [Skill]  
 sampleSkills =
-  [ Skill "Python" Expert Programming (Just 5)
-  , Skill "C++" Advanced Programming (Just 5)
+  [ Skill "Python" Expert Programming (Just 7)
+  , Skill "C++" Advanced Programming (Just 6)
   , Skill "C" Advanced Programming (Just 5)
-  , Skill "PyTorch" Expert MachineLearning (Just 5)
-  , Skill "CUDA" Advanced Programming (Just 4)
-  , Skill "TensorFlow" Advanced MachineLearning (Just 5)
-  , Skill "JavaScript/TypeScript" Advanced Programming (Just 3)
-  , Skill "Haskell" Intermediate Programming (Just 2)
+  , Skill "PyTorch" Expert MachineLearning (Just 4)
+  , Skill "CUDA" Advanced Programming (Just 2)
+  , Skill "TensorFlow" Advanced MachineLearning (Just 4)
+  , Skill "JavaScript/TypeScript" Advanced Programming (Just 5)
+  , Skill "Haskell" Intermediate Programming (Just 1)
   , Skill "Rust" Intermediate Programming (Just 2)
-  , Skill "React" Advanced Framework (Just 3)
-  , Skill "AWS" Advanced Cloud (Just 4)
-  , Skill "Docker" Advanced Tool (Just 4)
+  , Skill "React" Advanced Framework (Just 4)
+  , Skill "AWS" Advanced Cloud (Just 3)
+  , Skill "Docker" Advanced Tool (Just 3)
   , Skill "Kubernetes" Intermediate Tool (Just 2)
+  , Skill "OCaml" Beginner Programming (Just 0)
   ]
 
 
