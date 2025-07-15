@@ -48,7 +48,7 @@ data Education = Education
   , degree :: Text
   , field :: Text
   , graduationDate :: Day
-  , gpa :: Maybe Double
+  , activities :: [Text]
   , honors :: [Text]
   , relevantCourses :: [Text]
   , institutionLogo :: Maybe Text
@@ -241,13 +241,16 @@ instance ToBlogHtml Education where
         h3_ [class_ "degree"] $ toHtml $ degree edu <> " in " <> field edu
         h4_ [class_ "institution"] $ toHtml $ institution edu
         p_ [class_ "graduation-date"] $ toHtml $ formatDay $ graduationDate edu
-        maybe (pure ()) (\g -> p_ [class_ "gpa"] $ toHtml $ "GPA: " <> T.pack (show g)) (gpa edu)
 
     div_ [class_ "education-content"] $ do
       unless (null $ honors edu) $ do
         div_ [class_ "honors"] $ do
           h5_ "Honors & Awards"
           ul_ $ mapM_ (li_ . toHtml) (honors edu)
+      unless (null $ activities edu) $ do
+        div_ [class_ "activities"] $ do
+          h5_ "Activities and Campus Involvement"
+          ul_ $ mapM_ (li_ . toHtml) (activities edu)
 
       unless (null $ relevantCourses edu) $ do
         div_ [class_ "courses"] $ do

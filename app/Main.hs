@@ -28,7 +28,7 @@ writeFileUtf8 path content = do
 sampleExperiences :: [Experience]
 sampleExperiences = 
   [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Boston, MA" 
-      (fromGregorian 2023 9 1) (Just $ fromGregorian 2023 12 20)
+      (fromGregorian 2023 9 4) (Just $ fromGregorian 2023 12 20)
       [ "Spearheaded AWS operations and connectivity for a system managing thousands of database points, optimizing data flow\n\ 
       \and improving latency by 15% within connections across distributed environments."
       , "Collaborated on the design and optimization of database architecture, enabling faster query execution and supporting the\n\ 
@@ -43,7 +43,7 @@ sampleExperiences =
       ]
       Nothing
   , Experience 2 "Dell Technologies" "Software Engineering Mentee" "Hopkinton, MA"
-      (fromGregorian 2023 6 1) (Just $ fromGregorian 2023 8 30)
+      (fromGregorian 2024 1 8) (Just $ fromGregorian 2024 4 17)
       [ "Optimized cloud infrastructure by leveraging Dell Technologies APEX Private Cloud, enabling 15% faster deployment \n\
       \times for virtualized environments and improving system scalability"
       , "Built custom API integrations and Python scripts to streamline cloud resource provisioning, resulting in a 10% increase in \n\
@@ -54,7 +54,7 @@ sampleExperiences =
       ]
       Nothing
   , Experience 3 "NUCAR Lab w/ David Kaeli" "Machine Learning & High Performance Computing Researcher" "Boston, MA"
-      (fromGregorian 2024 9 1) Nothing
+      (fromGregorian 2024 5 28) Nothing
       [ "Conducting research on high-performance computing and ML optimization"
       , "Developing CUDA kernels for accelerated deep learning workloads"
       , "Publishing research papers on distributed RAG retrieval"
@@ -72,12 +72,13 @@ sampleExperiences =
 sampleEducation :: [Education]
 sampleEducation =
   [ Education 1 "Northeastern University" "Bachelor of Science" "Computer Science & Physics"
-      (fromGregorian 2026 5 15)
-      (Just 3.74)
-      ["Dean's List","Putnam Club"]
-      [ "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
-      , "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
-      , "Discrete Structures"
+      (fromGregorian 2027 5 15)
+      ["Putnam Club", "Inter-Disciplinary Entrepreneurship Accelerator (IDEA) Director of Analytics 2024/2025 | Chief Operations Officer (COO) 2025/2026"
+       , "rev.school"]
+      ["Dean's List"]
+      [ "Intensive Mathematical Reasoning", " Object Oriented Design", " Computer Systems"
+      , " Advanced Quantum Mechanics", " Advanced Linear Algebra", " Logic & Computation"
+      , " Discrete Structures"
       ]
       Nothing
   ]
