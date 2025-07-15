@@ -61,7 +61,7 @@ sampleExperiences =
       , "Currently researching Sparsity & optimizing sparse matrix operations."
       ]
       ["CUDA", "PyTorch", "C++", "Python", "Slurm"]
-      [ "Built multiple RAG full-stack applications for multiple organizations inclduing PROTECT, NIH, NIEHS..."
+      [ "Built multiple RAG full-stack applications for multiple organizations including PROTECT, NIH, NIEHS..."
       , "Published findings to MIT IEEE"
       , "Currently working on NvBit Compiler"
       ]
@@ -76,9 +76,9 @@ sampleEducation =
       ["Putnam Club", "Inter-Disciplinary Entrepreneurship Accelerator (IDEA) Director of Analytics 2024/2025 | Chief Operations Officer (COO) 2025/2026"
        , "rev.school"]
       ["Dean's List"]
-      [ "Intensive Mathematical Reasoning", " Object Oriented Design", " Computer Systems"
-      , " Advanced Quantum Mechanics", " Advanced Linear Algebra", " Logic & Computation"
-      , " Discrete Structures"
+      [ "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
+      , "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
+      , "Discrete Structures"
       ]
       Nothing
   ]
@@ -87,18 +87,20 @@ sampleEducation =
 sampleSkills :: [Skill]  
 sampleSkills =
   [ Skill "Python" Expert Programming (Just 7)
-  , Skill "C++" Advanced Programming (Just 6)
-  , Skill "C" Advanced Programming (Just 5)
+  , Skill "C++" Expert Programming (Just 6)
+  , Skill "C" Expert Programming (Just 5)
   , Skill "PyTorch" Expert MachineLearning (Just 4)
   , Skill "CUDA" Advanced Programming (Just 2)
   , Skill "TensorFlow" Advanced MachineLearning (Just 4)
+  , Skill "AWS" Advanced Cloud (Just 3)
+  , Skill "Google Cloud Platform" Advanced Cloud (Just 2)
   , Skill "JavaScript/TypeScript" Advanced Programming (Just 5)
+  , Skill "React" Advanced Framework (Just 4)
   , Skill "Haskell" Intermediate Programming (Just 1)
   , Skill "Rust" Intermediate Programming (Just 2)
-  , Skill "React" Advanced Framework (Just 4)
-  , Skill "AWS" Advanced Cloud (Just 3)
-  , Skill "Docker" Advanced Tool (Just 3)
+  , Skill "Docker" Intermediate Tool (Just 2)
   , Skill "Kubernetes" Intermediate Tool (Just 2)
+  , Skill "HIP/ROCm" Beginner Programming (Just 0)
   , Skill "OCaml" Beginner Programming (Just 0)
   ]
 

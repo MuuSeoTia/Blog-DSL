@@ -256,7 +256,7 @@ instance ToBlogHtml Education where
         div_ [class_ "courses"] $ do
           h5_ "Relevant Coursework"
           div_ [class_ "course-tags"] $
-            mapM_ (\course -> span_ [class_ "course-tag"] $ toHtml course) (relevantCourses edu)
+            mapM_ (li_ . toHtml) (relevantCourses edu)
 
 instance ToBlogHtml Skill where
   toBlogHtml skill = div_ [class_ "skill-item"] $ do

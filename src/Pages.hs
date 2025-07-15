@@ -86,6 +86,11 @@ generateAbout = doctypehtml_ $ do
             li_ "Machine Learning & Deep Learning (Regression, Classification, Computer Vision, NLP, Reinforcement Learning)"
             li_ "High Performance Computing (CUDA, Metal, Clustering, Slurm, Dynamic Binary Instrumentation)"
             li_ "Cloud Computing (Google Cloud Platform, AWS, Microsoft Azure, Terraform, Hashicorp Lang)"
+          p_ "I'm currently learning: "
+          ul_ $ do
+            li_ "Sparsity in NVIDIA Architectures for Accelerating Inference"
+            li_ "OCaml and levels of abstractions within compilers"
+            li_ "How to relax and let loose"
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
 
