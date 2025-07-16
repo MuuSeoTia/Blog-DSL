@@ -490,6 +490,9 @@ techDotStyles = do
   ".tech-dot.flask" ? color "#000000"    -- Flask black
   ".tech-dot.expo" ? color "#000020"     -- Expo dark
   ".tech-dot.cnn" ? color "#ff6b6b"      -- CNN red
+  ".tech-dot.gnn" ? color "#54995A"      -- GNN green
+  ".tech-dot.cuda" ? color "#76B900"     -- CUDA green
+  ".tech-dot.jupyter" ? color "#FFA500"  -- Jupyter orange
 
 -- Enhanced project button styles
 projectButtonStyles :: Css

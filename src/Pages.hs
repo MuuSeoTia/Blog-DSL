@@ -28,7 +28,8 @@ generateExperiences experiences education skills = doctypehtml_ $ do
           -- Professional Experience Section
           div_ [class_ "section-header"] $ do
             h1_ [class_ "section-title"] "Professional Experience"
-            p_ [class_ "section-subtitle"] "My journey through internships and research positions"
+            img_ [class_ "profile-img", src_ "images/pitchathon.jpg", alt_ "Me holding the beanpot trophy at Pitchathon 2025"]
+            p_ [class_ "section-subtitle"] "My journey through internships, research positions and venture accelerators"
           
           div_ [class_ "experiences-container"] $
             mapM_ (toBlogHtml) experiences
@@ -174,21 +175,70 @@ generateProjects = doctypehtml_ $ do
                   span_ [class_ "tech-dot cnn"] "●"
                   span_ "CNN"
 
-          -- project 3 placeholder  
+          -- project 3  
           div_ [class_ "project-card"] $ do
-            h2_[class_ "project-title"] "Compiler Project"
-            p_ [class_ "project-description"] "Currently developing a compiler that translates code into 3D objects for visualization purposes."
-          
+            h2_[class_ "project-title"] "OracleNet"
+            p_ [class_ "project-description"] "Global knowledge graph which takes hypothetical news headlines and shows all plausible impacts on the economy, industries, supply and politics"
+            div_ [class_ "project-links"] $ do
+              a_ [href_ "https://youtu.be/87r524Pl718?si=Im06aQ0B5mpAKgJe", class_ "demo-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "▶ "
+                "Watch Demo"
+              a_ [href_ "https://github.com/ChittebbayiPenugonda/MacroNet", class_ "github-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "⌘ "
+                "GitHub Repo"
+            div_ [class_ "project-tech"] $ do
+              p_ [class_ "tech-title"] "Technologies:"
+              div_ [class_ "tech-list"] $ do
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot python"] "●"
+                  span_ "Python"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot flask"] "●"
+                  span_ "Flask"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot gnn"] "●"
+                  span_ "Graph Neural Network"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot typescript"] "●"
+                  span_ "TypeScript"
+            
+          -- project 4 placeholder
+          div_ [class_ "project-card"] $ do
+            h2_[class_ "project-title"] "CoralFold"
+            p_ [class_ "project-description"] "3D Realtime Global Coral Bleaching Simulator Visualization using Gray-Scott Diffusion"
+            div_ [class_ "project-links"] $ do
+              a_ [href_ "https://github.com/MuuSeoTia/CoralFold", class_ "github-link", target_ "_blank"] $ do
+                span_ [class_ "icon"] "⌘ "
+                "GitHub Repo"
+            div_ [class_ "project-tech"] $ do
+              p_ [class_ "tech-title"] "Technologies:"
+              div_ [class_ "tech-list"] $ do
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot python"] "●"
+                  span_ "Python"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot gcp"] "●"
+                  span_ "Google Cloud Platform"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot ml"] "●"
+                  span_ "Machine Learning"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot jupyter"] "●"
+                  span_ "Jupyter Notebooks"
+                div_ [class_ "tech-item"] $ do
+                  span_ [class_ "tech-dot react"] "●"
+                  span_ "React"
+
           -- current projects section
           div_ [class_ "current-projects"] $ do
-            h2_ [class_ "section-title"] "Current Research Projects"
+            h2_ [class_ "section-title"] "Currently Working On"
             div_ [class_ "research-list"] $ do
               div_ [class_ "research-item"] $ do
                 span_ [class_ "research-dot"] "◆"
-                span_ "Writing a Compiler to 3D Objects"
+                span_ "CUDA Sparsity Matrix Operation Compiler"
               div_ [class_ "research-item"] $ do
                 span_ [class_ "research-dot"] "◆"
-                span_ "NvBit Compiler for NVIDIA CUDA"
+                span_ "NvBit Compiler"
               div_ [class_ "research-item"] $ do
                 span_ [class_ "research-dot"] "◆"
                 span_ "Enhanced Workload Handling via Integrating LLM into Slurm"
@@ -215,11 +265,11 @@ generateIndex posts = doctypehtml_ $ do
         div_ [class_ "hero-section"] $ do
           img_ [class_ "profile-img", src_ "images/photoshootneut.jpg", alt_ "Mouad Tiahi"]
           h1_ "Mouad Tiahi"
-          p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 3x Hackathon Winner | Aspiring Quantum Computing Researcher"
+          p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 4x Hackathon Winner | Aspiring Quantum Computing Researcher"
           div_ [class_ "social-links"] $ do
             a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank", class_ "social-link"] "GitHub"
-            a_ [href_ "https://www.linkedin.com/in/mouad-tiahi-0b361524b/", target_ "_blank", class_ "social-link"] " LinkedIn"
-            a_ [href_ "mailto:tiahimouad22@gmail.com", class_ "social-link"] " Email"
+            a_ [href_ "https://www.linkedin.com/in/mouad-tiahi-0b361524b/", target_ "_blank", class_ "social-link"] "LinkedIn"
+            a_ [href_ "https://devpost.com/MuuSeoTia", class_ "social-link"] "Hackathons"
         
         div_ [class_ "intro-section"] $ do
           h2_ "Welcome to My Website"
