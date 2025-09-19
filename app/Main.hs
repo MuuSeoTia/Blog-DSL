@@ -90,7 +90,7 @@ sampleEducation =
        , "rev.school"]
       ["Dean's List"]
       [ "Algorithms (Graduate)", "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
-      , "Programming Languages" "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
+      , "Programming Languages", "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
       , "Quantum Computing & Hardware Platforms" ]
       Nothing
   ]
