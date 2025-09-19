@@ -24,7 +24,7 @@ writeFileUtf8 path content = do
   TL.hPutStr handle content
   hClose handle
 
--- Sample experience data
+-- experience block
 sampleExperiences :: [Experience]
 sampleExperiences = 
   [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Boston, MA" 
@@ -66,7 +66,20 @@ sampleExperiences =
       , "Currently working on NvBit Compiler"
       ]
       Nothing
-  ]
+      , Experience 4 "IDEA: Northeastern's Interdisciplinary Entrepreneurship Venture Accelerator" "Chief Operating Officer" "Boston, MA"
+      (fromGregorian 2025 1 6) Nothing
+       [ "Leading team of 30+ students across Analytics, Venture and Operations to run VA operations."
+       , "Orchestrating website, mobile application and event organization platform for the organization."
+       , "Managing data for 2800+ lifetime student ventures inclduing Slate, Amino, Mavrk who've raised  $900M+"
+       ]
+       ["Python", "Typescript", "Leadership", "Salesforce"]
+    
+       [
+        "Led the complete construction of IDEA software pipeline"
+      , "Contributed to revamping venture accelerator curriculum and strategy"
+       ]
+      -- []
+  
 
 -- Sample education data  
 sampleEducation :: [Education]
@@ -76,10 +89,9 @@ sampleEducation =
       ["Putnam Club", "Inter-Disciplinary Entrepreneurship Accelerator (IDEA) Director of Analytics 2024/2025 | Chief Operations Officer (COO) 2025/2026"
        , "rev.school"]
       ["Dean's List"]
-      [ "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
-      , "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
-      , "Discrete Structures"
-      ]
+      [ "Algorithms (Graduate)", "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
+      , "Programming Languages" "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
+      , "Quantum Computing & Hardware Platforms" ]
       Nothing
   ]
 

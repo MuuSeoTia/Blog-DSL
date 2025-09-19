@@ -265,7 +265,7 @@ generateIndex posts = doctypehtml_ $ do
         div_ [class_ "hero-section"] $ do
           img_ [class_ "profile-img", src_ "images/photoshootneut.jpg", alt_ "Mouad Tiahi"]
           h1_ "Mouad Tiahi"
-          p_ [class_ "subtitle"] "Machine Learning & High Performance Researcher @ NUCAR | 4x Hackathon Winner | Aspiring Quantum Computing Researcher"
+          p_ [class_ "subtitle"] "Machine Learning & High Performance Computing Researcher @ NUCAR | 5x Hackathon Winner | Aspiring Quantum Computing Researcher | MLH Top 50 2025"
           div_ [class_ "social-links"] $ do
             a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank", class_ "social-link"] "GitHub"
             a_ [href_ "https://www.linkedin.com/in/mouad-tiahi-0b361524b/", target_ "_blank", class_ "social-link"] "LinkedIn"

@@ -61,7 +61,7 @@ data Skill = Skill
   , yearsExperience :: Maybe Int
   } deriving (Generic, Show)
 
-data SkillLevel = Beginner | Intermediate | Advanced | Expert
+data SkillLevel = Beginner | Learning | Intermediate | Advanced | Expert
   deriving (Generic, Show, Eq)
 
 data SkillCategory =
@@ -288,12 +288,14 @@ formatDay = T.pack . formatTime defaultTimeLocale "%B %Y"
 
 skillLevelText :: SkillLevel -> Text
 skillLevelText Beginner = "Beginner"
+skillLevelText Learning = "Learning"
 skillLevelText Intermediate = "Intermediate"
 skillLevelText Advanced = "Advanced"
 skillLevelText Expert = "Expert"
 
 skillLevelClass :: SkillLevel -> Text
 skillLevelClass Beginner = "beginner"
+skillLevelClass Learning = "learning"
 skillLevelClass Intermediate = "intermediate"
 skillLevelClass Advanced = "advanced"
 skillLevelClass Expert = "expert"
