@@ -83,6 +83,16 @@ data Certificate = Certificate
   , verificationUrl :: Maybe Text
   } deriving (Generic, Show)
 
+data Project = Project
+  { projectId :: Int
+  , projectName :: Text
+  , projectDescription :: Text
+  , projectTechnologies :: [Text]
+  , githubUrl :: Maybe Text
+  , demoUrl :: Maybe Text
+  , projectImage :: Maybe Text
+  } deriving (Generic, Show)
+
 -- blogpost type
 data BlogPost = BlogPost
   { postId :: Int
@@ -130,6 +140,8 @@ instance ToJSON SkillCategory
 instance FromJSON SkillCategory
 instance ToJSON Certificate
 instance FromJSON Certificate
+instance ToJSON Project
+instance FromJSON Project
 
 -- define basic HTML instances
 instance ToHtml BlogElement where
@@ -184,6 +196,12 @@ instance ToHtml Certificate where
     h4_ [class_ "cert-name"] $ toHtml $ certName cert
     p_ [class_ "cert-issuer"] $ toHtml $ "Issued by " <> issuer cert
     p_ [class_ "cert-date"] $ toHtml $ formatDay $ issueDate cert
+  toHtmlRaw = toHtml
+
+instance ToHtml Project where
+  toHtml project = div_ [class_ "project-card"] $ do
+    h2_ [class_ "project-title"] $ toHtml $ projectName project
+    p_ [class_ "project-description"] $ toHtml $ projectDescription project
   toHtmlRaw = toHtml
 
 -- HTML generation
@@ -277,6 +295,24 @@ instance ToBlogHtml Skill where
     --maybe (pure ()) (\expiry -> p_ [class_ "cert-expiry"] $
     --  toHtml $ "Expires: " <> formatDay expiry) (expiryDate cert)
     -- maybe (pure ()) (\url -> a_ [href_ url, target_ "_blank", class_ "cert-verify"] "Verify Certificate") (verificationUrl cert)
+
+instance ToBlogHtml Project where
+  toBlogHtml project = div_ [class_ "project-card"] $ do
+    h2_ [class_ "project-title"] $ toHtml $ projectName project
+    p_ [class_ "project-description"] $ toHtml $ projectDescription project
+    div_ [class_ "project-links"] $ do
+      maybe (pure ()) (\demo -> a_ [href_ demo, class_ "demo-link", target_ "_blank"] $ do
+        span_ [class_ "icon"] "▶ "
+        "Watch Demo") (demoUrl project)
+      maybe (pure ()) (\github -> a_ [href_ github, class_ "github-link", target_ "_blank"] $ do
+        span_ [class_ "icon"] "⌘ "
+        "GitHub Repo") (githubUrl project)
+    div_ [class_ "project-tech"] $ do
+      p_ [class_ "tech-title"] "Technologies:"
+      div_ [class_ "tech-list"] $
+        mapM_ (\tech -> div_ [class_ "tech-item"] $ do
+          span_ [class_ "tech-dot python"] "●"
+          span_ $ toHtml tech) (projectTechnologies project)
 
 -- Helper functions
 formatDateRange :: Day -> Maybe Day -> Text

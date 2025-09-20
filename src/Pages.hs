@@ -95,7 +95,47 @@ generateAbout = doctypehtml_ $ do
       footer_ [class_ "footer"] $ do
         p_ [] "Generated in Haskell"
 
--- Generate projects page
+-- Generate projects page using DSL
+generateProjectsFromData :: [Project] -> Html ()
+generateProjectsFromData projects = doctypehtml_ $ do
+  head_ $ do 
+    meta_ [charset_ "utf-8"]
+    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
+    title_ "Projects"
+    link_ [rel_ "stylesheet", type_ "text/css", href_ "css/style.css"]
+  body_ $ do
+    div_ [class_ "container"] $ do
+      nav_ [class_ "nav"] $ do
+        a_ [href_ "index.html"] "Home"
+        a_ [href_ "about.html"] "About"
+        a_ [href_ "projects.html"] "Projects"
+        a_ [href_ "experience.html"] "Experience"
+      main_ [class_ "projects-main"] $ do
+        div_ [class_ "project-section"] $ do
+          h1_ [class_ "section-title"] "My Projects"
+          img_ [class_ "profile-img", src_ "images/conference.png", alt_ "MIT URTC Conference 2024"]
+          
+          div_ [class_ "projects-container"] $
+            mapM_ (toBlogHtml) projects
+          
+          -- current projects section
+          div_ [class_ "current-projects"] $ do
+            h2_ [class_ "section-title"] "Currently Working On"
+            div_ [class_ "research-list"] $ do
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "CUDA Sparsity Matrix Operation Compiler"
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "NvBit Compiler"
+              div_ [class_ "research-item"] $ do
+                span_ [class_ "research-dot"] "◆"
+                span_ "Enhanced Workload Handling via Integrating LLM into Slurm"
+      
+      footer_ [class_ "footer"] $ do
+        p_ [] "Generated in Haskell"
+
+-- Generate projects page (legacy - keeping for compatibility)
 generateProjects :: Html()
 generateProjects = doctypehtml_ $ do
   head_ $ do 

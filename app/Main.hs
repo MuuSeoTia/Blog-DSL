@@ -78,7 +78,8 @@ sampleExperiences =
         "Led the complete construction of IDEA software pipeline"
       , "Contributed to revamping venture accelerator curriculum and strategy"
        ]
-      -- []
+       Nothing
+  ]
   
 
 -- Sample education data  
@@ -92,6 +93,41 @@ sampleEducation =
       [ "Algorithms (Graduate)", "Intensive Mathematical Reasoning", "Object Oriented Design", "Computer Systems"
       , "Programming Languages", "Advanced Quantum Mechanics", "Advanced Linear Algebra", "Logic & Computation"
       , "Quantum Computing & Hardware Platforms" ]
+      Nothing
+  ]
+
+-- Sample projects data
+sampleProjects :: [Project]
+sampleProjects =
+  [ Project 1 "Sustainable AF" 
+      "A web application that allows users to find sustainable products and services in their area with a solar heat map and a carbon footprint calculator."
+      ["Google Cloud Platform", "React.js", "TypeScript", "Python", "Machine Learning"]
+      (Just "https://github.com/MuuSeoTia/carbon-advisor")
+      (Just "https://www.youtube.com/watch?v=-a0d_5INf8Q&t=1s&ab_channel=FahadFaruqi")
+      Nothing
+  , Project 2 "Maritime"
+      "Mobile application which allows users to track live microplastic concentrations in the ocean and allows for waste identification."
+      ["Python", "Flask", "Expo", "TypeScript", "CNN"]
+      (Just "https://github.com/Zapaway/maritime")
+      (Just "https://youtu.be/Dj94vM3d93Q?si=ZK42k89Ask6-Or8u")
+      Nothing
+  , Project 3 "OracleNet"
+      "Global knowledge graph which takes hypothetical news headlines and shows all plausible impacts on the economy, industries, supply and politics"
+      ["Python", "Flask", "Graph Neural Network", "TypeScript"]
+      (Just "https://github.com/ChittebbayiPenugonda/MacroNet")
+      (Just "https://youtu.be/87r524Pl718?si=Im06aQ0B5mpAKgJe")
+      Nothing
+  , Project 4 "NSightful"
+      "Real time 3D Visualization for GPU usage"
+      ["JavaScript", "Rust", "HTML", "CSS", "Tauri"]
+      (Just "https://github.com/MuuSeoTia/NSightful")
+      Nothing
+      Nothing
+  , Project 5 "Griddy"
+      "HackMIT 2025 winning project - Smart grid power management and optimization system"
+      ["TypeScript", "Python", "C", "CSS", "WebSocket"]
+      (Just "https://github.com/Tetraslam/hackmit25")
+      (Just "https://plume.hackmit.org/project/kmips-kavlf-auvtc-ymtmn")
       Nothing
   ]
 
@@ -191,7 +227,7 @@ generateSite = do
   writeFileUtf8 "dist/about.html" $ renderText generateAbout
 
   -- Generate projects page
-  writeFileUtf8 "dist/projects.html" $ renderText generateProjects
+  writeFileUtf8 "dist/projects.html" $ renderText $ generateProjectsFromData sampleProjects
 
   -- Generate experiences page using the DSL
   writeFileUtf8 "dist/experience.html" $ renderText $ 
