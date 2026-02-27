@@ -58,7 +58,9 @@ generateIndex posts = pageShell "Mouad Tiahi" "css/style.css" $ do
       div_ [class_ "header-text"] $ do
         h1_ "Mouad Tiahi"
         p_ [class_ "site-tagline"] $ do
-          "CS & Physics at Northeastern. ML & HPC researcher at "
+          "CS & Physics at Northeastern. GPU Infrastructure Engineer at "
+          a_ [href_ "https://osmosis.ai", target_ "_blank"] "OsmosisAI"
+          " (YC W25). ML & HPC researcher at "
           a_ [href_ "https://ece.northeastern.edu/groups/nucar/", target_ "_blank"] "NUCAR"
           ". Previously Amazon, Dell. 5x hackathon winner. "
           a_ [href_ "https://top.mlh.io/2025", target_ "_blank"] "MLH Top 50 2025"

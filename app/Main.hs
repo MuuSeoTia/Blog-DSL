@@ -27,25 +27,26 @@ writeFileUtf8 path content = do
 -- experience data
 sampleExperiences :: [Experience]
 sampleExperiences =
-  [ Experience 1 "Amazon" "Cloud Infrastructure Intern" "Boston, MA"
-      (fromGregorian 2023 9 4) (Just $ fromGregorian 2023 12 20)
-      [ "Optimized data flow across a distributed system managing thousands of database endpoints, reducing connection latency by 15% through targeted AWS Direct Connect configuration and vector database integration"
-      , "Designed and implemented secure, scalable API endpoints backed by optimized database architecture, enabling 10% faster query execution across cloud-native applications"
-      , "Built a real-time data synchronization pipeline using AWS Amplify and vector databases, improving cross-platform data retrieval times and enabling seamless multi-region data access"
+  [ Experience 1 "OsmosisAI (YC W25)" "GPU Infrastructure Engineer" "Remote"
+      (fromGregorian 2026 2 1) Nothing
+      [ "Developing custom Triton kernels for fused linear cross entropy, optimizing rollout throughput for large-scale LLM post-training pipelines"
+      , "Engineering GPU parallelism infrastructure for efficient distributed training and inference across multi-node clusters"
       ]
-      ["AWS", "Python", "Docker", "Kubernetes"]
-      [ "Automated monitoring and alerting infrastructure for distributed database systems"
-      , "Developed container orchestration workflows that streamlined deployment pipelines and reduced manual provisioning overhead"
+      ["Triton", "CUDA", "Python", "PyTorch"]
+      []
+      Nothing
+      (Just "https://osmosis.ai")
+  , Experience 2 "IDEA Venture Accelerator" "Chief Operating Officer" "Boston, MA"
+      (fromGregorian 2025 1 6) Nothing
+      [ "Leading a cross-functional team of 30+ students across Analytics, Venture, and Operations to manage accelerator programs and organizational infrastructure"
+      , "Architecting and maintaining the organization's software ecosystem including website, mobile application, and event management platform"
+      , "Managing data systems tracking 2,800+ lifetime student ventures, including companies like Slate, Amino, and Mavrk that have collectively raised over $900M"
+      ]
+      ["Python", "TypeScript", "Salesforce", "Leadership"]
+      [ "Led the end-to-end construction of IDEA's software pipeline from design through deployment"
+      , "Contributed to revamping the venture accelerator curriculum and operational strategy"
       ]
       Nothing
-  , Experience 2 "Dell Technologies" "Software Engineering Mentee" "Hopkinton, MA"
-      (fromGregorian 2024 1 8) (Just $ fromGregorian 2024 4 17)
-      [ "Leveraged Dell APEX Private Cloud to optimize virtualized environment deployments, achieving 15% faster provisioning times and improved infrastructure scalability"
-      , "Built custom API integrations and Python automation scripts for cloud resource management, driving a 10% increase in operational efficiency across the platform"
-      ]
-      ["Python", "Dell APEX Private Cloud", "Terraform"]
-      [ "Contributed to the automation of Dell's cloud platform data pipeline, reducing manual intervention in resource allocation"
-      ]
       Nothing
   , Experience 3 "NUCAR Lab — Prof. David Kaeli" "ML & HPC Researcher" "Boston, MA"
       (fromGregorian 2024 5 28) Nothing
@@ -60,17 +61,29 @@ sampleExperiences =
       , "Actively developing NvBit-based compiler for GPU workload profiling"
       ]
       Nothing
-  , Experience 4 "IDEA Venture Accelerator" "Chief Operating Officer" "Boston, MA"
-      (fromGregorian 2025 1 6) Nothing
-      [ "Leading a cross-functional team of 30+ students across Analytics, Venture, and Operations to manage accelerator programs and organizational infrastructure"
-      , "Architecting and maintaining the organization's software ecosystem including website, mobile application, and event management platform"
-      , "Managing data systems tracking 2,800+ lifetime student ventures, including companies like Slate, Amino, and Mavrk that have collectively raised over $900M"
+      Nothing
+  , Experience 4 "Dell Technologies" "Software Engineering Mentee" "Hopkinton, MA"
+      (fromGregorian 2024 1 8) (Just $ fromGregorian 2024 4 17)
+      [ "Leveraged Dell APEX Private Cloud to optimize virtualized environment deployments, achieving 15% faster provisioning times and improved infrastructure scalability"
+      , "Built custom API integrations and Python automation scripts for cloud resource management, driving a 10% increase in operational efficiency across the platform"
       ]
-      ["Python", "TypeScript", "Salesforce", "Leadership"]
-      [ "Led the end-to-end construction of IDEA's software pipeline from design through deployment"
-      , "Contributed to revamping the venture accelerator curriculum and operational strategy"
+      ["Python", "Dell APEX Private Cloud", "Terraform"]
+      [ "Contributed to the automation of Dell's cloud platform data pipeline, reducing manual intervention in resource allocation"
       ]
       Nothing
+      (Just "https://www.delltechnologies.com")
+  , Experience 5 "Amazon" "Cloud Infrastructure Intern" "Boston, MA"
+      (fromGregorian 2023 9 4) (Just $ fromGregorian 2023 12 20)
+      [ "Optimized data flow across a distributed system managing thousands of database endpoints, reducing connection latency by 15% through targeted AWS Direct Connect configuration and vector database integration"
+      , "Designed and implemented secure, scalable API endpoints backed by optimized database architecture, enabling 10% faster query execution across cloud-native applications"
+      , "Built a real-time data synchronization pipeline using AWS Amplify and vector databases, improving cross-platform data retrieval times and enabling seamless multi-region data access"
+      ]
+      ["AWS", "Python", "Docker", "Kubernetes"]
+      [ "Automated monitoring and alerting infrastructure for distributed database systems"
+      , "Developed container orchestration workflows that streamlined deployment pipelines and reduced manual provisioning overhead"
+      ]
+      Nothing
+      (Just "https://www.amazon.com")
   ]
 
 -- education data
@@ -138,6 +151,8 @@ sampleSkills =
   , Skill "C++" Expert Programming (Just 6)
   , Skill "C" Expert Programming (Just 5)
   , Skill "CUDA" Advanced Programming (Just 2)
+  , Skill "Triton" Intermediate Programming Nothing
+  , Skill "Java" Advanced Programming (Just 4)
   , Skill "JavaScript/TypeScript" Advanced Programming (Just 5)
   , Skill "Haskell" Intermediate Programming (Just 1)
   , Skill "Rust" Intermediate Programming (Just 2)
@@ -147,17 +162,19 @@ sampleSkills =
   , Skill "PyTorch" Expert MachineLearning (Just 4)
   , Skill "JAX" Advanced MachineLearning (Just 1)
   , Skill "TensorFlow" Advanced MachineLearning (Just 4)
-  , Skill "Tunix" Intermediate MachineLearning Nothing
   , Skill "TRL" Intermediate MachineLearning Nothing
+  , Skill "Tunix" Learning MachineLearning Nothing
   , Skill "OpenRLHF" Learning MachineLearning Nothing
   , Skill "DeepSpeed" Learning MachineLearning Nothing
   -- hpc & systems
   , Skill "Slurm" Advanced HPC (Just 2)
   , Skill "MPI" Intermediate HPC (Just 2)
   , Skill "OpenMP" Intermediate HPC (Just 2)
+  , Skill "NvBit" Intermediate HPC (Just 1)
   , Skill "Pallas" Learning HPC Nothing
   , Skill "NCCL" Learning HPC Nothing
-  , Skill "NvBit" Intermediate HPC (Just 1)
+  , Skill "Tokamax" Learning HPC Nothing
+  , Skill "XLA" Learning HPC Nothing
   -- cloud & infra
   , Skill "AWS" Advanced Cloud (Just 3)
   , Skill "Google Cloud Platform" Advanced Cloud (Just 2)
@@ -165,8 +182,8 @@ sampleSkills =
   , Skill "React" Advanced Framework (Just 4)
   , Skill "MaxText" Learning Framework Nothing
   , Skill "Unix/Linux" Expert Tool (Just 7)
-  , Skill "Git" Advanced Tool (Just 5)
-  , Skill "Docker" Intermediate Tool (Just 2)
+  , Skill "Git" Expert Tool (Just 5)
+  , Skill "Docker" Advanced Tool (Just 2)
   , Skill "Kubernetes" Intermediate Tool (Just 2)
   ]
 
@@ -218,76 +235,123 @@ samplePosts =
       , HeaderContent "Q: TypeScript?"
       , TextContent "A bad day writing code in C++ is better than a good day writing code in TypeScript — David Stigant (Surely)"
       ]
-  , BlogPost 3 "Five Hackathons, Five Wins: What I Learned"
-      (UTCTime (fromGregorian 2025 3 15) 14)
-      "I've won every hackathon I've entered. Here's the honest breakdown of why — and the framework I accidentally built along the way."
+  , BlogPost 3 "On Hackathons"
+      (UTCTime (fromGregorian 2025 10 11) 17)
+      "From competitive programming prize money to MLH Top 50. Here's the hackathon meta I've figured out over five wins and dozens of placements."
       ["hackathons", "engineering", "lessons"]
-      [ HeaderContent "How it started"
-      , TextContent "I didn't go into my first hackathon planning to win. I went because a friend dragged me there \
-        \and I figured free pizza and a weekend of coding sounded better than whatever else I had going on. \
-        \We ended up winning. Then it happened again. And again. Five times total now."
-      , TextContent "People keep asking me what the trick is. There is no trick. But there is a pattern, \
-        \and after five of these things I think I've finally figured out what it actually looks like."
-      , HeaderContent "The Framework (that I didn't mean to build)"
-      , TextContent "Every winning project I've been part of nailed four things. I drew this out on a napkin at 3am \
-        \during HackMIT and it's been stuck in my head ever since:"
-      , CodeBlock "" "          +-------------------+\n          |   TECHNICAL DEPTH |\n          | (Can you build it) |\n          +--------+----------+\n                   |\n    +--------------+---------------+\n    |              |               |\n    v              v               v\n+--------+   +-----------+   +--------+\n| SCOPE  |   |   PITCH   |   | DEMO   |\n| (Less  |   | (Tell the |   | (Make  |\n|  is    |   |  story)   |   |  it    |\n|  more) |   +-----------+   |  work) |\n+--------+                   +--------+\n                   |\n          +--------+----------+\n          |    X-FACTOR       |\n          | (Why should they  |\n          |  care RIGHT NOW)  |\n          +-------------------+"
-      , TextContent "Let me break each of these down with actual examples."
-      , HeaderContent "Technical Depth — Can you actually build it?"
-      , TextContent "This is the foundation. If your team can't execute, nothing else matters. \
-        \But here's the thing — technical depth doesn't mean complexity. It means competence. \
-        \Judges can tell the difference between a team that chose the right tool for the job \
-        \and a team that threw every buzzword at the wall."
+      [ HeaderContent "How it began"
+      , TextContent "I began to develop an interest in hackathons and competitive programming starting in late high school. \
+        \At the time, my family didn't really have enough money to get by without me constantly working part time, \
+        \so I would compete in algorithm-based competitions for both college applications and a form of income \
+        \since I quickly began gaining traction and winning multiple state and regional level events."
+      , TextContent "As with everything I usually do, I gradually grew tired of solving repetitive algorithms \
+        \and distinct assigned tasks and wanted something more freeform and creative. I started attending 4-8 hour \
+        \\"Programming Project\" competitions which completely invigorated me. Everyone around me seemed so ambitious \
+        \and passionate about the projects they'd built, everything from a Chrome dinosaur game replica with a wallaby \
+        \as a replacement, to an AP Chem interactive virtual lab. From then on I knew I wanted to compete at more \
+        \hackathons and see what people would come up with."
+      , HeaderContent "Succeeding in hackathons?"
+      , RichText
+          [ Plain "After winning five international level hackathons spanning thousands of competitors and placing in sponsor prizes \
+            \and runner-up categories at dozens of others, I became the "
+          , Link "first Northeastern student ranked in the MLH Top 50" "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/"
+          , Plain ". I consider myself to be one of the most successful hackers still competing, and that is an honor \
+            \I attribute mainly to the friends who joined me throughout my hackathon journey. I genuinely could not \
+            \have accomplished anything without their support."
+          ]
+      , TextContent "As a result of this, many always ask me for assistance in hackathons, ideation, and judging. \
+        \For the rest of this blog I'll be giving insight into the hackathon \"meta\" and how to win large-scale \
+        \hackathons with 1000+ hackers. I'll cover this in order of most to least important: the idea, \
+        \pitching and judging, project structure, and lastly team dynamics."
+      , HeaderContent "Ideation"
+      , TextContent "Many tech influencers and LinkedIn officers will likely tell you something along the lines of:"
+      , CodeBlock "cpp" "#include <iostream>\n\nint main() {\n    std::cout << \"Solve a real world problem!\" << std::endl;\n    std::cout << \"Incorporate a billion AI Agents!\" << std::endl;\n    std::cout << \"Pump out dashboards!\" << std::endl;\n    std::cout << \"IMPORT <free_sponsor_api_key>\" << std::endl;\n}"
+      , TextContent "Unfortunately, they are correct. This is typically the most effective tactic to win any prize \
+        \at a smaller scale hackathon."
+      , TextContent "However, if you actually want to win 1st place in track or general at the most competitive \
+        \hackathons in the world, or if you want to build something with actual long-term impact and scale, \
+        \this won't cut it."
+      , TextContent "So how do we start? Throughout my hackathon experience, my teams and I have come up with ideas \
+        \from as long as 4 months before, up to 14 hours into a hackathon. As a result, I've found the best way \
+        \to get an idea is through the intersection of three main components: Problem, Solution, and Technicality, \
+        \plus an additional component I call the X-Factor."
+      , CodeBlock "" "      PROBLEM              SOLUTION\n    (Why does it         (What does the\n     matter?)             product do?)\n          \\                   /\n           \\                 /\n            +------+-------+\n            | WINNING IDEA |\n            +------+-------+\n           /                 \\\n          /                   \\\n    TECHNICALITY           X-FACTOR\n   (How do you           (Why right now?\n    execute it?)          What's the hook?)"
+      , HeaderContent "The Problem"
+      , TextContent "Defining the problem is mainly about deciding whether or not your idea is actually something \
+        \worth solving. Judges at top hackathons have seen hundreds of projects. They can smell a forced problem \
+        \statement from across the room. The problem needs to be real. Not \"wouldn't it be cool if\" but \
+        \\"this genuinely affects people and here's why.\""
       , RichText
           [ Plain "When we built "
           , Link "Sustainable AF" "https://github.com/MuuSeoTia/carbon-advisor"
-          , Plain " at HackHarvard, we used GCP, React, TypeScript, Python, and ML models. \
-            \That sounds like a lot but every piece had a clear reason to exist. The ML model powered the sustainability scoring. \
-            \GCP handled the solar heat map data. React made the frontend interactive. Nothing was there for show."
+          , Plain " at HackHarvard, the problem was clear: consumers want to make sustainable choices but have no \
+            \practical way to evaluate the environmental impact of their purchases. That's a real pain point. \
+            \No stretching required."
           ]
-      , HeaderContent "Scope — Less is more (seriously)"
+      , HeaderContent "The Solution"
+      , TextContent "Your solution needs to be specific and scoped. This is where most teams lose. They define a vague \
+        \problem, then propose an equally vague solution. \"We're going to fix climate change\" is not a solution. \
+        \\"We built an interactive solar heat map that shows you exactly how much energy your roof can generate\" is."
       , RichText
-          [ Plain "This is the one everyone gets wrong. You have 24-48 hours. You are not building a startup. \
-            \You are building a proof of concept that works flawlessly for a 3-minute demo. "
+          [ Plain "With "
           , Link "Maritime" "https://github.com/Zapaway/maritime"
-          , Plain " won because we did one thing — track ocean microplastics and identify waste with a CNN — \
-            \and we did it really well. The app loaded fast, the model was accurate, the UX was clean. \
-            \We could have added ten more features but we didn't."
+          , Plain " the solution was dead simple: point your camera at ocean waste, get an instant CNN classification, \
+            \and see live microplastic concentration data for your location. One sentence. That's what you're aiming for."
           ]
-      , TextContent "I've seen teams with better ideas lose because they tried to build too much and their demo crashed. \
-        \Scope ruthlessly. Kill your darlings. Ship the thing that works."
-      , HeaderContent "Pitch — Tell the story"
+      , HeaderContent "Technicality"
+      , TextContent "This is where your engineering chops matter. The technicality isn't about using the most buzzwords. \
+        \It's about choosing the right stack for the problem and executing it well. Judges can tell the difference \
+        \between a team that understood their architecture and a team that copy-pasted a tutorial."
+      , RichText
+          [ Plain "For "
+          , Link "OracleNet" "https://github.com/ChittebbayiPenugonda/MacroNet"
+          , Plain " we used Graph Neural Networks to model cascading economic impacts. That sounds fancy, but it was \
+            \the natural choice. You're modeling a network of dependencies, so a graph-based approach is the obvious \
+            \architecture. Every technical decision should have a reason."
+          ]
+      , HeaderContent "The X-Factor"
+      , TextContent "This is the secret sauce. The X-Factor is timing and relevance. Why should judges care about \
+        \this problem right now? Sustainability when climate legislation is in the news. Ocean microplastics \
+        \when a documentary goes viral. Smart grid optimization when energy costs are spiking. It's not manipulation. \
+        \It's relevance. If your project solves a problem that's currently in the cultural conversation, \
+        \judges connect with it on a gut level before you even open your mouth."
+      , HeaderContent "Pitching & Judging"
+      , TextContent "Once you have a winning idea, you need to sell it. I've seen technically superior projects lose \
+        \to teams with half the engineering but twice the storytelling. Here's the structure that has never failed me:"
+      , BulletList
+          [ "Lead with the problem. Make them feel it."
+          , "Show the solution. Demo first, explain second."
+          , "Explain the technicality. Briefly, confidently."
+          , "End with the X-Factor. Why this matters right now."
+          ]
       , RichText
           [ Plain "Judges don't remember feature lists. They remember stories. When we presented "
           , Link "OracleNet" "https://github.com/ChittebbayiPenugonda/MacroNet"
-          , Plain " — a global knowledge graph that shows cascading impacts of hypothetical events — \
-            \we didn't lead with \"we used Graph Neural Networks.\" We led with \"what happens to the global economy \
+          , Plain ", we didn't lead with \"we used Graph Neural Networks.\" We led with \"what happens to the global economy \
             \if a major shipping route gets blocked tomorrow?\" Then we showed it. The GNN was the how, not the what."
           ]
-      , TextContent "Structure your pitch like a story: problem, why it matters, what you built, how it works, what's next. \
-        \In that order. Every time."
-      , HeaderContent "Demo — Make it work. Period."
-      , RichText
-          [ Link "Griddy" "https://github.com/Tetraslam/hackmit25"
-          , Plain " at HackMIT was our cleanest execution. Smart grid power management with real-time load balancing \
-            \over WebSockets. When we demoed, the system handled live load without a hiccup. \
-            \The judges could see the data flowing. They could interact with it. \
-            \Nothing was mocked, nothing was hardcoded."
-          ]
-      , TextContent "If your demo doesn't work live, none of the above matters. \
+      , TextContent "Also, and I cannot stress this enough, if your demo doesn't work live, none of the above matters. \
         \Spend the last two hours before judging just testing. Then test again. Then one more time."
-      , HeaderContent "The X-Factor — Why should they care RIGHT NOW?"
-      , TextContent "This is the secret fifth element. Every winning project we built addressed something timely. \
-        \Sustainability when climate legislation was in the news. Ocean microplastics when there was a viral documentary about it. \
-        \Smart grid optimization when energy costs were spiking. It's not manipulation — it's relevance."
-      , TextContent "If your project solves a problem that's currently in the cultural conversation, \
-        \judges connect with it on a gut level before you even explain the technical details."
-      , HeaderContent "One more thing"
-      , TextContent "None of this works without the right team. My best projects came from teams where everyone knew their role \
-        \and trusted each other. No ego, no politics, just building. \
-        \I'm grateful for every person I've stayed up until 4am with over stale Red Bull and questionable WiFi. \
-        \These wins belong to all of us."
-      , TextContent "If you're reading this before a hackathon — good luck. Scope small, demo hard, tell a story."
+      , HeaderContent "Project Structure"
+      , TextContent "Planning your project structure is about scope management. You have 24-48 hours. You are not \
+        \building a startup. You are building a proof of concept that works flawlessly for a 3-minute demo."
+      , RichText
+          [ Plain "Here's what I do: in the first hour, whiteboard the entire system. Every API call, every component, \
+            \every data flow. Assign ownership. Then cut 40% of it. Whatever you think you can build in 24 hours, \
+            \you can build about 60% of it. Scope ruthlessly. Kill your darlings. Ship the thing that works. "
+          , Link "Griddy" "https://github.com/Tetraslam/hackmit25"
+          , Plain " at "
+          , Link "HackMIT" "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/"
+          , Plain " was our cleanest execution because we planned it this way from the start."
+          ]
+      , HeaderContent "Your Team"
+      , TextContent "None of this works without the right team. My best projects came from teams where everyone knew \
+        \their role and trusted each other. No ego, no politics, just building."
+      , TextContent "The most important thing isn't individual skill. It's complementary skill sets and mutual trust. \
+        \You need someone who can build the backend, someone who can make the frontend not look terrible, and \
+        \someone who can pitch. If one person can do two of those, you're golden."
+      , TextContent "I'm grateful for every person I've stayed up until 4am with over stale Red Bull and questionable WiFi. \
+        \If you're reading this before a hackathon, good luck. Scope small, demo hard, tell a story."
       ]
   ]
 

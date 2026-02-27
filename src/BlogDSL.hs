@@ -49,6 +49,7 @@ data Experience = Experience
   , technologies :: [Text]
   , achievements :: [Text]
   , companyLogo :: Maybe Text
+  , companyUrl :: Maybe Text
   } deriving (Generic, Show)
 
 data Education = Education
@@ -203,7 +204,7 @@ instance ToHtml Experience where
       maybe (pure ()) (\logo -> img_ [class_ "company-logo", src_ logo, alt_ $ company exp]) (companyLogo exp)
       div_ [class_ "experience-info"] $ do
         h3_ [class_ "position"] $ toHtml $ position exp
-        h4_ [class_ "company"] $ toHtml $ company exp
+        h4_ [class_ "company"] $ renderCompanyName exp
         p_ [class_ "location"] $ toHtml $ location exp
         p_ [class_ "duration"] $ toHtml $ formatDateRange (startDate exp) (endDate exp)
   toHtmlRaw = toHtml
@@ -268,7 +269,7 @@ instance ToBlogHtml Experience where
     div_ [class_ "entry-header"] $ do
       div_ [class_ "entry-title"] $ do
         h3_ [] $ toHtml $ position exp
-        span_ [class_ "entry-org"] $ toHtml $ company exp
+        span_ [class_ "entry-org"] $ renderCompanyName exp
       span_ [class_ "entry-date"] $ toHtml $ formatDateRange (startDate exp) (endDate exp)
 
     div_ [class_ "entry-body"] $ do
@@ -322,6 +323,12 @@ instance ToBlogHtml Project where
       div_ [class_ "project-links"] $ do
         maybe (pure ()) (\demo -> a_ [href_ demo, class_ "link", target_ "_blank"] "Demo") (demoUrl project)
         maybe (pure ()) (\github -> a_ [href_ github, class_ "link", target_ "_blank"] "Code") (githubUrl project)
+
+-- render company name as link if url present
+renderCompanyName :: Monad m => Experience -> HtmlT m ()
+renderCompanyName exp = case companyUrl exp of
+  Just url -> a_ [href_ url, target_ "_blank"] $ toHtml $ company exp
+  Nothing  -> toHtml $ company exp
 
 -- Helper functions
 formatDateRange :: Day -> Maybe Day -> Text

@@ -236,6 +236,14 @@ entryStyles = do
     fontSize (px 15)
     color "#6b7280"
     display block
+    a ? do
+      color "#6b7280"
+      textDecoration underline
+      key "text-decoration-color" (Value "#d1d5db")
+      key "text-underline-offset" (Value "2px")
+      hover & do
+        color "#1a1a1a"
+        key "text-decoration-color" (Value "#1a1a1a")
   ".entry-date" ? do
     fontSize (px 14)
     color "#9ca3af"
