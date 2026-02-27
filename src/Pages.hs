@@ -99,17 +99,19 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
 
   p_ "Outside of research, I serve as Chief Operating Officer of IDEA, Northeastern's venture accelerator, where I lead a team of 30+ students and manage software infrastructure supporting 2,800+ student ventures."
 
-  p_ "My research focuses on high-performance computing optimization, particularly sparse matrix operations on GPU architectures using CUDA and compiler-level instrumentation with NvBit. I've published work at MIT IEEE on distributed RAG retrieval systems and SpMM kernel optimization. I've also worked on projects with the NIH, AMD, and NVIDIA."
+  p_ "My research focuses on high-performance computing optimization, particularly sparse matrix operations on GPU architectures using CUDA and compiler-level instrumentation with NvBit. I've published work at MIT IEEE on distributed RAG retrieval systems and SpMM kernel optimization, and I've given talks at multiple conferences. I've also worked on projects with the NIH, AMD, and NVIDIA."
 
   h2_ "Interests"
   p_ "Machine learning systems, GPU/TPU kernel engineering, compiler design, quantum computing, and the intersection of physics and computation. I also compete in hackathons, five wins so far."
 
-  h2_ "In the News"
-  ul_ $ do
-    li_ $ a_ [href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"]
-      "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
-    li_ $ a_ [href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"]
-      "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
+  h2_ "Press"
+  div_ [class_ "press-list"] $ do
+    a_ [class_ "press-item", href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"] $ do
+      span_ [class_ "press-source"] "Khoury College"
+      span_ [class_ "press-title"] "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
+    a_ [class_ "press-item", href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"] $ do
+      span_ [class_ "press-source"] "Khoury College"
+      span_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
 
   h2_ "Currently Learning"
   ul_ $ do

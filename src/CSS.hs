@@ -21,6 +21,7 @@ blogStyle = do
   entryStyles
   blogStyles
   projectStyles
+  pressStyles
   skillStyles
   tagStyles
   codeStyles
@@ -147,25 +148,30 @@ headerStyles = do
     marginBottom (px 56)
   ".header-row" ? do
     display flex
+    flexDirection column
     alignItems center
-    key "gap" (Value "24px")
-    marginBottom (px 16)
+    key "gap" (Value "20px")
+    marginBottom (px 20)
+    key "text-align" (Value "center")
   ".profile-photo" ? do
-    width (px 96)
-    height (px 96)
+    width (px 112)
+    height (px 112)
     borderRadius (pct 50) (pct 50) (pct 50) (pct 50)
     key "object-fit" (Value "cover")
     border (px 2) solid "#f3f4f6"
   ".header-text" ? do
-    key "flex" (Value "1")
+    key "text-align" (Value "center")
   ".site-tagline" ? do
     fontSize (px 16)
     color "#6b7280"
     lineHeight (unitless 1.6)
     marginBottom (px 16)
+    maxWidth (px 560)
+    margin (px 0) auto (px 16) auto
   ".header-links" ? do
     display flex
     alignItems center
+    justifyContent center
     key "flex-wrap" (Value "wrap")
     key "gap" (Value "8px")
     a ? do
@@ -421,6 +427,38 @@ projectStyles = do
       paddingLeft (px 16)
       key "position" (Value "relative")
 
+-- press items
+pressStyles :: Css
+pressStyles = do
+  ".press-list" ? do
+    display flex
+    flexDirection column
+    key "gap" (Value "12px")
+    marginBottom (px 8)
+  ".press-item" ? do
+    display flex
+    alignItems flexStart
+    key "gap" (Value "12px")
+    padding (px 12) (px 16) (px 12) (px 16)
+    backgroundColor "#f9fafb"
+    borderRadius (px 6) (px 6) (px 6) (px 6)
+    border (px 1) solid "#f3f4f6"
+    textDecoration none
+    transition "border-color" 0.15 ease (sec 0)
+    hover & do
+      border (px 1) solid "#e5e7eb"
+  ".press-source" ? do
+    fontSize (px 12)
+    color "#9ca3af"
+    key "text-transform" (Value "uppercase")
+    key "letter-spacing" (Value "0.05em")
+    key "white-space" (Value "nowrap")
+    marginTop (px 2)
+  ".press-title" ? do
+    fontSize (px 14)
+    color "#374151"
+    lineHeight (unitless 1.5)
+
 -- skill legend + tags
 skillStyles :: Css
 skillStyles = do
@@ -559,21 +597,9 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
       a ? fontSize (px 14)
   ".site" ? do
     padding (px 0) (px 16) (px 0) (px 16)
-  ".header-row" ? do
-    flexDirection column
-    alignItems center
-    key "gap" (Value "16px")
-    key "text-align" (Value "center")
   ".profile-photo" ? do
-    width (px 96)
-    height (px 96)
-    marginBottom (px 4)
-  ".header-text" ? do
-    key "text-align" (Value "center")
-  ".header-links" ? do
-    justifyContent center
-  ".site-tagline" ? do
-    key "text-align" (Value "center")
+    width (px 88)
+    height (px 88)
   ".section-img" ? do
     key "max-height" (Value "280px")
     borderRadius (px 6) (px 6) (px 6) (px 6)
