@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 module Pages where
 
@@ -8,8 +9,7 @@ import Data.Text (Text, pack)
 import qualified Data.Text as T
 import Lucid
 import qualified Data.Text.Lazy as TL
-import Data.List (groupBy, sortBy)
-import Data.Ord (comparing, Down(..))
+import Control.Monad (unless)
 
 -- page shell: consistent layout across all pages
 pageShell :: Text -> Text -> Html () -> Html ()
@@ -82,9 +82,6 @@ renderPostCard post = article_ [class_ "post-card"] $ do
   unless (null $ tags post) $
     div_ [class_ "post-tags"] $
       mapM_ (\tag -> span_ [class_ "tag"] $ toHtml tag) (tags post)
-  where
-    unless False x = x
-    unless True _ = pure ()
 
 -- about page
 generateAbout :: Html ()
@@ -130,13 +127,13 @@ generateExperiences experiences education skills = pageShell "Experience - Mouad
 
 -- group skills by category
 renderSkillsByCategory :: [Skill] -> Html ()
-renderSkillsByCategory skills = mapM_ renderGroup grouped
-  where
-    grouped = groupByCategory skills
-    renderGroup (cat, ss) = div_ [class_ "skill-group"] $ do
-      h4_ [class_ "skill-category-name"] $ toHtml $ skillCategoryText cat
-      p_ [class_ "skill-list-text"] $ toHtml $ T.intercalate ", " $
-        map (\s -> skillName s <> " (" <> skillLevelText (proficiency s) <> ")") ss
+renderSkillsByCategory skills = mapM_ renderGroup (groupByCategory skills)
+
+renderGroup :: (SkillCategory, [Skill]) -> Html ()
+renderGroup (cat, ss) = div_ [class_ "skill-group"] $ do
+  h4_ [class_ "skill-category-name"] $ toHtml $ skillCategoryText cat
+  p_ [class_ "skill-list-text"] $ toHtml $ T.intercalate ", " $
+    map (\s -> skillName s <> " (" <> skillLevelText (proficiency s) <> ")") ss
 
 -- helper to group skills
 groupByCategory :: [Skill] -> [(SkillCategory, [Skill])]

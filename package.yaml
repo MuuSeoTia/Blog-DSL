@@ -21,12 +21,8 @@ dependencies:
 - directory
 - filepath
 - time >= 1.12
-- pandoc
 - aeson >= 2.1
-- blaze-html
-- blaze-markup
 - containers
-- mtl
 
 library:
   source-dirs: src

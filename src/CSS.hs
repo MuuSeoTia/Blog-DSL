@@ -2,6 +2,8 @@
 module CSS where
 
 import Clay hiding (span, map)
+import Clay.Property (unValue, unPrefixed)
+import Clay.Stylesheet (key)
 import qualified Clay.Elements as E
 import Data.Text.Lazy (Text)
 import qualified Clay.Render as R
@@ -100,7 +102,7 @@ navStyles = ".nav" ? do
     textDecoration none
   ".nav-links" ? do
     display flex
-    key "gap" "24px"
+    key "gap" (Value "24px")
     a ? do
       fontSize (px 15)
       color "#6b7280"
@@ -117,15 +119,15 @@ headerStyles = do
   ".header-row" ? do
     display flex
     alignItems center
-    key "gap" "24px"
+    key "gap" (Value "24px")
     marginBottom (px 16)
   ".profile-photo" ? do
     width (px 88)
     height (px 88)
     borderRadius (pct 50) (pct 50) (pct 50) (pct 50)
-    key "object-fit" "cover"
+    key "object-fit" (Value "cover")
   ".header-text" ? do
-    key "flex" "1"
+    key "flex" (Value "1")
   ".site-tagline" ? do
     fontSize (px 16)
     color "#6b7280"
@@ -134,7 +136,7 @@ headerStyles = do
   ".header-links" ? do
     display flex
     alignItems center
-    key "gap" "8px"
+    key "gap" (Value "8px")
     a ? do
       color "#6b7280"
       fontSize (px 14)
@@ -184,7 +186,7 @@ entryStyles = do
     alignItems flexStart
     marginBottom (px 12)
   ".entry-title" ? do
-    key "flex" "1"
+    key "flex" (Value "1")
     h3 ? do
       fontSize (px 18)
       fontWeight (weight 600)
@@ -196,7 +198,7 @@ entryStyles = do
   ".entry-date" ? do
     fontSize (px 14)
     color "#9ca3af"
-    key "white-space" "nowrap"
+    key "white-space" (Value "nowrap")
     marginLeft (px 16)
   ".entry-body" ? do
     marginTop (px 8)
@@ -214,8 +216,8 @@ entryStyles = do
     marginBottom (px 8)
   ".entry-tech" ? do
     display flex
-    key "flex-wrap" "wrap"
-    key "gap" "6px"
+    key "flex-wrap" (Value "wrap")
+    key "gap" (Value "6px")
     marginTop (px 12)
 
 -- blog post cards + post styles
@@ -250,18 +252,18 @@ blogStyles = do
   ".post-meta" ? do
     display flex
     alignItems center
-    key "gap" "16px"
+    key "gap" (Value "16px")
     marginBottom (px 8)
     fontSize (px 13)
     color "#9ca3af"
   ".post-date" ? do
     fontSize (px 13)
     color "#9ca3af"
-    key "text-transform" "uppercase"
-    key "letter-spacing" "0.05em"
+    key "text-transform" (Value "uppercase")
+    key "letter-spacing" (Value "0.05em")
   ".post-tags" ? do
     display flex
-    key "gap" "6px"
+    key "gap" (Value "6px")
   -- full blog post page
   ".blog-post" ? do
     marginBottom (px 48)
@@ -278,12 +280,12 @@ blogStyles = do
       color "#374151"
       a ? do
         color "#475569"
-        key "text-decoration" "underline"
-        key "text-decoration-color" "#cbd5e1"
-        key "text-underline-offset" "2px"
+        key "text-decoration" (Value "underline")
+        key "text-decoration-color" (Value "#cbd5e1")
+        key "text-underline-offset" (Value "2px")
         transition "text-decoration-color" 0.15 ease (sec 0)
         hover & do
-          key "text-decoration-color" "#475569"
+          key "text-decoration-color" (Value "#475569")
           color "#1a1a1a"
     ul ? do
       paddingLeft (px 24)
@@ -317,7 +319,7 @@ projectStyles = do
   ".project-header" ? do
     display flex
     alignItems baseline
-    key "gap" "12px"
+    key "gap" (Value "12px")
     marginBottom (px 8)
   ".project-title" ? do
     fontFamily ["Source Serif 4", "Georgia"] [serif]
@@ -340,7 +342,7 @@ projectStyles = do
     alignItems flexStart
   ".project-links" ? do
     display flex
-    key "gap" "16px"
+    key "gap" (Value "16px")
     ".link" ? do
       fontSize (px 14)
       color "#475569"
@@ -357,7 +359,7 @@ projectStyles = do
       color "#374151"
       marginBottom (px 8)
       paddingLeft (px 16)
-      key "position" "relative"
+      key "position" (Value "relative")
 
 -- skill display
 skillStyles :: Css
@@ -370,8 +372,8 @@ skillStyles = do
     fontSize (px 14)
     fontWeight (weight 600)
     color "#6b7280"
-    key "text-transform" "uppercase"
-    key "letter-spacing" "0.05em"
+    key "text-transform" (Value "uppercase")
+    key "letter-spacing" (Value "0.05em")
     marginBottom (px 8)
   ".skill-list-text" ? do
     fontSize (px 15)

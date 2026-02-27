@@ -4,13 +4,7 @@ packages:
 - .
 
 extra-deps:
-- servant-0.20.2
-- servant-server-0.20.2
-- wai-cors-0.2.7
 - aeson-2.1.2.1
-- warp-3.3.30
-- http-types-0.12.3
-- crypton-x509-1.7.7
 - clay-0.15.0
 - lucid-2.11.20230408
 - time-1.12.2

@@ -353,38 +353,6 @@ skillCategoryText Tool = "Tool"
 skillCategoryText MachineLearning = "Machine Learning"
 skillCategoryText (Other txt) = txt
 
--- page generator
-renderBlogPost :: BlogPost -> Html ()
-renderBlogPost post = doctypehtml_ $ do
-  head_ $ do
-    meta_ [charset_ "utf-8"]
-    meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
-    title_ (toHtml $ title post)
-    link_ [rel_ "stylesheet", type_ "text/css", href_ "../css/style.css"]
-    link_ [rel_ "stylesheet", href_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"]
-    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"] ("" :: Text)
-    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-haskell.min.js"] ("" :: Text)
-    script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"] ("" :: Text)
-  body_ $ do
-    div_ [class_ "site"] $ do
-      nav_ [class_ "nav"] $ do
-        a_ [href_ "../index.html", class_ "nav-name"] "Mouad Tiahi"
-        div_ [class_ "nav-links"] $ do
-          a_ [href_ "../about.html"] "About"
-          a_ [href_ "../projects.html"] "Projects"
-          a_ [href_ "../experience.html"] "Experience"
-      main_ [class_ "content"] $ do
-        article_ [class_ "blog-post"] $ do
-          div_ [class_ "post-meta"] $ do
-            span_ [class_ "post-date"] (toHtml $ formatDate $ date post)
-            unless (null $ tags post) $
-              div_ [class_ "post-tags"] $
-                mapM_ (\tag -> span_ [class_ "tag"] $ toHtml tag) (tags post)
-          h1_ [] (toHtml $ title post)
-          mapM_ toBlogHtml (content post)
-      footer_ [class_ "footer"] $ do
-        p_ [] "Built with Haskell"
-
 -- date formatter
 formatDate :: UTCTime -> String
 formatDate = formatTime defaultTimeLocale "%B %e, %Y"
