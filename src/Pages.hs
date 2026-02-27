@@ -99,10 +99,10 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
 
   p_ "Outside of research, I serve as Chief Operating Officer of IDEA, Northeastern's venture accelerator, where I lead a team of 30+ students and manage software infrastructure supporting 2,800+ student ventures."
 
-  p_ "My research focuses on high-performance computing optimization — particularly sparse matrix operations on GPU architectures using CUDA and compiler-level instrumentation with NvBit. I've published work at MIT IEEE on distributed RAG retrieval systems."
+  p_ "My research focuses on high-performance computing optimization, particularly sparse matrix operations on GPU architectures using CUDA and compiler-level instrumentation with NvBit. I've published work at MIT IEEE on distributed RAG retrieval systems and SpMM kernel optimization. I've also worked on projects with the NIH, AMD, and NVIDIA."
 
   h2_ "Interests"
-  p_ "Machine learning systems, GPU/TPU kernel engineering, compiler design, quantum computing, and the intersection of physics and computation. I also compete in hackathons — five wins so far."
+  p_ "Machine learning systems, GPU/TPU kernel engineering, compiler design, quantum computing, and the intersection of physics and computation. I also compete in hackathons, five wins so far."
 
   h2_ "Currently Learning"
   ul_ $ do
