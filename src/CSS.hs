@@ -1,22 +1,22 @@
 {-# LANGUAGE OverloadedStrings #-}
 module CSS where
 
-import Clay hiding (span, map)
-import Clay.Property (unValue, unPrefixed)
-import Clay.Stylesheet (key)
-import qualified Clay.Elements as E
+import Clay hiding (span, map, query, screen)
+import Clay.Stylesheet (key, query, Feature(..))
+import Clay.Media (screen)
 import Data.Text.Lazy (Text)
 import qualified Clay.Render as R
 import Prelude hiding (span)
-import qualified Prelude as P
 
 -- main style
 blogStyle :: Css
 blogStyle = do
   globalStyles
+  accessibilityStyles
   siteLayout
   navStyles
   headerStyles
+  imageStyles
   sectionStyles
   entryStyles
   blogStyles
@@ -25,6 +25,7 @@ blogStyle = do
   tagStyles
   codeStyles
   footerStyles
+  mobileStyles
 
 -- base reset + typography
 globalStyles :: Css
@@ -39,12 +40,13 @@ globalStyles = do
     lineHeight (unitless 1.75)
     color "#1a1a1a"
     backgroundColor "#ffffff"
+    key "-webkit-font-smoothing" (Value "antialiased")
   h1 ? do
     fontFamily ["Source Serif 4", "Georgia", "Times New Roman"] [serif]
     fontSize (px 32)
     fontWeight (weight 700)
     lineHeight (unitless 1.3)
-    marginBottom (px 8)
+    marginBottom (px 12)
     color "#0f0f0f"
   h2 ? do
     fontFamily ["Source Serif 4", "Georgia", "Times New Roman"] [serif]
@@ -78,6 +80,27 @@ globalStyles = do
     maxWidth (pct 100)
     height auto
 
+-- accessibility: focus states, skip link
+accessibilityStyles :: Css
+accessibilityStyles = do
+  ".skip-link" ? do
+    key "position" (Value "absolute")
+    key "top" (Value "-40px")
+    left (px 0)
+    backgroundColor "#1a1a1a"
+    color white
+    padding (px 8) (px 16) (px 8) (px 16)
+    fontSize (px 14)
+    key "z-index" (Value "100")
+    focus & do
+      key "top" (Value "0")
+  -- focus outlines
+  a ? do
+    focus & do
+      key "outline" (Value "2px solid #475569")
+      key "outline-offset" (Value "2px")
+      borderRadius (px 2) (px 2) (px 2) (px 2)
+
 -- narrow reading column
 siteLayout :: Css
 siteLayout = ".site" ? do
@@ -85,13 +108,13 @@ siteLayout = ".site" ? do
   margin (px 0) auto (px 0) auto
   padding (px 0) (px 24) (px 0) (px 24)
 
--- nav: name left, links right
+-- nav
 navStyles :: Css
 navStyles = ".nav" ? do
   display flex
   justifyContent spaceBetween
   alignItems baseline
-  padding (px 32) (px 0) (px 32) (px 0)
+  padding (px 28) (px 0) (px 28) (px 0)
   borderBottom (px 1) solid "#e5e7eb"
   marginBottom (px 48)
   ".nav-name" ? do
@@ -100,18 +123,24 @@ navStyles = ".nav" ? do
     fontWeight (weight 700)
     color "#0f0f0f"
     textDecoration none
+    ".short-name" ? do
+      display none
   ".nav-links" ? do
     display flex
-    key "gap" (Value "24px")
+    key "gap" (Value "20px")
     a ? do
       fontSize (px 15)
       color "#6b7280"
       textDecoration none
       fontWeight (weight 400)
+      padding (px 4) (px 0) (px 4) (px 0)
+      borderBottom (px 2) solid (other "transparent")
+      transition "all" 0.15 ease (sec 0)
       hover & do
         color "#1a1a1a"
+        borderBottom (px 2) solid "#e5e7eb"
 
--- site header / hero
+-- site header
 headerStyles :: Css
 headerStyles = do
   ".site-header" ? do
@@ -122,10 +151,11 @@ headerStyles = do
     key "gap" (Value "24px")
     marginBottom (px 16)
   ".profile-photo" ? do
-    width (px 88)
-    height (px 88)
+    width (px 96)
+    height (px 96)
     borderRadius (pct 50) (pct 50) (pct 50) (pct 50)
     key "object-fit" (Value "cover")
+    border (px 2) solid "#f3f4f6"
   ".header-text" ? do
     key "flex" (Value "1")
   ".site-tagline" ? do
@@ -136,16 +166,32 @@ headerStyles = do
   ".header-links" ? do
     display flex
     alignItems center
+    key "flex-wrap" (Value "wrap")
     key "gap" (Value "8px")
     a ? do
       color "#6b7280"
       fontSize (px 14)
       textDecoration underline
+      key "text-decoration-color" (Value "#d1d5db")
+      key "text-underline-offset" (Value "2px")
       hover & do
         color "#1a1a1a"
+        key "text-decoration-color" (Value "#1a1a1a")
     ".sep" ? do
       color "#d1d5db"
       fontSize (px 14)
+
+-- section images (bigger, full width)
+imageStyles :: Css
+imageStyles = do
+  ".section-img" ? do
+    width (pct 100)
+    height auto
+    borderRadius (px 8) (px 8) (px 8) (px 8)
+    marginTop (px 16)
+    marginBottom (px 32)
+    key "object-fit" (Value "cover")
+    key "max-height" (Value "400px")
 
 -- section headings
 sectionStyles :: Css
@@ -162,12 +208,6 @@ sectionStyles = do
     color "#374151"
     marginBottom (px 32)
     lineHeight (unitless 1.75)
-  ".subsection-heading" ? do
-    fontSize (px 18)
-    fontWeight (weight 600)
-    color "#1a1a1a"
-    marginTop (px 40)
-    marginBottom (px 24)
 
 -- experience / education entries
 entryStyles :: Css
@@ -195,6 +235,7 @@ entryStyles = do
   ".entry-org" ? do
     fontSize (px 15)
     color "#6b7280"
+    display block
   ".entry-date" ? do
     fontSize (px 14)
     color "#9ca3af"
@@ -220,7 +261,7 @@ entryStyles = do
     key "gap" (Value "6px")
     marginTop (px 12)
 
--- blog post cards + post styles
+-- blog cards + post page
 blogStyles :: Css
 blogStyles = do
   ".writing-section" ? do
@@ -232,8 +273,11 @@ blogStyles = do
     paddingBottom (px 28)
     marginBottom (px 28)
     borderBottom (px 1) solid "#f3f4f6"
+    transition "border-color" 0.15 ease (sec 0)
     lastChild & do
       borderBottom (px 0) solid "#f3f4f6"
+    hover & do
+      borderBottom (px 1) solid "#d1d5db"
   ".post-card-title" ? do
     fontFamily ["Source Serif 4", "Georgia"] [serif]
     fontSize (px 20)
@@ -248,7 +292,7 @@ blogStyles = do
     fontSize (px 15)
     color "#6b7280"
     lineHeight (unitless 1.6)
-    marginBottom (px 8)
+    marginBottom (px 4)
   ".post-meta" ? do
     display flex
     alignItems center
@@ -264,7 +308,7 @@ blogStyles = do
   ".post-tags" ? do
     display flex
     key "gap" (Value "6px")
-  -- full blog post page
+  -- blog post page
   ".blog-post" ? do
     marginBottom (px 48)
     h1 ? do
@@ -282,7 +326,7 @@ blogStyles = do
         color "#475569"
         key "text-decoration" (Value "underline")
         key "text-decoration-color" (Value "#cbd5e1")
-        key "text-underline-offset" (Value "2px")
+        key "text-underline-offset" (Value "3px")
         transition "text-decoration-color" 0.15 ease (sec 0)
         hover & do
           key "text-decoration-color" (Value "#475569")
@@ -293,15 +337,18 @@ blogStyles = do
       li ? do
         marginBottom (px 8)
         lineHeight (unitless 1.7)
+        color "#374151"
     figure ? do
-      marginTop (px 24)
-      marginBottom (px 24)
+      marginTop (px 32)
+      marginBottom (px 32)
       img ? do
         borderRadius (px 6) (px 6) (px 6) (px 6)
+        width (pct 100)
       figcaption ? do
         fontSize (px 13)
         color "#9ca3af"
-        marginTop (px 8)
+        marginTop (px 10)
+        fontStyle italic
 
 -- project entries
 projectStyles :: Css
@@ -340,6 +387,8 @@ projectStyles = do
     display flex
     justifyContent spaceBetween
     alignItems flexStart
+    key "flex-wrap" (Value "wrap")
+    key "gap" (Value "12px")
   ".project-links" ? do
     display flex
     key "gap" (Value "16px")
@@ -347,8 +396,11 @@ projectStyles = do
       fontSize (px 14)
       color "#475569"
       textDecoration underline
+      key "text-decoration-color" (Value "#d1d5db")
+      key "text-underline-offset" (Value "2px")
       hover & do
         color "#1a1a1a"
+        key "text-decoration-color" (Value "#1a1a1a")
   ".current-work" ? do
     marginTop (px 48)
     h2 ? do
@@ -436,6 +488,7 @@ codeStyles = do
     marginBottom (px 24)
     fontSize (px 14)
     lineHeight (unitless 1.6)
+    key "-webkit-overflow-scrolling" (Value "touch")
   code ? do
     fontFamily ["JetBrains Mono", "Fira Code", "Consolas"] [monospace]
     fontSize (px 14)
@@ -450,6 +503,52 @@ footerStyles = ".footer" ? do
   textAlign center
   fontSize (px 13)
   color "#9ca3af"
+  a ? do
+    color "#9ca3af"
+    textDecoration underline
+    key "text-decoration-color" (Value "#d1d5db")
+    hover & do
+      color "#6b7280"
+
+-- mobile responsive
+mobileStyles :: Css
+mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
+  ".nav" ? do
+    padding (px 20) (px 0) (px 20) (px 0)
+    marginBottom (px 32)
+    ".nav-name" ? do
+      fontSize (px 18)
+      ".full-name" ? display none
+      ".short-name" ? display inlineBlock
+    ".nav-links" ? do
+      key "gap" (Value "14px")
+      a ? fontSize (px 14)
+  ".site" ? do
+    padding (px 0) (px 16) (px 0) (px 16)
+  ".header-row" ? do
+    key "gap" (Value "16px")
+  ".profile-photo" ? do
+    width (px 72)
+    height (px 72)
+  ".section-img" ? do
+    key "max-height" (Value "280px")
+    borderRadius (px 6) (px 6) (px 6) (px 6)
+  h1 ? fontSize (px 26)
+  h2 ? do
+    fontSize (px 20)
+    marginTop (px 36)
+  ".entry-header" ? do
+    flexDirection column
+  ".entry-date" ? do
+    marginLeft (px 0)
+    marginTop (px 4)
+  ".project-footer" ? do
+    flexDirection column
+  ".blog-post" ? do
+    h1 ? fontSize (px 28)
+  pre ? do
+    padding (px 16) (px 16) (px 16) (px 16)
+    fontSize (px 13)
 
 -- render
 renderCSS :: Text

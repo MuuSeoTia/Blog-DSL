@@ -11,7 +11,7 @@ import Lucid
 import qualified Data.Text.Lazy as TL
 import Control.Monad (unless)
 
--- page shell: consistent layout across all pages
+-- page shell
 pageShell :: Text -> Text -> Html () -> Html ()
 pageShell pageTitle cssPath bodyContent = doctypehtml_ $ do
   head_ $ do
@@ -24,15 +24,19 @@ pageShell pageTitle cssPath bodyContent = doctypehtml_ $ do
     link_ [rel_ "stylesheet", href_ "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"]
   body_ $ do
     div_ [class_ "site"] $ do
+      a_ [class_ "skip-link", href_ "#main-content"] "Skip to content"
       siteNav cssPath
-      main_ [class_ "content"] bodyContent
+      main_ [class_ "content", id_ "main-content", role_ "main"] bodyContent
       siteFooter
 
--- nav: name left, links right
+-- nav
 siteNav :: Text -> Html ()
-siteNav cssPath = nav_ [class_ "nav"] $ do
-  a_ [href_ (rel "index.html"), class_ "nav-name"] "Mouad Tiahi"
+siteNav cssPath = nav_ [class_ "nav", role_ "navigation", term "aria-label" "Main navigation"] $ do
+  a_ [href_ (rel "index.html"), class_ "nav-name"] $ do
+    span_ [class_ "full-name"] "Mouad Tiahi"
+    span_ [class_ "short-name"] "Mouad"
   div_ [class_ "nav-links"] $ do
+    a_ [href_ (rel "index.html")] "~/"
     a_ [href_ (rel "about.html")] "About"
     a_ [href_ (rel "projects.html")] "Projects"
     a_ [href_ (rel "experience.html")] "Experience"
@@ -40,7 +44,7 @@ siteNav cssPath = nav_ [class_ "nav"] $ do
     rel p = if cssPath == "css/style.css" then p else "../" <> p
 
 siteFooter :: Html ()
-siteFooter = footer_ [class_ "footer"] $
+siteFooter = footer_ [class_ "footer", role_ "contentinfo"] $
   p_ [] $ do
     "Built with "
     a_ [href_ "https://github.com/MuuSeoTia/Blog-DSL", target_ "_blank"] "my Haskell DSL"
@@ -48,7 +52,6 @@ siteFooter = footer_ [class_ "footer"] $
 -- index page
 generateIndex :: [BlogPost] -> Html ()
 generateIndex posts = pageShell "Mouad Tiahi" "css/style.css" $ do
-  -- header
   div_ [class_ "site-header"] $ do
     div_ [class_ "header-row"] $ do
       img_ [class_ "profile-photo", src_ "images/photoshootneut.jpg", alt_ "Mouad Tiahi"]
@@ -64,13 +67,12 @@ generateIndex posts = pageShell "Mouad Tiahi" "css/style.css" $ do
       span_ [class_ "sep"] "/"
       a_ [href_ "https://github.com/MuuSeoTia/Blog-DSL", target_ "_blank"] "This Site's DSL"
 
-  -- writing section
   section_ [class_ "writing-section"] $ do
     h2_ [class_ "section-heading"] "Writing"
     div_ [class_ "post-list"] $
       mapM_ renderPostCard posts
 
--- blog card preview
+-- blog card (no tags on index)
 renderPostCard :: BlogPost -> Html ()
 renderPostCard post = article_ [class_ "post-card"] $ do
   div_ [class_ "post-meta"] $ do
@@ -79,15 +81,12 @@ renderPostCard post = article_ [class_ "post-card"] $ do
     a_ [href_ $ "posts/" <> pack (show $ postId post) <> ".html"] $
       toHtml $ title post
   p_ [class_ "post-excerpt"] $ toHtml $ excerpt post
-  unless (null $ tags post) $
-    div_ [class_ "post-tags"] $
-      mapM_ (\tag -> span_ [class_ "tag"] $ toHtml tag) (tags post)
 
 -- about page
 generateAbout :: Html ()
 generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h1_ "About"
-  img_ [class_ "profile-photo", src_ "images/beanpot.jpg", alt_ "Mouad Tiahi at the Beanpot"]
+  img_ [class_ "section-img", src_ "images/beanpot.jpg", alt_ "Mouad Tiahi"]
 
   p_ "I'm a Computer Science and Physics student at Northeastern University, graduating in 2027. I've interned at Amazon building cloud infrastructure and at Dell Technologies working on private cloud engineering. Currently, I work as a Machine Learning and High Performance Computing researcher at the NUCAR Lab under Professor David Kaeli."
 
@@ -101,31 +100,28 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h2_ "Currently Learning"
   ul_ $ do
     li_ "Sparsity in NVIDIA architectures for accelerating inference"
-    li_ "OCaml and compiler abstraction layers"
+    li_ "MXFP4 micro-scaling formats and low-precision arithmetic for NVIDIA Blackwell architectures"
     li_ "JAX, Pallas, and TPU kernel optimization"
 
 -- experience page
 generateExperiences :: [Experience] -> [Education] -> [Skill] -> Html ()
 generateExperiences experiences education skills = pageShell "Experience - Mouad Tiahi" "css/style.css" $ do
   h1_ "Experience"
-  img_ [class_ "profile-photo", src_ "images/pitchathon.jpg", alt_ "Pitchathon 2025"]
+  img_ [class_ "section-img", src_ "images/pitchathon.jpg", alt_ "The Beanpot trophy at Pitchathon 2025"]
 
-  -- professional experience
   h2_ [class_ "section-heading"] "Work & Research"
   div_ [class_ "entries"] $
     mapM_ toBlogHtml experiences
 
-  -- education
   h2_ [class_ "section-heading"] "Education"
   div_ [class_ "entries"] $
     mapM_ toBlogHtml education
 
-  -- skills
   h2_ [class_ "section-heading"] "Skills"
   div_ [class_ "skills-section"] $
     renderSkillsByCategory skills
 
--- group skills by category
+-- skills grouped by category
 renderSkillsByCategory :: [Skill] -> Html ()
 renderSkillsByCategory skills = mapM_ renderGroup (groupByCategory skills)
 
@@ -135,7 +131,6 @@ renderGroup (cat, ss) = div_ [class_ "skill-group"] $ do
   p_ [class_ "skill-list-text"] $ toHtml $ T.intercalate ", " $
     map (\s -> skillName s <> " (" <> skillLevelText (proficiency s) <> ")") ss
 
--- helper to group skills
 groupByCategory :: [Skill] -> [(SkillCategory, [Skill])]
 groupByCategory [] = []
 groupByCategory skills = foldr addSkill [] skills
@@ -149,12 +144,11 @@ groupByCategory skills = foldr addSkill [] skills
 generateProjectsFromData :: [Project] -> Html ()
 generateProjectsFromData projects = pageShell "Projects - Mouad Tiahi" "css/style.css" $ do
   h1_ "Projects"
-  img_ [class_ "profile-photo", src_ "images/conference.png", alt_ "MIT URTC Conference 2024"]
+  img_ [class_ "section-img", src_ "images/conference.png", alt_ "MIT URTC Conference 2024"]
 
   section_ [class_ "projects-section"] $
     mapM_ toBlogHtml projects
 
-  -- current work
   div_ [class_ "current-work"] $ do
     h2_ "Currently Working On"
     p_ [class_ "work-item"] "CUDA Sparsity Matrix Operation Compiler"
@@ -178,8 +172,9 @@ renderBlogPost post = doctypehtml_ $ do
     script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"] ("" :: Text)
   body_ $ do
     div_ [class_ "site"] $ do
+      a_ [class_ "skip-link", href_ "#main-content"] "Skip to content"
       siteNav "../css/style.css"
-      main_ [class_ "content"] $ do
+      main_ [class_ "content", id_ "main-content", role_ "main"] $ do
         article_ [class_ "blog-post"] $ do
           div_ [class_ "post-meta"] $ do
             span_ [class_ "post-date"] (toHtml $ formatDate $ date post)

@@ -127,7 +127,7 @@ sampleProjects =
       (Just "https://github.com/Tetraslam/hackmit25")
       (Just "https://plume.hackmit.org/project/kmips-kavlf-auvtc-ymtmn")
       Nothing
-      (Just "HackMIT 2025 Winner")
+      Nothing
   ]
 
 -- skills data
@@ -201,59 +201,74 @@ samplePosts =
       ]
   , BlogPost 3 "Five Hackathons, Five Wins: What I Learned"
       (UTCTime (fromGregorian 2025 3 15) 14)
-      "From building sustainability tools at HackHarvard to winning HackMIT — reflections on what makes a hackathon project win."
+      "I've won every hackathon I've entered. Here's the honest breakdown of why — and the framework I accidentally built along the way."
       ["hackathons", "engineering", "lessons"]
-      [ HeaderContent "The Track Record"
-      , TextContent "Over the past two years I've competed in five major hackathons and managed to win all five. \
-        \Not because I'm some genius — but because I've learned what matters in these compressed 24-48 hour sprints. \
-        \Here's the breakdown of each and what I took away."
-      , HeaderContent "HackHarvard — Sustainable AF"
+      [ HeaderContent "How it started"
+      , TextContent "I didn't go into my first hackathon planning to win. I went because a friend dragged me there \
+        \and I figured free pizza and a weekend of coding sounded better than whatever else I had going on. \
+        \We ended up winning. Then it happened again. And again. Five times total now."
+      , TextContent "People keep asking me what the trick is. There is no trick. But there is a pattern, \
+        \and after five of these things I think I've finally figured out what it actually looks like."
+      , HeaderContent "The Framework (that I didn't mean to build)"
+      , TextContent "Every winning project I've been part of nailed four things. I drew this out on a napkin at 3am \
+        \during HackMIT and it's been stuck in my head ever since:"
+      , CodeBlock "" "          +-------------------+\n          |   TECHNICAL DEPTH |\n          | (Can you build it) |\n          +--------+----------+\n                   |\n    +--------------+---------------+\n    |              |               |\n    v              v               v\n+--------+   +-----------+   +--------+\n| SCOPE  |   |   PITCH   |   | DEMO   |\n| (Less  |   | (Tell the |   | (Make  |\n|  is    |   |  story)   |   |  it    |\n|  more) |   +-----------+   |  work) |\n+--------+                   +--------+\n                   |\n          +--------+----------+\n          |    X-FACTOR       |\n          | (Why should they  |\n          |  care RIGHT NOW)  |\n          +-------------------+"
+      , TextContent "Let me break each of these down with actual examples."
+      , HeaderContent "Technical Depth — Can you actually build it?"
+      , TextContent "This is the foundation. If your team can't execute, nothing else matters. \
+        \But here's the thing — technical depth doesn't mean complexity. It means competence. \
+        \Judges can tell the difference between a team that chose the right tool for the job \
+        \and a team that threw every buzzword at the wall."
       , RichText
-          [ Plain "Our first big win. We built a "
-          , Link "web app" "https://github.com/MuuSeoTia/carbon-advisor"
-          , Plain " that helps users find sustainable products and services in their area, \
-            \complete with a solar heat map and carbon footprint calculator. The key insight was that judges care about real-world impact. \
-            \We didn't just demo a tech stack — we showed how it would change user behavior. Google Cloud Platform, React, TypeScript, Python, \
-            \and ML models for the sustainability scoring."
+          [ Plain "When we built "
+          , Link "Sustainable AF" "https://github.com/MuuSeoTia/carbon-advisor"
+          , Plain " at HackHarvard, we used GCP, React, TypeScript, Python, and ML models. \
+            \That sounds like a lot but every piece had a clear reason to exist. The ML model powered the sustainability scoring. \
+            \GCP handled the solar heat map data. React made the frontend interactive. Nothing was there for show."
           ]
-      , HeaderContent "Maritime — Tracking Ocean Microplastics"
+      , HeaderContent "Scope — Less is more (seriously)"
       , RichText
-          [ Plain "A "
-          , Link "mobile app" "https://github.com/Zapaway/maritime"
-          , Plain " for tracking live microplastic concentrations in the ocean. We trained a CNN to identify waste types from camera input. \
-            \The lesson here was scope. We scoped it tight — one thing done really well — and the demo was polished. \
-            \Built with Flask, Expo, TypeScript, and a custom CNN model."
+          [ Plain "This is the one everyone gets wrong. You have 24-48 hours. You are not building a startup. \
+            \You are building a proof of concept that works flawlessly for a 3-minute demo. "
+          , Link "Maritime" "https://github.com/Zapaway/maritime"
+          , Plain " won because we did one thing — track ocean microplastics and identify waste with a CNN — \
+            \and we did it really well. The app loaded fast, the model was accurate, the UX was clean. \
+            \We could have added ten more features but we didn't."
           ]
-      , HeaderContent "OracleNet — Global Knowledge Graph"
+      , TextContent "I've seen teams with better ideas lose because they tried to build too much and their demo crashed. \
+        \Scope ruthlessly. Kill your darlings. Ship the thing that works."
+      , HeaderContent "Pitch — Tell the story"
       , RichText
-          [ Plain "This one was ambitious. We built a "
-          , Link "global knowledge graph" "https://github.com/ChittebbayiPenugonda/MacroNet"
-          , Plain " that takes hypothetical news headlines and shows all plausible cascading impacts \
-            \on the economy, industries, supply chains, and geopolitics. Graph Neural Networks were the backbone. \
-            \What won us this one was the vision — the judges could see where this could go."
+          [ Plain "Judges don't remember feature lists. They remember stories. When we presented "
+          , Link "OracleNet" "https://github.com/ChittebbayiPenugonda/MacroNet"
+          , Plain " — a global knowledge graph that shows cascading impacts of hypothetical events — \
+            \we didn't lead with \"we used Graph Neural Networks.\" We led with \"what happens to the global economy \
+            \if a major shipping route gets blocked tomorrow?\" Then we showed it. The GNN was the how, not the what."
           ]
-      , HeaderContent "HackMIT 2025 — Griddy"
+      , TextContent "Structure your pitch like a story: problem, why it matters, what you built, how it works, what's next. \
+        \In that order. Every time."
+      , HeaderContent "Demo — Make it work. Period."
       , RichText
           [ Link "Griddy" "https://github.com/Tetraslam/hackmit25"
-          , Plain " was a smart grid power management system. Real-time energy distribution, load balancing, \
-            \optimization algorithms running over WebSockets. We won this with pure execution — the demo worked flawlessly, \
-            \the system handled live load, and we explained the engineering decisions clearly. \
-            \TypeScript, Python, C, and WebSocket for real-time communication."
+          , Plain " at HackMIT was our cleanest execution. Smart grid power management with real-time load balancing \
+            \over WebSockets. When we demoed, the system handled live load without a hiccup. \
+            \The judges could see the data flowing. They could interact with it. \
+            \Nothing was mocked, nothing was hardcoded."
           ]
-      , HeaderContent "The Pitchathon — Beanpot Trophy"
-      , Image "../images/pitchathon.jpg" "Holding the Beanpot trophy at Pitchathon 2025" (Just "Winning the Beanpot at Northeastern's Pitchathon 2025")
-      , TextContent "This was different from a traditional hackathon — more pitch-focused. \
-        \But the core lessons applied: know your audience, demonstrate impact, and be authentic about what you built and why."
-      , HeaderContent "What Actually Wins Hackathons"
-      , TextContent "After five wins, the pattern is clear:"
-      , BulletList
-          [ "Scope ruthlessly. Build one thing that works perfectly rather than three things that kind of work."
-          , "The demo is everything. If it doesn't work live, it doesn't matter how good the code is."
-          , "Tell a story. Judges remember narratives, not feature lists."
-          , "Pick a real problem. Toy projects don't win — show genuine impact."
-          , "Team chemistry matters. My best projects came from teams where everyone knew their role and trusted each other."
-          ]
-      , TextContent "I'm grateful for every team I've worked with. These wins belong to all of us."
+      , TextContent "If your demo doesn't work live, none of the above matters. \
+        \Spend the last two hours before judging just testing. Then test again. Then one more time."
+      , HeaderContent "The X-Factor — Why should they care RIGHT NOW?"
+      , TextContent "This is the secret fifth element. Every winning project we built addressed something timely. \
+        \Sustainability when climate legislation was in the news. Ocean microplastics when there was a viral documentary about it. \
+        \Smart grid optimization when energy costs were spiking. It's not manipulation — it's relevance."
+      , TextContent "If your project solves a problem that's currently in the cultural conversation, \
+        \judges connect with it on a gut level before you even explain the technical details."
+      , HeaderContent "One more thing"
+      , TextContent "None of this works without the right team. My best projects came from teams where everyone knew their role \
+        \and trusted each other. No ego, no politics, just building. \
+        \I'm grateful for every person I've stayed up until 4am with over stale Red Bull and questionable WiFi. \
+        \These wins belong to all of us."
+      , TextContent "If you're reading this before a hackathon — good luck. Scope small, demo hard, tell a story."
       ]
   ]
 
