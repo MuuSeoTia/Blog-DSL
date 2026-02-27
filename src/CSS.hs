@@ -526,10 +526,20 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
   ".site" ? do
     padding (px 0) (px 16) (px 0) (px 16)
   ".header-row" ? do
+    flexDirection column
+    alignItems center
     key "gap" (Value "16px")
+    key "text-align" (Value "center")
   ".profile-photo" ? do
-    width (px 72)
-    height (px 72)
+    width (px 96)
+    height (px 96)
+    marginBottom (px 4)
+  ".header-text" ? do
+    key "text-align" (Value "center")
+  ".header-links" ? do
+    justifyContent center
+  ".site-tagline" ? do
+    key "text-align" (Value "center")
   ".section-img" ? do
     key "max-height" (Value "280px")
     borderRadius (px 6) (px 6) (px 6) (px 6)

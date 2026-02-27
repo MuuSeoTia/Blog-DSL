@@ -57,7 +57,12 @@ generateIndex posts = pageShell "Mouad Tiahi" "css/style.css" $ do
       img_ [class_ "profile-photo", src_ "images/photoshootneut.jpg", alt_ "Mouad Tiahi"]
       div_ [class_ "header-text"] $ do
         h1_ "Mouad Tiahi"
-        p_ [class_ "site-tagline"] "CS & Physics at Northeastern. ML & HPC researcher at NUCAR. Previously Amazon, Dell. 5x hackathon winner. MLH Top 50 2025."
+        p_ [class_ "site-tagline"] $ do
+          "CS & Physics at Northeastern. ML & HPC researcher at "
+          a_ [href_ "https://ece.northeastern.edu/groups/nucar/", target_ "_blank"] "NUCAR"
+          ". Previously Amazon, Dell. 5x hackathon winner. "
+          a_ [href_ "https://top.mlh.io/2025", target_ "_blank"] "MLH Top 50 2025"
+          "."
     div_ [class_ "header-links"] $ do
       a_ [href_ "https://github.com/MuuSeoTia", target_ "_blank"] "GitHub"
       span_ [class_ "sep"] "/"
@@ -151,9 +156,9 @@ generateProjectsFromData projects = pageShell "Projects - Mouad Tiahi" "css/styl
 
   div_ [class_ "current-work"] $ do
     h2_ "Currently Working On"
-    p_ [class_ "work-item"] "CUDA Sparsity Matrix Operation Compiler"
-    p_ [class_ "work-item"] "NvBit Dynamic Binary Instrumentation Compiler"
-    p_ [class_ "work-item"] "Enhanced Workload Handling via Integrating LLM into Slurm"
+    p_ [class_ "work-item"] "Sparse Matrix Compiler for CUDA — accelerating SpMV and SpMM on NVIDIA GPUs"
+    p_ [class_ "work-item"] "MaxText-backed rollout engine for Tunix — scalable LLM post-training on TPU"
+    p_ [class_ "work-item"] "Relaxing and taking it easier"
 
 -- blog post page
 renderBlogPost :: BlogPost -> Html ()
