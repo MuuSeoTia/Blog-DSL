@@ -104,6 +104,13 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h2_ "Interests"
   p_ "Machine learning systems, GPU/TPU kernel engineering, compiler design, quantum computing, and the intersection of physics and computation. I also compete in hackathons, five wins so far."
 
+  h2_ "In the News"
+  ul_ $ do
+    li_ $ a_ [href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"]
+      "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
+    li_ $ a_ [href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"]
+      "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
+
   h2_ "Currently Learning"
   ul_ $ do
     li_ "Sparsity in NVIDIA architectures for accelerating inference"
