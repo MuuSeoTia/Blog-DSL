@@ -276,6 +276,15 @@ blogStyles = do
       lineHeight (unitless 1.8)
       marginBottom (px 20)
       color "#374151"
+      a ? do
+        color "#475569"
+        key "text-decoration" "underline"
+        key "text-decoration-color" "#cbd5e1"
+        key "text-underline-offset" "2px"
+        transition "text-decoration-color" 0.15 ease (sec 0)
+        hover & do
+          key "text-decoration-color" "#475569"
+          color "#1a1a1a"
     ul ? do
       paddingLeft (px 24)
       marginBottom (px 20)

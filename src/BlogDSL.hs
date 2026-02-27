@@ -14,9 +14,16 @@ import Lucid
 import Data.Time.Format (formatTime, defaultTimeLocale)
 import Control.Monad (unless)
 
+-- | Inline content: text or a link
+data InlineContent =
+    Plain Text
+  | Link Text Text  -- display text, url
+  deriving (Generic, Show)
+
 -- | Blog element types
 data BlogElement =
     TextContent Text
+  | RichText [InlineContent]
   | HeaderContent Text
   | Image
     { path :: Text
@@ -106,11 +113,18 @@ data BlogPost = BlogPost
   , content :: [BlogElement]
   } deriving (Generic, Show)
 
--- define json instances
+-- json instances
+instance ToJSON InlineContent
+instance FromJSON InlineContent
+
 instance ToJSON BlogElement where
   toJSON (TextContent txt) = object
     [ "type" .= ("text" :: Text)
     , "content" .= txt
+    ]
+  toJSON (RichText inlines) = object
+    [ "type" .= ("rich" :: Text)
+    , "content" .= inlines
     ]
   toJSON (HeaderContent txt) = object
     [ "type" .= ("header" :: Text)
@@ -152,10 +166,16 @@ instance FromJSON Certificate
 instance ToJSON Project
 instance FromJSON Project
 
--- define basic HTML instances
+-- html instances
+instance ToHtml InlineContent where
+  toHtml (Plain txt) = toHtml txt
+  toHtml (Link display url) = a_ [href_ url, target_ "_blank"] $ toHtml display
+  toHtmlRaw = toHtml
+
 instance ToHtml BlogElement where
   toHtml element = case element of
     TextContent text -> toHtml text
+    RichText inlines -> mapM_ toHtml inlines
     HeaderContent text -> h2_ $ toHtml text
     Image path alt caption -> do
       img_ [src_ path, alt_ alt]
@@ -220,6 +240,7 @@ class ToHtml a => ToBlogHtml a where
 
 instance ToBlogHtml BlogElement where
   toBlogHtml (TextContent txt) = p_ [] (toHtml txt)
+  toBlogHtml (RichText inlines) = p_ [] $ mapM_ toHtml inlines
   toBlogHtml (HeaderContent txt) = h2_ [] (toHtml txt)
   toBlogHtml (Image path alt caption) = figure_ [] $ do
     img_ [src_ path, alt_ alt]
