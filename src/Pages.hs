@@ -123,6 +123,12 @@ generateExperiences experiences education skills = pageShell "Experience - Mouad
     mapM_ toBlogHtml education
 
   h2_ [class_ "section-heading"] "Skills"
+  div_ [class_ "skill-legend"] $ do
+    span_ [class_ "legend-item expert"] "Expert"
+    span_ [class_ "legend-item advanced"] "Advanced"
+    span_ [class_ "legend-item intermediate"] "Intermediate"
+    span_ [class_ "legend-item learning"] "Learning"
+    span_ [class_ "legend-item beginner"] "Beginner"
   div_ [class_ "skills-section"] $
     renderSkillsByCategory skills
 
@@ -133,8 +139,9 @@ renderSkillsByCategory skills = mapM_ renderGroup (groupByCategory skills)
 renderGroup :: (SkillCategory, [Skill]) -> Html ()
 renderGroup (cat, ss) = div_ [class_ "skill-group"] $ do
   h4_ [class_ "skill-category-name"] $ toHtml $ skillCategoryText cat
-  p_ [class_ "skill-list-text"] $ toHtml $ T.intercalate ", " $
-    map (\s -> skillName s <> " (" <> skillLevelText (proficiency s) <> ")") ss
+  div_ [class_ "skill-tags"] $
+    mapM_ (\s -> span_ [class_ $ "skill-tag " <> skillLevelClass (proficiency s)]
+      $ toHtml $ skillName s) ss
 
 groupByCategory :: [Skill] -> [(SkillCategory, [Skill])]
 groupByCategory [] = []

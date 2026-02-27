@@ -133,20 +133,39 @@ sampleProjects =
 -- skills data
 sampleSkills :: [Skill]
 sampleSkills =
+  -- programming
   [ Skill "Python" Expert Programming (Just 7)
   , Skill "C++" Expert Programming (Just 6)
   , Skill "C" Expert Programming (Just 5)
+  , Skill "CUDA" Advanced Programming (Just 2)
   , Skill "JavaScript/TypeScript" Advanced Programming (Just 5)
   , Skill "Haskell" Intermediate Programming (Just 1)
   , Skill "Rust" Intermediate Programming (Just 2)
   , Skill "OCaml" Beginner Programming Nothing
-  , Skill "CUDA" Advanced Programming (Just 2)
   , Skill "HIP/ROCm" Beginner Programming Nothing
+  -- ml & rl
   , Skill "PyTorch" Expert MachineLearning (Just 4)
+  , Skill "JAX" Advanced MachineLearning (Just 1)
   , Skill "TensorFlow" Advanced MachineLearning (Just 4)
+  , Skill "Tunix" Intermediate MachineLearning Nothing
+  , Skill "TRL" Intermediate MachineLearning Nothing
+  , Skill "OpenRLHF" Learning MachineLearning Nothing
+  , Skill "DeepSpeed" Learning MachineLearning Nothing
+  -- hpc & systems
+  , Skill "Slurm" Advanced HPC (Just 2)
+  , Skill "MPI" Intermediate HPC (Just 2)
+  , Skill "OpenMP" Intermediate HPC (Just 2)
+  , Skill "Pallas" Learning HPC Nothing
+  , Skill "NCCL" Learning HPC Nothing
+  , Skill "NvBit" Intermediate HPC (Just 1)
+  -- cloud & infra
   , Skill "AWS" Advanced Cloud (Just 3)
   , Skill "Google Cloud Platform" Advanced Cloud (Just 2)
+  -- frameworks & tools
   , Skill "React" Advanced Framework (Just 4)
+  , Skill "MaxText" Learning Framework Nothing
+  , Skill "Unix/Linux" Expert Tool (Just 7)
+  , Skill "Git" Advanced Tool (Just 5)
   , Skill "Docker" Intermediate Tool (Just 2)
   , Skill "Kubernetes" Intermediate Tool (Just 2)
   ]

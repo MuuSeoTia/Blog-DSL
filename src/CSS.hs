@@ -413,50 +413,76 @@ projectStyles = do
       paddingLeft (px 16)
       key "position" (Value "relative")
 
--- skill display
+-- skill legend + tags
 skillStyles :: Css
 skillStyles = do
+  ".skill-legend" ? do
+    display flex
+    key "flex-wrap" (Value "wrap")
+    key "gap" (Value "10px")
+    marginBottom (px 24)
+    ".legend-item" ? do
+      fontSize (px 12)
+      fontWeight (weight 500)
+      padding (px 2) (px 10) (px 2) (px 10)
+      borderRadius (px 4) (px 4) (px 4) (px 4)
+    ".legend-item.expert" ? do
+      backgroundColor "#ecfdf5"
+      color "#059669"
+    ".legend-item.advanced" ? do
+      backgroundColor "#eff6ff"
+      color "#2563eb"
+    ".legend-item.intermediate" ? do
+      backgroundColor "#fffbeb"
+      color "#d97706"
+    ".legend-item.learning" ? do
+      backgroundColor "#faf5ff"
+      color "#7c3aed"
+    ".legend-item.beginner" ? do
+      backgroundColor "#f9fafb"
+      color "#6b7280"
   ".skills-section" ? do
     marginBottom (px 56)
   ".skill-group" ? do
-    marginBottom (px 20)
+    marginBottom (px 24)
   ".skill-category-name" ? do
     fontSize (px 14)
     fontWeight (weight 600)
     color "#6b7280"
     key "text-transform" (Value "uppercase")
     key "letter-spacing" (Value "0.05em")
-    marginBottom (px 8)
-  ".skill-list-text" ? do
-    fontSize (px 15)
-    color "#374151"
-    lineHeight (unitless 1.7)
-  ".skill-row" ? do
+    marginBottom (px 10)
+  ".skill-tags" ? do
     display flex
-    justifyContent spaceBetween
-    alignItems center
-    padding (px 8) (px 0) (px 8) (px 0)
-    borderBottom (px 1) solid "#f9fafb"
-  ".skill-badge" ? do
-    fontSize (px 12)
+    key "flex-wrap" (Value "wrap")
+    key "gap" (Value "8px")
+  ".skill-tag" ? do
+    display inlineBlock
+    fontSize (px 13)
     fontWeight (weight 500)
-    padding (px 2) (px 10) (px 2) (px 10)
-    borderRadius (px 10) (px 10) (px 10) (px 10)
-  ".skill-badge.expert" ? do
+    padding (px 4) (px 12) (px 4) (px 12)
+    borderRadius (px 6) (px 6) (px 6) (px 6)
+    transition "all" 0.15 ease (sec 0)
+  ".skill-tag.expert" ? do
     backgroundColor "#ecfdf5"
     color "#059669"
-  ".skill-badge.advanced" ? do
+    border (px 1) solid "#d1fae5"
+  ".skill-tag.advanced" ? do
     backgroundColor "#eff6ff"
     color "#2563eb"
-  ".skill-badge.intermediate" ? do
+    border (px 1) solid "#dbeafe"
+  ".skill-tag.intermediate" ? do
     backgroundColor "#fffbeb"
     color "#d97706"
-  ".skill-badge.learning" ? do
+    border (px 1) solid "#fef3c7"
+  ".skill-tag.learning" ? do
     backgroundColor "#faf5ff"
     color "#7c3aed"
-  ".skill-badge.beginner" ? do
+    border (px 1) solid "#ede9fe"
+  ".skill-tag.beginner" ? do
     backgroundColor "#f9fafb"
     color "#6b7280"
+    border (px 1) solid "#f3f4f6"
 
 -- tech pills and tags
 tagStyles :: Css

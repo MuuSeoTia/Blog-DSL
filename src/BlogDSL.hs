@@ -80,6 +80,7 @@ data SkillCategory =
   | Cloud
   | Tool
   | MachineLearning
+  | HPC
   | Other Text
   deriving (Generic, Show, Eq)
 
@@ -350,7 +351,8 @@ skillCategoryText Framework = "Framework"
 skillCategoryText Database = "Database"
 skillCategoryText Cloud = "Cloud"
 skillCategoryText Tool = "Tool"
-skillCategoryText MachineLearning = "Machine Learning"
+skillCategoryText MachineLearning = "Machine Learning & RL"
+skillCategoryText HPC = "HPC & Systems"
 skillCategoryText (Other txt) = txt
 
 -- date formatter
