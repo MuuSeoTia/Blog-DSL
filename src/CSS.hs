@@ -456,20 +456,20 @@ pressStyles = do
     display block
     transition "filter" 0.2 ease (sec 0)
   ".press-body" ? do
-    display flex
-    flexDirection column
-    key "gap" (Value "4px")
+    key "padding" (Value "0")
+  ".press-source" ? do
+    fontSize (px 12)
+    color "#9ca3af"
+    fontWeight (weight 500)
+    key "letter-spacing" (Value "0.02em")
+    marginBottom (px 4)
   ".press-title" ? do
     fontFamily ["Space Grotesk", "-apple-system", "system-ui"] [sansSerif]
-    fontSize (px 16)
+    fontSize (px 17)
     fontWeight (weight 600)
     color "#374151"
     lineHeight (unitless 1.4)
     transition "color" 0.15 ease (sec 0)
-  ".press-source" ? do
-    fontSize (px 13)
-    color "#9ca3af"
-    fontStyle italic
 
 -- skill legend + tags
 skillStyles :: Css

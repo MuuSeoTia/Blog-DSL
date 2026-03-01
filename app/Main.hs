@@ -38,7 +38,7 @@ sampleExperiences =
       (Just "https://osmosis.ai")
       Nothing
   , Experience 2 "IDEA Venture Accelerator" "Chief Operating Officer" "Boston, MA"
-      (fromGregorian 2025 1 6) Nothing
+      (fromGregorian 2025 1 6) (Just $ fromGregorian 2026 1 6)
       [ "Leading a cross-functional team of 30+ students across Analytics, Venture, and Operations to manage accelerator programs and organizational infrastructure"
       , "Architecting and maintaining the organization's software ecosystem including website, mobile application, and event management platform"
       , "Managing data systems tracking 2,800+ lifetime student ventures, including companies like Slate, Amino, and Mavrk that have collectively raised over $900M"
@@ -52,15 +52,15 @@ sampleExperiences =
       Nothing
   , Experience 3 "NUCAR Lab" "ML & HPC Researcher" "Boston, MA"
       (fromGregorian 2024 5 28) Nothing
-      [ "Conducting research on high-performance computing optimization, focusing on sparse matrix operations and GPU-accelerated deep learning workloads using CUDA"
-      , "Developing custom CUDA kernels for accelerated neural network training and inference, with a focus on exploiting sparsity patterns in NVIDIA architectures"
-      , "Published distributed RAG retrieval research at MIT IEEE, demonstrating improved retrieval accuracy for multi-source knowledge bases"
-      , "Building compiler-level instrumentation tools using NvBit for dynamic binary analysis of GPU workloads"
+      [ "Developed a custom SpMM CUDA kernel achieving 1.2x geometric mean speedup over cuSPARSE across 2,000+ SuiteSparse matrices, optimizing shared memory tiling and coalesced access patterns for irregular sparsity"
+      , "Profiled kernel performance using NVIDIA Nsight Compute (NCU) and Nsight Systems, identifying memory-bound bottlenecks and improving arithmetic intensity through warp-level load balancing"
+      , "Published distributed RAG retrieval research at MIT IEEE URTC 2024, deploying the system across thousands of PubMed papers for NIH, NIEHS, and PROTECT"
+      , "Benchmarked sparse matrix formats (CSR, COO, ELL) on NVIDIA A100 and V100 GPUs, characterizing occupancy and bandwidth utilization tradeoffs for GNN and transformer workloads"
       ]
-      ["CUDA", "PyTorch", "C++", "Python", "Slurm", "NvBit"]
-      [ "Built production RAG systems for multiple organizations including PROTECT, NIH, and NIEHS"
+      ["CUDA", "PyTorch", "C++", "Python", "Slurm", "NCU", "Nsight Systems"]
+      [ "SpMM kernel published and benchmarked against cuSPARSE on SuiteSparse"
+      , "RAG system deployed in production for NIH, NIEHS, and PROTECT"
       , "Published findings at MIT IEEE URTC 2024"
-      , "Actively developing NvBit-based compiler for GPU workload profiling"
       ]
       Nothing
       (Just "https://ece.northeastern.edu/groups/nucar/")
@@ -175,7 +175,8 @@ sampleSkills =
   , Skill "Slurm" Advanced HPC (Just 2)
   , Skill "MPI" Intermediate HPC (Just 2)
   , Skill "OpenMP" Intermediate HPC (Just 2)
-  , Skill "NvBit" Intermediate HPC (Just 1)
+  , Skill "Nsight Compute" Advanced HPC (Just 1)
+  , Skill "Nsight Systems" Advanced HPC (Just 1)
   , Skill "Pallas" Learning HPC Nothing
   , Skill "NCCL" Learning HPC Nothing
   , Skill "Tokamax" Learning HPC Nothing

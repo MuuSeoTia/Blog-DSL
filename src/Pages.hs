@@ -110,14 +110,14 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
       div_ [class_ "press-img-wrap"] $
         img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/01/mouad-tiahi-Tiahi-trophy800x533.jpg", alt_ "Mouad Tiahi at The Beanpot of Ventures"]
       div_ [class_ "press-body"] $ do
-        span_ [class_ "press-title"] "Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
-        span_ [class_ "press-source"] "Khoury College of Computer Sciences"
+        p_ [class_ "press-source"] "Khoury College of Computer Sciences"
+        p_ [class_ "press-title"] "Started Coding on a Decades-Old Computer. Now He\x2019s a 2025 Top 50 Hacker."
     a_ [class_ "press-card", href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"] $ do
       div_ [class_ "press-img-wrap"] $
         img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/02/hackmit-Eyecraft-and-Griddy-together800x533.jpg", alt_ "Khoury teams at HackMIT"]
       div_ [class_ "press-body"] $ do
-        span_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
-        span_ [class_ "press-source"] "Khoury College of Computer Sciences"
+        p_ [class_ "press-source"] "Khoury College of Computer Sciences"
+        p_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
 
   h2_ "Currently Learning"
   ul_ $ do
