@@ -409,7 +409,7 @@ generateSite = do
     generateExperiences sampleExperiences sampleEducation sampleSkills
 
   writeFileUtf8 "dist/css/style.css" renderCSS
-  writeFile "dist/CNAME" "www.tiahi.dev"
+  writeFile "dist/CNAME" "tiahi.dev"
 
   putStrLn "Site generated in dist/"
 
