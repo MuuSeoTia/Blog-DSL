@@ -107,15 +107,17 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h2_ "Press"
   div_ [class_ "press-list"] $ do
     a_ [class_ "press-card", href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"] $ do
-      img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/01/mouad-tiahi-Tiahi-trophy800x533.jpg", alt_ "Mouad Tiahi at The Beanpot of Ventures"]
-      div_ [class_ "press-info"] $ do
-        span_ [class_ "press-source"] "Khoury College"
-        span_ [class_ "press-title"] "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
+      div_ [class_ "press-img-wrap"] $
+        img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/01/mouad-tiahi-Tiahi-trophy800x533.jpg", alt_ "Mouad Tiahi at The Beanpot of Ventures"]
+      div_ [class_ "press-body"] $ do
+        span_ [class_ "press-title"] "Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
+        span_ [class_ "press-source"] "Khoury College of Computer Sciences"
     a_ [class_ "press-card", href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"] $ do
-      img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/02/hackmit-Eyecraft-and-Griddy-together800x533.jpg", alt_ "Khoury teams at HackMIT"]
-      div_ [class_ "press-info"] $ do
-        span_ [class_ "press-source"] "Khoury College"
+      div_ [class_ "press-img-wrap"] $
+        img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/02/hackmit-Eyecraft-and-Griddy-together800x533.jpg", alt_ "Khoury teams at HackMIT"]
+      div_ [class_ "press-body"] $ do
         span_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
+        span_ [class_ "press-source"] "Khoury College of Computer Sciences"
 
   h2_ "Currently Learning"
   ul_ $ do

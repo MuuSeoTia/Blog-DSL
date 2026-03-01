@@ -427,48 +427,49 @@ projectStyles = do
       paddingLeft (px 16)
       key "position" (Value "relative")
 
--- press cards with thumbnails
+-- press articles
 pressStyles :: Css
 pressStyles = do
   ".press-list" ? do
     display flex
     flexDirection column
-    key "gap" (Value "16px")
+    key "gap" (Value "28px")
     marginBottom (px 8)
   ".press-card" ? do
     display flex
-    key "gap" (Value "16px")
-    padding (px 12) (px 12) (px 12) (px 12)
-    backgroundColor "#f9fafb"
-    borderRadius (px 8) (px 8) (px 8) (px 8)
-    border (px 1) solid "#f3f4f6"
+    flexDirection column
     textDecoration none
-    transition "border-color" 0.15 ease (sec 0)
-    overflow hidden
+    key "gap" (Value "0")
     hover & do
-      border (px 1) solid "#e5e7eb"
-  ".press-thumb" ? do
-    width (px 120)
-    height (px 80)
-    key "object-fit" (Value "cover")
+      ".press-title" ? do
+        color "#1a1a1a"
+      ".press-thumb" ? do
+        key "filter" (Value "brightness(0.95)")
+  ".press-img-wrap" ? do
+    overflow hidden
     borderRadius (px 6) (px 6) (px 6) (px 6)
-    key "flex-shrink" (Value "0")
-  ".press-info" ? do
+    marginBottom (px 10)
+  ".press-thumb" ? do
+    width (pct 100)
+    height (px 200)
+    key "object-fit" (Value "cover")
+    display block
+    transition "filter" 0.2 ease (sec 0)
+  ".press-body" ? do
     display flex
     flexDirection column
-    justifyContent center
     key "gap" (Value "4px")
-  ".press-source" ? do
-    fontSize (px 11)
-    color "#9ca3af"
-    key "text-transform" (Value "uppercase")
-    key "letter-spacing" (Value "0.06em")
-    fontWeight (weight 500)
   ".press-title" ? do
-    fontSize (px 14)
+    fontFamily ["Space Grotesk", "-apple-system", "system-ui"] [sansSerif]
+    fontSize (px 16)
+    fontWeight (weight 600)
     color "#374151"
-    lineHeight (unitless 1.5)
-    fontWeight (weight 500)
+    lineHeight (unitless 1.4)
+    transition "color" 0.15 ease (sec 0)
+  ".press-source" ? do
+    fontSize (px 13)
+    color "#9ca3af"
+    fontStyle italic
 
 -- skill legend + tags
 skillStyles :: Css
