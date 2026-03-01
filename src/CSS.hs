@@ -584,6 +584,8 @@ codeStyles = do
     marginBottom (px 24)
     fontSize (px 10)
     lineHeight (unitless 1.5)
+    key "white-space" (Value "pre-wrap")
+    key "word-break" (Value "break-word")
     key "-webkit-overflow-scrolling" (Value "touch")
   code ? do
     fontFamily ["JetBrains Mono", "Fira Code", "Consolas"] [monospace]

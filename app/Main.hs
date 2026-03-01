@@ -226,7 +226,7 @@ samplePosts =
           , "CSS generation using the Clay EDSL"
           , "Lucid for type-safe HTML generation"
           ]
-      , CodeBlock "haskell" "-- The core of my Blog DSL\ndata BlogElement = \n    TextContent Text\n  | HeaderContent Text\n  | Image { path :: Text, alt :: Text, caption :: Maybe Text }\n  | CodeBlock { language :: Text, codeContent :: Text }\n  | BulletList [Text]"
+      , CodeBlock "haskell" "-- The core of my Blog DSL\ndata BlogElement\n  = TextContent Text\n  | HeaderContent Text\n  | Image Text Text (Maybe Text)\n  | CodeBlock Text Text\n  | BulletList [Text]"
       , HeaderContent "What's next + The Mysterious Figure"
       , RichText
           [ Plain "My next steps are adding a Markdown parser for better formatting, expanding the CSS EDSL, and building out the Projects page. Also — the mysterious figure was my good friend "
@@ -278,7 +278,7 @@ samplePosts =
         \pitching and judging, project structure, and lastly team dynamics."
       , HeaderContent "Ideation"
       , TextContent "Many tech influencers and LinkedIn officers will likely tell you something along the lines of:"
-      , CodeBlock "cpp" "#include <iostream>\n\nint main() {\n    std::cout << \"Solve a real world problem!\" << std::endl;\n    std::cout << \"Incorporate a billion AI Agents!\" << std::endl;\n    std::cout << \"Pump out dashboards!\" << std::endl;\n    std::cout << \"IMPORT <free_sponsor_api_key>\" << std::endl;\n}"
+      , CodeBlock "cpp" "#include <iostream>\nusing namespace std;\n\nint main() {\n  cout << \"Solve a real problem!\" << endl;\n  cout << \"Add a billion AI Agents!\" << endl;\n  cout << \"Pump out dashboards!\" << endl;\n  cout << \"IMPORT <sponsor_api_key>\" << endl;\n}"
       , TextContent "Unfortunately, they are correct. This is typically the most effective tactic to win any prize \
         \at a smaller scale hackathon."
       , TextContent "However, if you actually want to win 1st place in track or general at the most competitive \
