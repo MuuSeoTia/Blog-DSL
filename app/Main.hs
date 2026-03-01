@@ -352,22 +352,26 @@ samplePosts =
         \You are building a proof of concept that works flawlessly for a 3-minute demo, with backups."
       , TextContent "Here's what I do: in the first hour, whiteboard the entire system at a high level. Every API call, \
         \every component, every data flow. Assign ownership. Whatever you think you can build \
-        \in 24 hours, you can realistically build about 60% of it. Scope ruthlessly and maintain focus, dont making sprawling features that muddy your  \
-        \main idea's core premise. Ship the thing that works."
+        \in 24 hours, you can realistically build about 60% of it. Scope ruthlessly and maintain focus. Don't make \
+        \sprawling features that muddy your main idea's core premise. Ship the thing that works."
       , HeaderContent "Your Team"
       , TextContent "None of this works without the right team. My best projects came from teams where everyone knew \
         \their role and trusted each other."
       , TextContent "The most important thing isn't individual skill. It's complementary skill sets and mutual trust. \
         \You need someone with a knack for design who can make the frontend and UI feel polished and intentional, \
         \not just functional. You need someone with a high vertical in pitching who can walk into judging, command \
-        \the room, and tell a story that makes judges actually care about your project. And you need someone technical \
-        \enough to be the backbone of the more ambitious aspects of the build, the person who can architect the system, \
-        \debug under pressure, and push the project's technical depth beyond what a tutorial could give you. \
-        \If one person can cover two of those roles, you're golden."
+        \the room, and tell a story that makes judges actually care about your project. Last but definitely not least, \
+        \you need someone technical enough to be the backbone of the more ambitious aspects of the build, the person \
+        \who can architect the system, debug under pressure at 4 in the morning, and push the project's technical depth \
+        \beyond what a basic tutorial could give you. If one person can cover two of those roles, even better. \
+        \You've won the lottery."
       , HeaderContent "Conclusion"
-      , TextContent "I'm grateful for every person I've stayed up until 4am with over stale Red Bull and questionable WiFi. \
-        \Hackathons gave me some of the best friendships, wildest stories, and sharpest engineering instincts I have today. \
-        \If you're reading this before a hackathon, good luck. Scope small, demo hard, tell a story."
+      , TextContent "I hope this post serves those who are beginning to get more ambitious with their hackathon projects \
+        \and are as passionate about the hackathon space as I am. I'm grateful for every person I've stayed up for nights \
+        \on end with over stale Red Bull, questionable WiFi, and one shared stick of deodorant. Hackathons gave me some \
+        \of the best friendships, wildest stories, and sharpest engineering instincts I have today. If you're reading this \
+        \right before a hackathon, good luck. Scope small, maintain focus, demo hard, tell a story, and most importantly, \
+        \have a positive impact. Make people say \"how did you even make this?\""
       ]
   ]
 
