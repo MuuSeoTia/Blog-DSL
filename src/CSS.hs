@@ -440,7 +440,12 @@ pressStyles = do
     flexDirection column
     textDecoration none
     key "gap" (Value "0")
+    padding (px 16) (px 16) (px 16) (px 16)
+    border (px 1) solid "#e5e7eb"
+    borderRadius (px 8) (px 8) (px 8) (px 8)
+    transition "border-color" 0.15 ease (sec 0)
     hover & do
+      border (px 1) solid "#d1d5db"
       ".press-title" ? do
         color "#1a1a1a"
       ".press-thumb" ? do

@@ -52,15 +52,15 @@ sampleExperiences =
       Nothing
   , Experience 3 "NUCAR Lab" "ML & HPC Researcher" "Boston, MA"
       (fromGregorian 2024 5 28) Nothing
-      [ "Developed a custom SpMM CUDA kernel achieving 1.2x geometric mean speedup over cuSPARSE across 2,000+ SuiteSparse matrices, optimizing shared memory tiling and coalesced access patterns for irregular sparsity"
-      , "Profiled kernel performance using NVIDIA Nsight Compute (NCU) and Nsight Systems, identifying memory-bound bottlenecks and improving arithmetic intensity through warp-level load balancing"
-      , "Published distributed RAG retrieval research at MIT IEEE URTC 2024, deploying the system across thousands of PubMed papers for NIH, NIEHS, and PROTECT"
-      , "Benchmarked sparse matrix formats (CSR, COO, ELL) on NVIDIA A100 and V100 GPUs, characterizing occupancy and bandwidth utilization tradeoffs for GNN and transformer workloads"
+      [ "Authored a custom SpMM CUDA kernel outperforming cuSPARSE across A100, H100, and H200 architectures, achieving 1.2x geometric mean speedup over 2,000+ SuiteSparse matrices via shared memory tiling, coalesced access patterns, and warp-level load balancing for irregular sparsity"
+      , "Profiled and optimized kernel performance using NVIDIA Nsight Compute and Nsight Systems, diagnosing memory-bound bottlenecks and tuning arithmetic intensity, occupancy, and L2 cache hit rates across GPU generations"
+      , "Published distributed RAG retrieval research at MIT IEEE URTC 2024, deploying the pipeline across thousands of PubMed papers in production for NIH, NIEHS, and PROTECT"
+      , "Benchmarked sparse matrix storage formats (CSR, COO, ELL) characterizing bandwidth utilization and compute-bound vs memory-bound tradeoffs for GNN and transformer inference workloads"
       ]
-      ["CUDA", "PyTorch", "C++", "Python", "Slurm", "NCU", "Nsight Systems"]
-      [ "SpMM kernel published and benchmarked against cuSPARSE on SuiteSparse"
+      ["CUDA", "C++", "Python", "PyTorch", "Slurm", "Nsight Compute", "Nsight Systems"]
+      [ "SpMM kernel outperforms cuSPARSE on A100, H100, and H200"
       , "RAG system deployed in production for NIH, NIEHS, and PROTECT"
-      , "Published findings at MIT IEEE URTC 2024"
+      , "Published at MIT IEEE URTC 2024"
       ]
       Nothing
       (Just "https://ece.northeastern.edu/groups/nucar/")
