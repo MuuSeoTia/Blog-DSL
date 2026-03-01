@@ -37,7 +37,7 @@ globalStyles = do
     boxSizing borderBox
   body ? do
     fontFamily ["Crimson Pro", "Georgia", "Times New Roman"] [serif]
-    fontSize (px 17)
+    fontSize (px 21)
     lineHeight (unitless 1.8)
     color "#1a1a1a"
     backgroundColor "#ffffff"
@@ -263,8 +263,8 @@ entryStyles = do
     li ? do
       color "#374151"
       marginBottom (px 6)
-      fontSize (px 15)
-      lineHeight (unitless 1.65)
+      fontSize (px 17)
+      lineHeight (unitless 1.7)
   ".entry-detail" ? do
     fontSize (px 15)
     color "#374151"
@@ -332,7 +332,7 @@ blogStyles = do
       marginTop (px 40)
       marginBottom (px 16)
     p ? do
-      fontSize (px 16)
+      fontSize (px 19)
       lineHeight (unitless 1.8)
       marginBottom (px 20)
       color "#374151"
@@ -349,6 +349,7 @@ blogStyles = do
       paddingLeft (px 24)
       marginBottom (px 20)
       li ? do
+        fontSize (px 19)
         marginBottom (px 8)
         lineHeight (unitless 1.7)
         color "#374151"

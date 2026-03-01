@@ -261,11 +261,11 @@ samplePosts =
           [ Plain "After winning five international level hackathons spanning thousands of competitors and placing in sponsor prizes \
             \and runner-up categories at dozens of others, I became the "
           , Link "first Northeastern student ranked in the MLH Top 50" "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/"
-          , Plain ". I consider myself to be one of the most successful hackers still competing, and that is an honor \
+          , Plain ". I consider myself one of the most successful and most consistent hackers still competing, and that is an honor \
             \I attribute mainly to the friends who joined me throughout my hackathon journey. I genuinely could not \
             \have accomplished anything without their support."
           ]
-      , TextContent "As a result of this, many always ask me for assistance in hackathons, ideation, and judging. \
+      , TextContent "As a result, many people ask me for assistance with hackathons, ideation, and judging. \
         \For the rest of this blog I'll be giving insight into the hackathon \"meta\" and how to win large-scale \
         \hackathons with 1000+ hackers. I'll cover this in order of most to least important: the idea, \
         \pitching and judging, project structure, and lastly team dynamics."
@@ -290,37 +290,45 @@ samplePosts =
       , RichText
           [ Plain "When we built "
           , Link "Sustainable AF" "https://github.com/MuuSeoTia/carbon-advisor"
-          , Plain " at HackHarvard, the problem was clear: consumers want to make sustainable choices but have no \
-            \practical way to evaluate the environmental impact of their purchases. That's a real pain point. \
-            \No stretching required."
+          , Plain " at BostonHacks 2023, the problem was clear from the get-go: climate-aware individuals want to make sustainable choices but have no \
+            \practical way to evaluate the environmental impact of their purchases, travel, and how it affects their ETAs. That's a real pain point. \
+            \We knew the same applied to solar panel installation, and took into consideration how costly consultation was from both a financial and temporal standpoint."
           ]
       , HeaderContent "The Solution"
       , TextContent "Your solution needs to be specific and scoped. This is where most teams lose. They define a vague \
-        \problem, then propose an equally vague solution. \"We're going to fix climate change\" is not a solution. \
-        \\"We built an interactive solar heat map that shows you exactly how much energy your roof can generate\" is."
+        \problem, then propose an equally vague solution. Even with a well-defined problem, the solution can fall flat \
+        \if it's not structured properly. \"We're going to fix climate change with a weather and air quality API app\" \
+        \is not a solution. \"We built an interactive solar heat map that shows you exactly how much energy your roof \
+        \can generate and for how much\" is."
       , RichText
           [ Plain "With "
           , Link "Maritime" "https://github.com/Zapaway/maritime"
-          , Plain " the solution was dead simple: point your camera at ocean waste, get an instant CNN classification, \
-            \and see live microplastic concentration data for your location. One sentence. That's what you're aiming for."
+          , Plain ", the solution was dead simple: point your camera at ocean waste, get an instant CNN classification, \
+            \and see live microplastic concentration data for your location. One sentence, focused, precise, effective. That's what you're aiming for."
           ]
       , HeaderContent "Technicality"
-      , TextContent "This is where your engineering chops matter. The technicality isn't about using the most buzzwords. \
-        \It's about choosing the right stack for the problem and executing it well. Judges can tell the difference \
-        \between a team that understood their architecture and a team that copy-pasted a tutorial."
+      , TextContent "This is where your engineering prowess comes into play. Most of the people I've seen struggle at hackathons \
+        \don't necessarily have a skill issue but rather can't communicate the technical depth of their project. \
+        \Technicality isn't about using the most buzzwords, though for smaller scale hackathons it can be. \
+        \It's about choosing the right stack for the problem, executing it well, and communicating functionality. \
+        \Judges can tell the difference between a team that understood their architecture and a team that copy-pasted \
+        \a tutorial. You need to be ready to explain why you chose a particular language if it's a bit unorthodox, \
+        \or why you reached for a specific algorithm."
       , RichText
           [ Plain "For "
-          , Link "OracleNet" "https://github.com/ChittebbayiPenugonda/MacroNet"
-          , Plain " we used Graph Neural Networks to model cascading economic impacts. That sounds fancy, but it was \
-            \the natural choice. You're modeling a network of dependencies, so a graph-based approach is the obvious \
-            \architecture. Every technical decision should have a reason."
+          , Link "OracleNet" "https://devpost.com/software/god-s-eye-ny7261"
+          , Plain ", we used Graph Neural Networks to model cascading economic, geopolitical, and social impacts from billions \
+            \of news articles. That sounds fancy, but it was the natural choice for our group's skillset. You're modeling \
+            \a network of dependencies, so a graph-based approach is the obvious architecture. Every technical decision should have a reason."
           ]
       , HeaderContent "The X-Factor"
-      , TextContent "This is the secret sauce. The X-Factor is timing and relevance. Why should judges care about \
-        \this problem right now? Sustainability when climate legislation is in the news. Ocean microplastics \
-        \when a documentary goes viral. Smart grid optimization when energy costs are spiking. It's not manipulation. \
-        \It's relevance. If your project solves a problem that's currently in the cultural conversation, \
-        \judges connect with it on a gut level before you even open your mouth."
+      , TextContent "This is one of the most talked about yet most overlooked aspects of winning hackathon projects. \
+        \The X-Factor is more than just a novelty like \"we used Lean to make a video game.\" It's about timing, \
+        \location, and a flashy demo. Why should judges care about this problem right now? Fire tracking when \
+        \competing in California during wildfire season. Ocean microplastics when a documentary just went viral. \
+        \Smart grid optimization when energy costs are spiking. Alternatively, fluid 3D realtime graphics that blow \
+        \the judges away, or having the project be so interactive that the judges feel like they helped build it. \
+        \If your project solves a problem that's currently in the cultural conversation, you have a massive edge."
       , HeaderContent "Pitching & Judging"
       , TextContent "Once you have a winning idea, you need to sell it. I've seen technically superior projects lose \
         \to teams with half the engineering but twice the storytelling. Here's the structure that has never failed me:"
@@ -330,33 +338,36 @@ samplePosts =
           , "Explain the technicality. Briefly, confidently."
           , "End with the X-Factor. Why this matters right now."
           ]
-      , RichText
-          [ Plain "Judges don't remember feature lists. They remember stories. When we presented "
-          , Link "OracleNet" "https://github.com/ChittebbayiPenugonda/MacroNet"
-          , Plain ", we didn't lead with \"we used Graph Neural Networks.\" We led with \"what happens to the global economy \
-            \if a major shipping route gets blocked tomorrow?\" Then we showed it. The GNN was the how, not the what."
-          ]
-      , TextContent "Also, and I cannot stress this enough, if your demo doesn't work live, none of the above matters. \
-        \Spend the last two hours before judging just testing. Then test again. Then one more time."
+      , TextContent "Judges don't remember feature lists. They remember stories and narratives. When we presented \
+        \Griddy at HackMIT 2025, we didn't lead with \"we found an environmentally friendly way to reduce electricity \
+        \costs.\" We led with \"how do you make it literally economically unfavorable to use any alternative but green \
+        \energy?\" Then we showed it in action. The power grid and fertilizer batteries were the how, not the what, \
+        \and the how in itself was a unique X-Factor."
+      , TextContent "Also, and I cannot stress this enough: if your demo doesn't work live, none of the above matters. \
+        \Speaking from painful firsthand experience. Spend the last two hours before judging just testing. \
+        \Then test again. Then one more time, preferably in multiple locations as well. And of course, try your best \
+        \to record a demo video."
       , HeaderContent "Project Structure"
-      , TextContent "Planning your project structure is about scope management. You have 24-48 hours. You are not \
-        \building a startup. You are building a proof of concept that works flawlessly for a 3-minute demo."
-      , RichText
-          [ Plain "Here's what I do: in the first hour, whiteboard the entire system. Every API call, every component, \
-            \every data flow. Assign ownership. Then cut 40% of it. Whatever you think you can build in 24 hours, \
-            \you can build about 60% of it. Scope ruthlessly. Kill your darlings. Ship the thing that works. "
-          , Link "Griddy" "https://github.com/Tetraslam/hackmit25"
-          , Plain " at "
-          , Link "HackMIT" "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/"
-          , Plain " was our cleanest execution because we planned it this way from the start."
-          ]
+      , TextContent "Planning your project structure is about scope and resource management. You have 24-48 hours. \
+        \You are building a proof of concept that works flawlessly for a 3-minute demo, with backups."
+      , TextContent "Here's what I do: in the first hour, whiteboard the entire system at a high level. Every API call, \
+        \every component, every data flow. Assign ownership. Then cut 40% of it. Whatever you think you can build \
+        \in 24 hours, you can realistically build about 60% of it. Scope ruthlessly. Kill your darlings. \
+        \Ship the thing that works. Griddy at HackMIT was our cleanest execution because we planned it this way \
+        \from the start."
       , HeaderContent "Your Team"
       , TextContent "None of this works without the right team. My best projects came from teams where everyone knew \
         \their role and trusted each other. No ego, no politics, just building."
       , TextContent "The most important thing isn't individual skill. It's complementary skill sets and mutual trust. \
-        \You need someone who can build the backend, someone who can make the frontend not look terrible, and \
-        \someone who can pitch. If one person can do two of those, you're golden."
+        \You need someone with a knack for design who can make the frontend and UI feel polished and intentional, \
+        \not just functional. You need someone with a high vertical in pitching who can walk into judging, command \
+        \the room, and tell a story that makes judges actually care about your project. And you need someone technical \
+        \enough to be the backbone of the more ambitious aspects of the build, the person who can architect the system, \
+        \debug under pressure, and push the project's technical depth beyond what a tutorial could give you. \
+        \If one person can cover two of those roles, you're golden."
+      , HeaderContent "Conclusion"
       , TextContent "I'm grateful for every person I've stayed up until 4am with over stale Red Bull and questionable WiFi. \
+        \Hackathons gave me some of the best friendships, wildest stories, and sharpest engineering instincts I have today. \
         \If you're reading this before a hackathon, good luck. Scope small, demo hard, tell a story."
       ]
   ]
