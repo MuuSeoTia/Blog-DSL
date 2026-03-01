@@ -77,10 +77,9 @@ data SkillLevel = Beginner | Learning | Intermediate | Advanced | Expert
 
 data SkillCategory =
     Programming
-  | Framework
+  | FrameworksAndTools
   | Database
   | Cloud
-  | Tool
   | MachineLearning
   | HPC
   | Other Text
@@ -361,10 +360,9 @@ skillLevelClass Expert = "expert"
 
 skillCategoryText :: SkillCategory -> Text
 skillCategoryText Programming = "Programming"
-skillCategoryText Framework = "Framework"
+skillCategoryText FrameworksAndTools = "Frameworks & Tools"
 skillCategoryText Database = "Database"
 skillCategoryText Cloud = "Cloud"
-skillCategoryText Tool = "Tool"
 skillCategoryText MachineLearning = "Machine Learning & RL"
 skillCategoryText HPC = "HPC & Systems"
 skillCategoryText (Other txt) = txt

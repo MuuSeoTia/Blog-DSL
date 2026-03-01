@@ -98,6 +98,7 @@ sampleEducation =
       (fromGregorian 2027 5 15)
       [ "Putnam Club"
       , "IDEA, Director of Analytics 2024/2025, Chief Operating Officer 2025/2026"
+      , "ASU Spring Cohort 2025"
       , "rev.school"
       ]
       ["Dean's List"]
@@ -155,14 +156,11 @@ sampleSkills =
   [ Skill "Python" Expert Programming (Just 7)
   , Skill "C++" Expert Programming (Just 6)
   , Skill "C" Expert Programming (Just 5)
-  , Skill "CUDA" Advanced Programming (Just 2)
-  , Skill "Triton" Intermediate Programming Nothing
   , Skill "Java" Advanced Programming (Just 4)
   , Skill "JavaScript/TypeScript" Advanced Programming (Just 5)
   , Skill "Haskell" Intermediate Programming (Just 1)
   , Skill "Rust" Intermediate Programming (Just 2)
   , Skill "OCaml" Beginner Programming Nothing
-  , Skill "HIP/ROCm" Beginner Programming Nothing
   -- ml & rl
   , Skill "PyTorch" Expert MachineLearning (Just 4)
   , Skill "JAX" Advanced MachineLearning (Just 1)
@@ -170,8 +168,13 @@ sampleSkills =
   , Skill "TRL" Intermediate MachineLearning Nothing
   , Skill "Tunix" Learning MachineLearning Nothing
   , Skill "OpenRLHF" Learning MachineLearning Nothing
-  , Skill "DeepSpeed" Learning MachineLearning Nothing
+  , Skill "llama.cpp" Learning MachineLearning Nothing
+  , Skill "SGLang" Learning MachineLearning Nothing
+  , Skill "vLLM" Learning MachineLearning Nothing
   -- hpc & systems
+  , Skill "CUDA" Advanced HPC (Just 2)
+  , Skill "Triton" Intermediate HPC Nothing
+  , Skill "HIP/ROCm" Beginner HPC Nothing
   , Skill "Slurm" Advanced HPC (Just 2)
   , Skill "MPI" Intermediate HPC (Just 2)
   , Skill "OpenMP" Intermediate HPC (Just 2)
@@ -185,12 +188,12 @@ sampleSkills =
   , Skill "AWS" Advanced Cloud (Just 3)
   , Skill "Google Cloud Platform" Advanced Cloud (Just 2)
   -- frameworks & tools
-  , Skill "React" Advanced Framework (Just 4)
-  , Skill "MaxText" Learning Framework Nothing
-  , Skill "Unix/Linux" Expert Tool (Just 7)
-  , Skill "Git" Expert Tool (Just 5)
-  , Skill "Docker" Advanced Tool (Just 2)
-  , Skill "Kubernetes" Intermediate Tool (Just 2)
+  , Skill "React" Advanced FrameworksAndTools (Just 4)
+  , Skill "MaxText" Learning FrameworksAndTools Nothing
+  , Skill "Unix/Linux" Expert FrameworksAndTools (Just 7)
+  , Skill "Git" Expert FrameworksAndTools (Just 5)
+  , Skill "Docker" Advanced FrameworksAndTools (Just 2)
+  , Skill "Kubernetes" Intermediate FrameworksAndTools (Just 2)
   ]
 
 -- blog posts
@@ -223,7 +226,7 @@ samplePosts =
       , HeaderContent "What's next + The Mysterious Figure"
       , RichText
           [ Plain "My next steps are adding a Markdown parser for better formatting, expanding the CSS EDSL, and building out the Projects page. Also — the mysterious figure was my good friend "
-          , Link "Lucas" "https://lucasdamianjohnson.com"
+          , Link "Lucas" "https://priime.dev"
           , Plain ". Please make sure to endorse him in \"Rizz\" when you have the opportunity."
           ]
       ]

@@ -233,20 +233,25 @@ entryStyles = do
     marginBottom (px 12)
   ".entry-title" ? do
     key "flex" (Value "1")
+    key "min-width" (Value "0")
     h3 ? do
       fontSize (px 18)
       fontWeight (weight 600)
       color "#1a1a1a"
       marginBottom (px 2)
+      key "word-wrap" (Value "break-word")
   ".entry-org" ? do
-    fontSize (px 15)
+    fontSize (px 16)
     color "#6b7280"
     display block
+    lineHeight (unitless 1.5)
+    key "word-wrap" (Value "break-word")
     a ? do
       color "#6b7280"
       textDecoration underline
       key "text-decoration-color" (Value "#d1d5db")
-      key "text-underline-offset" (Value "2px")
+      key "text-underline-offset" (Value "3px")
+      key "text-decoration-thickness" (Value "1px")
       hover & do
         color "#1a1a1a"
         key "text-decoration-color" (Value "#1a1a1a")
@@ -577,12 +582,12 @@ codeStyles = do
     padding (px 20) (px 24) (px 20) (px 24)
     overflow auto
     marginBottom (px 24)
-    fontSize (px 14)
+    fontSize (px 12)
     lineHeight (unitless 1.6)
     key "-webkit-overflow-scrolling" (Value "touch")
   code ? do
     fontFamily ["JetBrains Mono", "Fira Code", "Consolas"] [monospace]
-    fontSize (px 14)
+    fontSize (px 12)
 
 -- footer
 footerStyles :: Css
@@ -628,6 +633,10 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     marginTop (px 36)
   ".entry-header" ? do
     flexDirection column
+  ".entry-title" ? do
+    h3 ? fontSize (px 16)
+  ".entry-org" ? do
+    fontSize (px 14)
   ".entry-date" ? do
     marginLeft (px 0)
     marginTop (px 4)
@@ -637,7 +646,7 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     h1 ? fontSize (px 28)
   pre ? do
     padding (px 16) (px 16) (px 16) (px 16)
-    fontSize (px 13)
+    fontSize (px 11)
 
 -- render
 renderCSS :: Text
