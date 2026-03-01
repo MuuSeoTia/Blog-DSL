@@ -204,9 +204,13 @@ samplePosts =
       "A mysterious figure in a hoodie handed me a Haskell book. Here's what happened when I decided to build my entire personal site with it."
       ["haskell", "functional programming", "web"]
       [ HeaderContent "How it started"
-      , TextContent "One day I was in the basement of Hayden Hall on campus and I was approached by a suspicious hooded figure who smelled like matcha powder. \
-        \He came up to me ominously offering me a book of divine power: \"Learn Haskell by building a blog generator.\" It was intriguing to say the least but I took it in stride \
-        \and challenged myself to learn Haskell over winter break."
+      , RichText
+          [ Plain "One day I was in the basement of Hayden Hall on campus and I was approached by a suspicious hooded figure who smelled like matcha powder. \
+            \He came up to me ominously offering me a book of divine power: \""
+          , Link "Learn Haskell by building a blog generator" "https://learn-haskell.blog"
+          , Plain ".\" It was intriguing to say the least but I took it in stride \
+            \and challenged myself to learn Haskell over winter break."
+          ]
       , HeaderContent "The Process"
       , TextContent "At first the extremely functional nature of Haskell took me aback. As somebody entrenched in low-level and often very verbose \
         \programming languages like C++, it changed my perception of programming languages entirely."
