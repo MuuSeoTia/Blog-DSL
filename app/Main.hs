@@ -168,9 +168,9 @@ sampleSkills =
   , Skill "TRL" Intermediate MachineLearning Nothing
   , Skill "Tunix" Learning MachineLearning Nothing
   , Skill "OpenRLHF" Learning MachineLearning Nothing
-  , Skill "llama.cpp" Learning MachineLearning Nothing
+  , Skill "llama.cpp" Intermediate MachineLearning Nothing
   , Skill "SGLang" Learning MachineLearning Nothing
-  , Skill "vLLM" Learning MachineLearning Nothing
+  , Skill "vLLM" Advanced MachineLearning Nothing
   -- hpc & systems
   , Skill "CUDA" Advanced HPC (Just 2)
   , Skill "Triton" Intermediate HPC Nothing

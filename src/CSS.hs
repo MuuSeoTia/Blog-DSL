@@ -582,12 +582,12 @@ codeStyles = do
     padding (px 20) (px 24) (px 20) (px 24)
     overflow auto
     marginBottom (px 24)
-    fontSize (px 12)
-    lineHeight (unitless 1.6)
+    fontSize (px 10)
+    lineHeight (unitless 1.5)
     key "-webkit-overflow-scrolling" (Value "touch")
   code ? do
     fontFamily ["JetBrains Mono", "Fira Code", "Consolas"] [monospace]
-    fontSize (px 12)
+    fontSize (px 10)
 
 -- footer
 footerStyles :: Css
@@ -646,7 +646,7 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     h1 ? fontSize (px 28)
   pre ? do
     padding (px 16) (px 16) (px 16) (px 16)
-    fontSize (px 11)
+    fontSize (px 9)
 
 -- render
 renderCSS :: Text
