@@ -50,6 +50,7 @@ data Experience = Experience
   , achievements :: [Text]
   , companyLogo :: Maybe Text
   , companyUrl :: Maybe Text
+  , companyDetail :: Maybe (Text, Text)  -- (label, url) rendered after company name
   } deriving (Generic, Show)
 
 data Education = Education
@@ -326,9 +327,15 @@ instance ToBlogHtml Project where
 
 -- render company name as link if url present
 renderCompanyName :: Monad m => Experience -> HtmlT m ()
-renderCompanyName exp = case companyUrl exp of
-  Just url -> a_ [href_ url, target_ "_blank"] $ toHtml $ company exp
-  Nothing  -> toHtml $ company exp
+renderCompanyName exp = do
+  case companyUrl exp of
+    Just url -> a_ [href_ url, target_ "_blank"] $ toHtml $ company exp
+    Nothing  -> toHtml $ company exp
+  case companyDetail exp of
+    Just (label, url) -> do
+      ", "
+      a_ [href_ url, target_ "_blank"] $ toHtml label
+    Nothing -> pure ()
 
 -- Helper functions
 formatDateRange :: Day -> Maybe Day -> Text

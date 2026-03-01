@@ -21,7 +21,7 @@ pageShell pageTitle cssPath bodyContent = doctypehtml_ $ do
     link_ [rel_ "stylesheet", type_ "text/css", href_ cssPath]
     link_ [rel_ "preconnect", href_ "https://fonts.googleapis.com"]
     link_ [rel_ "preconnect", href_ "https://fonts.gstatic.com", crossorigin_ ""]
-    link_ [rel_ "stylesheet", href_ "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"]
+    link_ [rel_ "stylesheet", href_ "https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"]
   body_ $ do
     div_ [class_ "site"] $ do
       a_ [class_ "skip-link", href_ "#main-content"] "Skip to content"
@@ -106,12 +106,16 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
 
   h2_ "Press"
   div_ [class_ "press-list"] $ do
-    a_ [class_ "press-item", href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"] $ do
-      span_ [class_ "press-source"] "Khoury College"
-      span_ [class_ "press-title"] "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
-    a_ [class_ "press-item", href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"] $ do
-      span_ [class_ "press-source"] "Khoury College"
-      span_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
+    a_ [class_ "press-card", href_ "https://www.khoury.northeastern.edu/mouad-tiahi-started-coding-on-a-decades-old-computer-now-hes-a-2025-top-50-hacker/", target_ "_blank"] $ do
+      img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/01/mouad-tiahi-Tiahi-trophy800x533.jpg", alt_ "Mouad Tiahi at The Beanpot of Ventures"]
+      div_ [class_ "press-info"] $ do
+        span_ [class_ "press-source"] "Khoury College"
+        span_ [class_ "press-title"] "Mouad Tiahi Started Coding on a Decades-Old Computer. Now He's a 2025 Top 50 Hacker."
+    a_ [class_ "press-card", href_ "https://www.khoury.northeastern.edu/khoury-undergrads-win-three-categories-at-prestigious-mit-hackathon/", target_ "_blank"] $ do
+      img_ [class_ "press-thumb", src_ "https://s44427.pcdn.co/wp-content/uploads/2026/02/hackmit-Eyecraft-and-Griddy-together800x533.jpg", alt_ "Khoury teams at HackMIT"]
+      div_ [class_ "press-info"] $ do
+        span_ [class_ "press-source"] "Khoury College"
+        span_ [class_ "press-title"] "Khoury Undergrads Win Three Categories at Prestigious MIT Hackathon"
 
   h2_ "Currently Learning"
   ul_ $ do
@@ -174,8 +178,8 @@ generateProjectsFromData projects = pageShell "Projects - Mouad Tiahi" "css/styl
 
   div_ [class_ "current-work"] $ do
     h2_ "Currently Working On"
-    p_ [class_ "work-item"] "Sparse Matrix Compiler for CUDA — accelerating SpMV and SpMM on NVIDIA GPUs"
-    p_ [class_ "work-item"] "MaxText-backed rollout engine for Tunix — scalable LLM post-training on TPU"
+    p_ [class_ "work-item"] "Sparse Matrix Compiler for CUDA, accelerating SpMV and SpMM on NVIDIA GPUs"
+    p_ [class_ "work-item"] "MaxText-backed rollout engine for Tunix, scalable LLM post-training on TPU"
     p_ [class_ "work-item"] "Relaxing and taking it easier"
 
 -- blog post page
@@ -188,7 +192,7 @@ renderBlogPost post = doctypehtml_ $ do
     link_ [rel_ "stylesheet", type_ "text/css", href_ "../css/style.css"]
     link_ [rel_ "preconnect", href_ "https://fonts.googleapis.com"]
     link_ [rel_ "preconnect", href_ "https://fonts.gstatic.com", crossorigin_ ""]
-    link_ [rel_ "stylesheet", href_ "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"]
+    link_ [rel_ "stylesheet", href_ "https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"]
     link_ [rel_ "stylesheet", href_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css"]
     script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"] ("" :: Text)
     script_ [src_ "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-haskell.min.js"] ("" :: Text)

@@ -36,21 +36,21 @@ globalStyles = do
     padding (px 0) (px 0) (px 0) (px 0)
     boxSizing borderBox
   body ? do
-    fontFamily ["Inter", "-apple-system", "BlinkMacSystemFont", "system-ui"] [sansSerif]
-    fontSize (px 16)
-    lineHeight (unitless 1.75)
+    fontFamily ["Crimson Pro", "Georgia", "Times New Roman"] [serif]
+    fontSize (px 17)
+    lineHeight (unitless 1.8)
     color "#1a1a1a"
     backgroundColor "#ffffff"
     key "-webkit-font-smoothing" (Value "antialiased")
   h1 ? do
-    fontFamily ["Source Serif 4", "Georgia", "Times New Roman"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system", "system-ui"] [sansSerif]
     fontSize (px 32)
     fontWeight (weight 700)
     lineHeight (unitless 1.3)
     marginBottom (px 12)
     color "#0f0f0f"
   h2 ? do
-    fontFamily ["Source Serif 4", "Georgia", "Times New Roman"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system", "system-ui"] [sansSerif]
     fontSize (px 24)
     fontWeight (weight 600)
     lineHeight (unitless 1.4)
@@ -119,7 +119,7 @@ navStyles = ".nav" ? do
   borderBottom (px 1) solid "#e5e7eb"
   marginBottom (px 48)
   ".nav-name" ? do
-    fontFamily ["Source Serif 4", "Georgia"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system"] [sansSerif]
     fontSize (px 20)
     fontWeight (weight 700)
     color "#0f0f0f"
@@ -203,7 +203,7 @@ imageStyles = do
 sectionStyles :: Css
 sectionStyles = do
   ".section-heading" ? do
-    fontFamily ["Source Serif 4", "Georgia"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system"] [sansSerif]
     fontSize (px 22)
     fontWeight (weight 600)
     color "#0f0f0f"
@@ -293,7 +293,7 @@ blogStyles = do
     hover & do
       borderBottom (px 1) solid "#d1d5db"
   ".post-card-title" ? do
-    fontFamily ["Source Serif 4", "Georgia"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system"] [sansSerif]
     fontSize (px 20)
     fontWeight (weight 600)
     marginBottom (px 6)
@@ -383,7 +383,7 @@ projectStyles = do
     key "gap" (Value "12px")
     marginBottom (px 8)
   ".project-title" ? do
-    fontFamily ["Source Serif 4", "Georgia"] [serif]
+    fontFamily ["Space Grotesk", "-apple-system"] [sansSerif]
     fontSize (px 20)
     fontWeight (weight 600)
     color "#1a1a1a"
@@ -427,37 +427,48 @@ projectStyles = do
       paddingLeft (px 16)
       key "position" (Value "relative")
 
--- press items
+-- press cards with thumbnails
 pressStyles :: Css
 pressStyles = do
   ".press-list" ? do
     display flex
     flexDirection column
-    key "gap" (Value "12px")
+    key "gap" (Value "16px")
     marginBottom (px 8)
-  ".press-item" ? do
+  ".press-card" ? do
     display flex
-    alignItems flexStart
-    key "gap" (Value "12px")
-    padding (px 12) (px 16) (px 12) (px 16)
+    key "gap" (Value "16px")
+    padding (px 12) (px 12) (px 12) (px 12)
     backgroundColor "#f9fafb"
-    borderRadius (px 6) (px 6) (px 6) (px 6)
+    borderRadius (px 8) (px 8) (px 8) (px 8)
     border (px 1) solid "#f3f4f6"
     textDecoration none
     transition "border-color" 0.15 ease (sec 0)
+    overflow hidden
     hover & do
       border (px 1) solid "#e5e7eb"
+  ".press-thumb" ? do
+    width (px 120)
+    height (px 80)
+    key "object-fit" (Value "cover")
+    borderRadius (px 6) (px 6) (px 6) (px 6)
+    key "flex-shrink" (Value "0")
+  ".press-info" ? do
+    display flex
+    flexDirection column
+    justifyContent center
+    key "gap" (Value "4px")
   ".press-source" ? do
-    fontSize (px 12)
+    fontSize (px 11)
     color "#9ca3af"
     key "text-transform" (Value "uppercase")
-    key "letter-spacing" (Value "0.05em")
-    key "white-space" (Value "nowrap")
-    marginTop (px 2)
+    key "letter-spacing" (Value "0.06em")
+    fontWeight (weight 500)
   ".press-title" ? do
     fontSize (px 14)
     color "#374151"
     lineHeight (unitless 1.5)
+    fontWeight (weight 500)
 
 -- skill legend + tags
 skillStyles :: Css

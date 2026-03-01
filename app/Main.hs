@@ -36,6 +36,7 @@ sampleExperiences =
       []
       Nothing
       (Just "https://osmosis.ai")
+      Nothing
   , Experience 2 "IDEA Venture Accelerator" "Chief Operating Officer" "Boston, MA"
       (fromGregorian 2025 1 6) Nothing
       [ "Leading a cross-functional team of 30+ students across Analytics, Venture, and Operations to manage accelerator programs and organizational infrastructure"
@@ -48,7 +49,8 @@ sampleExperiences =
       ]
       Nothing
       Nothing
-  , Experience 3 "NUCAR Lab — Prof. David Kaeli" "ML & HPC Researcher" "Boston, MA"
+      Nothing
+  , Experience 3 "NUCAR Lab" "ML & HPC Researcher" "Boston, MA"
       (fromGregorian 2024 5 28) Nothing
       [ "Conducting research on high-performance computing optimization, focusing on sparse matrix operations and GPU-accelerated deep learning workloads using CUDA"
       , "Developing custom CUDA kernels for accelerated neural network training and inference, with a focus on exploiting sparsity patterns in NVIDIA architectures"
@@ -61,7 +63,8 @@ sampleExperiences =
       , "Actively developing NvBit-based compiler for GPU workload profiling"
       ]
       Nothing
-      Nothing
+      (Just "https://ece.northeastern.edu/groups/nucar/")
+      (Just ("Prof. David Kaeli", "https://en.wikipedia.org/wiki/David_R._Kaeli"))
   , Experience 4 "Dell Technologies" "Software Engineering Mentee" "Hopkinton, MA"
       (fromGregorian 2024 1 8) (Just $ fromGregorian 2024 4 17)
       [ "Leveraged Dell APEX Private Cloud to optimize virtualized environment deployments, achieving 15% faster provisioning times and improved infrastructure scalability"
@@ -72,6 +75,7 @@ sampleExperiences =
       ]
       Nothing
       (Just "https://www.delltechnologies.com")
+      Nothing
   , Experience 5 "Amazon" "Cloud Infrastructure Intern" "Boston, MA"
       (fromGregorian 2023 9 4) (Just $ fromGregorian 2023 12 20)
       [ "Optimized data flow across a distributed system managing thousands of database endpoints, reducing connection latency by 15% through targeted AWS Direct Connect configuration and vector database integration"
@@ -84,6 +88,7 @@ sampleExperiences =
       ]
       Nothing
       (Just "https://www.amazon.com")
+      Nothing
   ]
 
 -- education data
@@ -92,7 +97,7 @@ sampleEducation =
   [ Education 1 "Northeastern University" "Bachelor of Science" "Computer Science & Physics"
       (fromGregorian 2027 5 15)
       [ "Putnam Club"
-      , "IDEA — Director of Analytics 2024/2025, Chief Operating Officer 2025/2026"
+      , "IDEA, Director of Analytics 2024/2025, Chief Operating Officer 2025/2026"
       , "rev.school"
       ]
       ["Dean's List"]
@@ -275,7 +280,7 @@ samplePosts =
         \from as long as 4 months before, up to 14 hours into a hackathon. As a result, I've found the best way \
         \to get an idea is through the intersection of three main components: Problem, Solution, and Technicality, \
         \plus an additional component I call the X-Factor."
-      , CodeBlock "" "      PROBLEM              SOLUTION\n    (Why does it         (What does the\n     matter?)             product do?)\n          \\                   /\n           \\                 /\n            +------+-------+\n            | WINNING IDEA |\n            +------+-------+\n           /                 \\\n          /                   \\\n    TECHNICALITY           X-FACTOR\n   (How do you           (Why right now?\n    execute it?)          What's the hook?)"
+      , CodeBlock "" "      PROBLEM           SOLUTION\n          \\                 /\n           \\               /\n          +-------+-------+\n          | WINNING IDEA  |\n          +-------+-------+\n           /               \\\n          /                 \\\n   TECHNICALITY         X-FACTOR"
       , HeaderContent "The Problem"
       , TextContent "Defining the problem is mainly about deciding whether or not your idea is actually something \
         \worth solving. Judges at top hackathons have seen hundreds of projects. They can smell a forced problem \

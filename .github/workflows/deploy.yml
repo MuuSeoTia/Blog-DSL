@@ -1,9 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
@@ -11,50 +10,35 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Haskell
-        uses: haskell/actions/setup@v2
+        uses: haskell-actions/setup@v2
         with:
-          ghc-version: '8.10.3'
-          cabal-version: '3.6'
+          ghc-version: '9.4.8'
+          enable-stack: true
+          stack-version: 'latest'
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
+      - name: Cache Stack
+        uses: actions/cache@v4
         with:
           path: |
-            ~/.cabal/packages
-            ~/.cabal/store
-            dist-newstyle
-          key: ${{ runner.os }}-cabal-${{ hashFiles('**/*.cabal') }}
-          restore-keys: |
-            ${{ runner.os }}-cabal-
+            ~/.stack
+            .stack-work
+          key: ${{ runner.os }}-stack-${{ hashFiles('stack.yaml.lock') }}
 
-      - name: Install dependencies
+      - name: Build and generate
         run: |
-          cabal update
-          cabal install --only-dependencies
-          cabal install --enable-executable-dynamic
+          stack build
+          stack run
 
-      - name: Build site
-        run: |
-          mkdir -p dist
-          cabal build
-          cabal run personal-blog
-          cp -r images dist/ || true
-          
-      - name: List generated files
-        run: |
-          echo "Contents of dist directory:"
-          ls -la dist/
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+      - name: Deploy to muuseotia.github.io
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          external_repository: MuuSeoTia/muuseotia.github.io
+          publish_branch: main
           publish_dir: ./dist
-          force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy to GitHub Pages' 
+          commit_message: 'deploy from Blog-DSL'
