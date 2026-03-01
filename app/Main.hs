@@ -351,13 +351,12 @@ samplePosts =
       , TextContent "Planning your project structure is about scope and resource management. You have 24-48 hours. \
         \You are building a proof of concept that works flawlessly for a 3-minute demo, with backups."
       , TextContent "Here's what I do: in the first hour, whiteboard the entire system at a high level. Every API call, \
-        \every component, every data flow. Assign ownership. Then cut 40% of it. Whatever you think you can build \
-        \in 24 hours, you can realistically build about 60% of it. Scope ruthlessly. Kill your darlings. \
-        \Ship the thing that works. Griddy at HackMIT was our cleanest execution because we planned it this way \
-        \from the start."
+        \every component, every data flow. Assign ownership. Whatever you think you can build \
+        \in 24 hours, you can realistically build about 60% of it. Scope ruthlessly and maintain focus, dont making sprawling features that muddy your  \
+        \main idea's core premise. Ship the thing that works."
       , HeaderContent "Your Team"
       , TextContent "None of this works without the right team. My best projects came from teams where everyone knew \
-        \their role and trusted each other. No ego, no politics, just building."
+        \their role and trusted each other."
       , TextContent "The most important thing isn't individual skill. It's complementary skill sets and mutual trust. \
         \You need someone with a knack for design who can make the frontend and UI feel polished and intentional, \
         \not just functional. You need someone with a high vertical in pitching who can walk into judging, command \
@@ -406,6 +405,7 @@ generateSite = do
     generateExperiences sampleExperiences sampleEducation sampleSkills
 
   writeFileUtf8 "dist/css/style.css" renderCSS
+  writeFile "dist/CNAME" "www.tiahi.dev"
 
   putStrLn "Site generated in dist/"
 
