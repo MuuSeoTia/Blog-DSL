@@ -459,6 +459,7 @@ pressStyles = do
     width (pct 100)
     height (px 200)
     key "object-fit" (Value "cover")
+    key "object-position" (Value "center 30%")
     display block
     transition "filter" 0.2 ease (sec 0)
   ".press-body" ? do
