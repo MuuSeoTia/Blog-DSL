@@ -52,15 +52,15 @@ sampleExperiences =
       Nothing
   , Experience 3 "NUCAR Lab" "ML & HPC Researcher" "Boston, MA"
       (fromGregorian 2024 5 28) Nothing
-      [ "Authored a custom SpMM CUDA kernel outperforming cuSPARSE across A100, H100, and H200 architectures, achieving 1.2x geometric mean speedup over 2,000+ SuiteSparse matrices via shared memory tiling, coalesced access patterns, and warp-level load balancing for irregular sparsity"
+      [ "Authored a custom SpMM CUDA kernel outperforming cuSPARSE across A100, H100, and H200 architectures, achieving 1.2x geometric mean speedup over 25 SuiteSparse matrix datasets from varying domains via shared memory tiling, coalesced access patterns, and warp-level load balancing for irregular sparsity"
       , "Profiled and optimized kernel performance using NVIDIA Nsight Compute and Nsight Systems, diagnosing memory-bound bottlenecks and tuning arithmetic intensity, occupancy, and L2 cache hit rates across GPU generations"
       , "Published distributed RAG retrieval research at MIT IEEE URTC 2024, deploying the pipeline across thousands of PubMed papers in production for NIH, NIEHS, and PROTECT"
-      , "Benchmarked sparse matrix storage formats (CSR, COO, ELL) characterizing bandwidth utilization and compute-bound vs memory-bound tradeoffs for GNN and transformer inference workloads"
+      , "Benchmarked sparse matrix storage formats within GNN architectures characterizing bandwidth utilization and compute-bound vs memory-bound tradeoffs for GAT and transformer inference workloads"
       ]
       ["CUDA", "C++", "Python", "PyTorch", "Slurm", "Nsight Compute", "Nsight Systems"]
-      [ "SpMM kernel outperforms cuSPARSE on A100, H100, and H200"
+      [ "SpMM kernel outperforming cuSPARSE, aSPT and other SOTA across A100, H100, and H200"
       , "RAG system deployed in production for NIH, NIEHS, and PROTECT"
-      , "Published at MIT IEEE URTC 2024"
+      , "Published at MIT IEEE URTC 2024, ISPASS IEEE 2026"
       ]
       Nothing
       (Just "https://ece.northeastern.edu/groups/nucar/")
