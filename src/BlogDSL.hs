@@ -272,18 +272,25 @@ instance ToBlogHtml Experience where
         span_ [class_ "entry-org"] $ renderCompanyName exp
       span_ [class_ "entry-date"] $ toHtml $ formatDateRange (startDate exp) (endDate exp)
 
-    div_ [class_ "entry-body"] $ do
-      unless (null $ description exp) $
-        ul_ [class_ "entry-list"] $
-          mapM_ (li_ [] . toHtml) (description exp)
+    -- show first description line as summary
+    case description exp of
+      (first:_) -> p_ [class_ "entry-summary"] $ toHtml first
+      [] -> pure ()
 
-      unless (null $ achievements exp) $
-        ul_ [class_ "entry-list"] $
-          mapM_ (li_ [] . toHtml) (achievements exp)
-
-      unless (null $ technologies exp) $
-        div_ [class_ "entry-tech"] $
-          mapM_ (span_ [class_ "tech-pill"] . toHtml) (technologies exp)
+    -- rest of details collapsible
+    let rest = drop 1 (description exp)
+    unless (null rest && null (achievements exp) && null (technologies exp)) $
+      term "details" [class_ "entry-details"] $ do
+        term "summary" [class_ "entry-expand"] "Details"
+        unless (null rest) $
+          ul_ [class_ "entry-list"] $
+            mapM_ (li_ [] . toHtml) rest
+        unless (null $ achievements exp) $
+          ul_ [class_ "entry-list"] $
+            mapM_ (li_ [] . toHtml) (achievements exp)
+        unless (null $ technologies exp) $
+          div_ [class_ "entry-tech"] $
+            mapM_ (span_ [class_ "tech-pill"] . toHtml) (technologies exp)
 
 instance ToBlogHtml Education where
   toBlogHtml edu = div_ [class_ "experience-entry"] $ do
@@ -338,8 +345,8 @@ renderCompanyName exp = do
 
 -- Helper functions
 formatDateRange :: Day -> Maybe Day -> Text
-formatDateRange start Nothing = formatDay start <> " — Present"
-formatDateRange start (Just end) = formatDay start <> " — " <> formatDay end
+formatDateRange start Nothing = formatDay start <> " - Present"
+formatDateRange start (Just end) = formatDay start <> " - " <> formatDay end
 
 formatDay :: Day -> Text
 formatDay = T.pack . formatTime defaultTimeLocale "%b %Y"

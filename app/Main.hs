@@ -216,7 +216,7 @@ samplePosts =
         \programming languages like C++, it changed my perception of programming languages entirely."
       , TextContent "A massive difference I found right away was how types worked in Haskell and how useful Type Classes are, specifically with multiple input polymorphism. \
         \Another notable difference was the explicit nature of said inputs compared to a language like C++ where type conversions are largely implicit. \
-        \I'm currently still getting used to implementing more Functors into my code and utilizing abstractions rather than mutation — not just in Haskell but across all languages I write."
+        \I'm currently still getting used to implementing more Functors into my code and utilizing abstractions rather than mutation, not just in Haskell but across all languages I write."
       , HeaderContent "What I Learned"
       , TextContent "Through this project, I gained hands-on experience with:"
       , BulletList
@@ -229,7 +229,7 @@ samplePosts =
       , CodeBlock "haskell" "-- The core of my Blog DSL\ndata BlogElement\n  = TextContent Text\n  | HeaderContent Text\n  | Image Text Text (Maybe Text)\n  | CodeBlock Text Text\n  | BulletList [Text]"
       , HeaderContent "What's next + The Mysterious Figure"
       , RichText
-          [ Plain "My next steps are adding a Markdown parser for better formatting, expanding the CSS EDSL, and building out the Projects page. Also — the mysterious figure was my good friend "
+          [ Plain "My next steps are adding a Markdown parser for better formatting, expanding the CSS EDSL, and building out the Projects page. Also, the mysterious figure was my good friend "
           , Link "Lucas" "https://priime.dev"
           , Plain ". Please make sure to endorse him in \"Rizz\" when you have the opportunity."
           ]
@@ -239,14 +239,14 @@ samplePosts =
       "Answers to questions about AI taking CS jobs, whether quantum computing is real, and how to get cracked."
       ["career", "quantum", "opinions"]
       [ HeaderContent "Q: Is AI taking CS jobs?"
-      , TextContent "For individuals who have poor code structure, lack diversity of applicable skills, and are pure DS majors — yes. Otherwise you're fine."
+      , TextContent "For individuals who have poor code structure, lack diversity of applicable skills, and are pure DS majors, yes. Otherwise you're fine."
       , HeaderContent "Q: Is Quantum Computing even real?"
       , TextContent "Ask yourself: What does it mean for something to be real? Do you need to see it? Or simply believe in it? Is it something that is proven? \
         \If you're looking for an opinion from me then the answer is yes. (I know nothing about philosophy)"
       , HeaderContent "Q: How to get \"cracked\"?"
       , TextContent "Don't."
       , HeaderContent "Q: TypeScript?"
-      , TextContent "A bad day writing code in C++ is better than a good day writing code in TypeScript — David Stigant (Surely)"
+      , TextContent "A bad day writing code in C++ is better than a good day writing code in TypeScript. - David Stigant (Surely)"
       ]
   , BlogPost 3 "On Hackathons"
       (UTCTime (fromGregorian 2025 10 11) 17)
@@ -278,7 +278,7 @@ samplePosts =
         \pitching and judging, project structure, and lastly team dynamics."
       , HeaderContent "Ideation"
       , TextContent "Many tech influencers and LinkedIn officers will likely tell you something along the lines of:"
-      , CodeBlock "cpp" "#include <iostream>\nusing namespace std;\n\nint main() {\n  cout << \"Solve a real problem!\" << endl;\n  cout << \"Add a billion AI Agents!\" << endl;\n  cout << \"Pump out dashboards!\" << endl;\n  cout << \"IMPORT <sponsor_api_key>\" << endl;\n}"
+      , CodeBlock "cpp" "// hackathon_advice.cpp\ncout << \"solve a real problem\"\ncout << \"add AI agents\"\ncout << \"dashboards\"\ncout << \"use sponsor API\""
       , TextContent "Unfortunately, they are correct. This is typically the most effective tactic to win any prize \
         \at a smaller scale hackathon."
       , TextContent "However, if you actually want to win 1st place in track or general at the most competitive \
@@ -288,7 +288,7 @@ samplePosts =
         \from as long as 4 months before, up to 14 hours into a hackathon. As a result, I've found the best way \
         \to get an idea is through the intersection of three main components: Problem, Solution, and Technicality, \
         \plus an additional component I call the X-Factor."
-      , CodeBlock "" "      PROBLEM           SOLUTION\n          \\                 /\n           \\               /\n          +-------+-------+\n          | WINNING IDEA  |\n          +-------+-------+\n           /               \\\n          /                 \\\n   TECHNICALITY         X-FACTOR"
+      , CodeBlock "" "problem + solution\n        \\\n     winning idea\n        /\ntechnicality + x-factor"
       , HeaderContent "The Problem"
       , TextContent "Defining the problem is mainly about deciding whether or not your idea is actually something \
         \worth solving. Judges at top hackathons have seen hundreds of projects. They can smell a forced problem \

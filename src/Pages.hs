@@ -28,6 +28,7 @@ pageShell pageTitle cssPath bodyContent = doctypehtml_ $ do
       siteNav cssPath
       main_ [class_ "content", id_ "main-content", role_ "main"] bodyContent
       siteFooter
+    script_ [] ("if(window.innerWidth>640){document.querySelectorAll('.entry-details').forEach(d=>d.open=true)}" :: Text)
 
 -- nav
 siteNav :: Text -> Html ()
@@ -95,14 +96,10 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h1_ "About"
   img_ [class_ "section-img", src_ "images/beanpot.jpg", alt_ "Mouad Tiahi"]
 
-  p_ "I'm a Computer Science and Physics student at Northeastern University, graduating in 2027. I've interned at Amazon building cloud infrastructure and at Dell Technologies working on private cloud engineering. Currently, I work as a Machine Learning and High Performance Computing researcher at the NUCAR Lab under Professor David Kaeli."
-
-  p_ "Outside of research, I serve as Chief Operating Officer of IDEA, Northeastern's venture accelerator, where I lead a team of 30+ students and manage software infrastructure supporting 2,800+ student ventures."
-
-  p_ "My research focuses on high-performance computing optimization, particularly sparse matrix operations on GPU architectures using CUDA and compiler-level instrumentation with NvBit. I've published work at MIT IEEE on distributed RAG retrieval systems and SpMM kernel optimization, and I've given talks at multiple conferences. I've also worked on projects with the NIH, AMD, and NVIDIA."
+  p_ "I'm a CS and Physics student at Northeastern, graduating 2027. I build GPU kernels, break things at hackathons, and occasionally publish papers about it."
 
   h2_ "Interests"
-  p_ "Machine learning systems, GPU/TPU kernel engineering, compiler design, quantum computing, and the intersection of physics and computation. I also compete in hackathons, five wins so far."
+  p_ "GPU/TPU kernel engineering, compiler design, quantum computing, competitive Pokemon, reading, and hackathons."
 
   h2_ "Press"
   div_ [class_ "press-list"] $ do
@@ -122,8 +119,8 @@ generateAbout = pageShell "About - Mouad Tiahi" "css/style.css" $ do
   h2_ "Currently Learning"
   ul_ $ do
     li_ "Sparsity in NVIDIA architectures for accelerating inference"
-    li_ "MXFP4 micro-scaling formats and low-precision arithmetic for NVIDIA Blackwell architectures"
     li_ "JAX, Pallas, and TPU kernel optimization"
+    li_ "To relax and take a break"
 
 -- experience page
 generateExperiences :: [Experience] -> [Education] -> [Skill] -> Html ()
@@ -140,12 +137,6 @@ generateExperiences experiences education skills = pageShell "Experience - Mouad
     mapM_ toBlogHtml education
 
   h2_ [class_ "section-heading"] "Skills"
-  div_ [class_ "skill-legend"] $ do
-    span_ [class_ "legend-item expert"] "Expert"
-    span_ [class_ "legend-item advanced"] "Advanced"
-    span_ [class_ "legend-item intermediate"] "Intermediate"
-    span_ [class_ "legend-item learning"] "Learning"
-    span_ [class_ "legend-item beginner"] "Beginner"
   div_ [class_ "skills-section"] $
     renderSkillsByCategory skills
 
@@ -156,9 +147,8 @@ renderSkillsByCategory skills = mapM_ renderGroup (groupByCategory skills)
 renderGroup :: (SkillCategory, [Skill]) -> Html ()
 renderGroup (cat, ss) = div_ [class_ "skill-group"] $ do
   h4_ [class_ "skill-category-name"] $ toHtml $ skillCategoryText cat
-  div_ [class_ "skill-tags"] $
-    mapM_ (\s -> span_ [class_ $ "skill-tag " <> skillLevelClass (proficiency s)]
-      $ toHtml $ skillName s) ss
+  div_ [class_ "entry-tech"] $
+    mapM_ (\s -> span_ [class_ "tech-pill"] $ toHtml $ skillName s) ss
 
 groupByCategory :: [Skill] -> [(SkillCategory, [Skill])]
 groupByCategory [] = []

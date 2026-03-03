@@ -270,6 +270,17 @@ entryStyles = do
       marginBottom (px 6)
       fontSize (px 17)
       lineHeight (unitless 1.7)
+  ".entry-summary" ? do
+    fontSize (px 15)
+    color "#6b7280"
+    lineHeight (unitless 1.6)
+    marginTop (px 4)
+    marginBottom (px 4)
+    display none
+  ".entry-details" ? do
+    marginTop (px 4)
+  ".entry-expand" ? do
+    display none
   ".entry-detail" ? do
     fontSize (px 15)
     color "#374151"
@@ -483,34 +494,9 @@ pressStyles = do
     lineHeight (unitless 1.4)
     transition "color" 0.15 ease (sec 0)
 
--- skill legend + tags
+-- skill styles
 skillStyles :: Css
 skillStyles = do
-  ".skill-legend" ? do
-    display flex
-    key "flex-wrap" (Value "wrap")
-    key "gap" (Value "10px")
-    marginBottom (px 24)
-    ".legend-item" ? do
-      fontSize (px 12)
-      fontWeight (weight 500)
-      padding (px 2) (px 10) (px 2) (px 10)
-      borderRadius (px 4) (px 4) (px 4) (px 4)
-    ".legend-item.expert" ? do
-      backgroundColor "#ecfdf5"
-      color "#059669"
-    ".legend-item.advanced" ? do
-      backgroundColor "#eff6ff"
-      color "#2563eb"
-    ".legend-item.intermediate" ? do
-      backgroundColor "#fffbeb"
-      color "#d97706"
-    ".legend-item.learning" ? do
-      backgroundColor "#faf5ff"
-      color "#7c3aed"
-    ".legend-item.beginner" ? do
-      backgroundColor "#f9fafb"
-      color "#6b7280"
   ".skills-section" ? do
     marginBottom (px 56)
   ".skill-group" ? do
@@ -522,37 +508,6 @@ skillStyles = do
     key "text-transform" (Value "uppercase")
     key "letter-spacing" (Value "0.05em")
     marginBottom (px 10)
-  ".skill-tags" ? do
-    display flex
-    key "flex-wrap" (Value "wrap")
-    key "gap" (Value "8px")
-  ".skill-tag" ? do
-    display inlineBlock
-    fontSize (px 13)
-    fontWeight (weight 500)
-    padding (px 4) (px 12) (px 4) (px 12)
-    borderRadius (px 6) (px 6) (px 6) (px 6)
-    transition "all" 0.15 ease (sec 0)
-  ".skill-tag.expert" ? do
-    backgroundColor "#ecfdf5"
-    color "#059669"
-    border (px 1) solid "#d1fae5"
-  ".skill-tag.advanced" ? do
-    backgroundColor "#eff6ff"
-    color "#2563eb"
-    border (px 1) solid "#dbeafe"
-  ".skill-tag.intermediate" ? do
-    backgroundColor "#fffbeb"
-    color "#d97706"
-    border (px 1) solid "#fef3c7"
-  ".skill-tag.learning" ? do
-    backgroundColor "#faf5ff"
-    color "#7c3aed"
-    border (px 1) solid "#ede9fe"
-  ".skill-tag.beginner" ? do
-    backgroundColor "#f9fafb"
-    color "#6b7280"
-    border (px 1) solid "#f3f4f6"
 
 -- tech pills and tags
 tagStyles :: Css
@@ -639,6 +594,19 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     h3 ? fontSize (px 16)
   ".entry-org" ? do
     fontSize (px 14)
+  ".entry-summary" ? do
+    display block
+    fontSize (px 14)
+  ".entry-expand" ? do
+    display block
+    fontSize (px 13)
+    color "#9ca3af"
+    cursor pointer
+    key "list-style" (Value "none")
+    marginBottom (px 8)
+    key "user-select" (Value "none")
+    hover & do
+      color "#1a1a1a"
   ".entry-date" ? do
     marginLeft (px 0)
     marginTop (px 4)
