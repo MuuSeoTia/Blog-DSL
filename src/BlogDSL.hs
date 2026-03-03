@@ -281,7 +281,7 @@ instance ToBlogHtml Experience where
     let rest = drop 1 (description exp)
     unless (null rest && null (achievements exp) && null (technologies exp)) $
       term "details" [class_ "entry-details"] $ do
-        term "summary" [class_ "entry-expand"] "Details"
+        term "summary" [class_ "entry-expand"] "\x25B8"
         unless (null rest) $
           ul_ [class_ "entry-list"] $
             mapM_ (li_ [] . toHtml) rest

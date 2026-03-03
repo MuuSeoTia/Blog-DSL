@@ -599,20 +599,17 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     fontSize (px 15)
   ".entry-expand" ? do
     display inlineBlock
-    fontSize (px 13)
-    fontWeight (weight 500)
-    color "#475569"
-    backgroundColor "#f3f4f6"
-    padding (px 4) (px 12) (px 4) (px 12)
-    borderRadius (px 4) (px 4) (px 4) (px 4)
+    fontSize (px 16)
+    color "#9ca3af"
     cursor pointer
     key "list-style" (Value "none")
-    marginTop (px 8)
-    marginBottom (px 10)
+    marginTop (px 4)
+    marginBottom (px 8)
+    padding (px 2) (px 4) (px 2) (px 4)
     key "user-select" (Value "none")
+    key "transition" (Value "color 0.15s ease")
     hover & do
-      backgroundColor "#e5e7eb"
-      color "#1a1a1a"
+      color "#475569"
   ".entry-date" ? do
     marginLeft (px 0)
     marginTop (px 4)

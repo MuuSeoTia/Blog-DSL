@@ -28,7 +28,7 @@ pageShell pageTitle cssPath bodyContent = doctypehtml_ $ do
       siteNav cssPath
       main_ [class_ "content", id_ "main-content", role_ "main"] bodyContent
       siteFooter
-    script_ [] ("if(window.innerWidth>640){document.querySelectorAll('.entry-details').forEach(d=>d.open=true)}" :: Text)
+    script_ [] ("if(window.innerWidth>640){document.querySelectorAll('.entry-details').forEach(d=>d.open=true)}document.querySelectorAll('.entry-details').forEach(d=>d.addEventListener('toggle',()=>{d.querySelector('.entry-expand').textContent=d.open?'\\u25BE':'\\u25B8'}))" :: Text)
 
 -- nav
 siteNav :: Text -> Html ()
