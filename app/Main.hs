@@ -278,7 +278,7 @@ samplePosts =
         \pitching and judging, project structure, and lastly team dynamics."
       , HeaderContent "Ideation"
       , TextContent "Many tech influencers and LinkedIn officers will likely tell you something along the lines of:"
-      , CodeBlock "cpp" "// hackathon_advice.cpp\ncout << \"solve a real problem\"\ncout << \"add AI agents\"\ncout << \"dashboards\"\ncout << \"use sponsor API\""
+      , CodeBlock "cpp" "#include <iostream>\nusing namespace std;\n\nint main() {\n  cout << \"Solve a real problem!\" << endl;\n  cout << \"Add a billion AI Agents!\" << endl;\n  cout << \"Pump out dashboards!\" << endl;\n  cout << \"IMPORT <sponsor_api_key>\" << endl;\n}"
       , TextContent "Unfortunately, they are correct. This is typically the most effective tactic to win any prize \
         \at a smaller scale hackathon."
       , TextContent "However, if you actually want to win 1st place in track or general at the most competitive \
@@ -288,7 +288,7 @@ samplePosts =
         \from as long as 4 months before, up to 14 hours into a hackathon. As a result, I've found the best way \
         \to get an idea is through the intersection of three main components: Problem, Solution, and Technicality, \
         \plus an additional component I call the X-Factor."
-      , CodeBlock "" "problem + solution\n        \\\n     winning idea\n        /\ntechnicality + x-factor"
+      , CodeBlock "" "      PROBLEM           SOLUTION\n          \\                 /\n           \\               /\n          +-------+-------+\n          | WINNING IDEA  |\n          +-------+-------+\n           /               \\\n          /                 \\\n   TECHNICALITY         X-FACTOR"
       , HeaderContent "The Problem"
       , TextContent "Defining the problem is mainly about deciding whether or not your idea is actually something \
         \worth solving. Judges at top hackathons have seen hundreds of projects. They can smell a forced problem \
