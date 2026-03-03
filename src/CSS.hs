@@ -271,11 +271,11 @@ entryStyles = do
       fontSize (px 17)
       lineHeight (unitless 1.7)
   ".entry-summary" ? do
-    fontSize (px 15)
+    fontSize (px 16)
     color "#6b7280"
-    lineHeight (unitless 1.6)
-    marginTop (px 4)
-    marginBottom (px 4)
+    lineHeight (unitless 1.65)
+    marginTop (px 6)
+    marginBottom (px 6)
     display none
   ".entry-details" ? do
     marginTop (px 4)
@@ -596,7 +596,7 @@ mobileStyles = query screen [Feature "max-width" (Just $ value (px 640))] $ do
     fontSize (px 14)
   ".entry-summary" ? do
     display block
-    fontSize (px 14)
+    fontSize (px 15)
   ".entry-expand" ? do
     display block
     fontSize (px 13)
